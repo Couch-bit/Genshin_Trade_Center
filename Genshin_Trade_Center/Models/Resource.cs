@@ -24,9 +24,15 @@ namespace Genshin_Trade_Center.Models
             currentId = 1;
         }
 
-        public Resource(string name, decimal price) 
+        public Resource() 
         {
             id = currentId++;
+            name = "";
+            price = 0;
+        }
+
+        public Resource(string name, decimal price) : this()
+        {
             this.name = name;
             this.price = price;
         }

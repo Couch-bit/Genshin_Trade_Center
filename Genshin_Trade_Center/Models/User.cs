@@ -27,9 +27,16 @@ namespace Genshin_Trade_Center.Models
             currentId = 1;
         }
 
-        public User(string email, string password, string nickname) 
+        public User()
         {
             id = currentId++;
+            email = "";
+            password = "";
+            nickname = "";
+        }
+
+        public User(string email, string password, string nickname) : this()
+        {
             this.email = email;
             this.password = password;
             this.nickname = nickname;

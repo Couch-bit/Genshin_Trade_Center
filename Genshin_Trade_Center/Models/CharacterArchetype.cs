@@ -39,7 +39,16 @@ namespace Genshin_Trade_Center.Models
             currentId = 1;
         }
 
-        public CharacterArchetype(string name, int quality, EnumWeapon weaponType, EnumVision visionType)
+        public CharacterArchetype()
+        {
+            id = currentId++;
+            name = "";
+            quality = 0;
+            weaponType = EnumWeapon.Claymore;
+            visionType = EnumVision.Dendro;
+        }
+
+        public CharacterArchetype(string name, int quality, EnumWeapon weaponType, EnumVision visionType) : this()
         {
             id = currentId;
             this.name = name;

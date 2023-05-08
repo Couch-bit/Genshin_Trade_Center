@@ -1,0 +1,50 @@
+﻿@model Genshin_Trade_Center.Models.CharacterArchetype
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CharacterArchetype</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeaponType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeaponType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisionType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

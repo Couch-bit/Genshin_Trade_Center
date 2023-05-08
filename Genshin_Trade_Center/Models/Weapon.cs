@@ -39,7 +39,14 @@ namespace Genshin_Trade_Center.Models
             currentId = 1;
         }
 
-        public Weapon(string name, string mainStat, EnumWeapon type, string description, int quality)
+        public Weapon()
+        {
+            id = currentId++;
+            name = "";
+        }
+
+        public Weapon(string name, string mainStat, EnumWeapon type,
+            string description, int quality)
         {
             id = currentId++;
             this.name = name;

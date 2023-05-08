@@ -27,9 +27,16 @@ namespace Genshin_Trade_Center.Models
             currentId = 1;
         }
 
-        public Product(string name, decimal price, int level) 
+        public Product()
         {
             id = currentId++;
+            name = "";
+            price = 0;
+            level = 0;
+        }
+
+        public Product(string name, decimal price, int level) : this()
+        {
             this.name = name;
             this.price = price;
             this.level = level;

@@ -36,5 +36,7 @@ namespace Genshin_Trade_Center.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Genshin_Trade_Center.Models.CharacterArchetype> CharacterArchetypes { get; set; }
     }
 }
