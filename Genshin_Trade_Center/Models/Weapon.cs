@@ -6,6 +6,17 @@ using System.Web;
 
 namespace Genshin_Trade_Center.Models
 {
+    public enum EnumStat
+    {
+        ATK,
+        DEF,
+        HP,
+        CRITDMG,
+        CRITRate,
+        ElementalMastery,
+        EnergyRecharge,
+        PhysicalDMG
+    }
     public enum EnumWeapon
     {
         Sword,
@@ -20,7 +31,7 @@ namespace Genshin_Trade_Center.Models
         private static int currentId;
         private int id;
         private string name;
-        private string mainStat;
+        private EnumStat mainStat;
         private EnumWeapon type;
         private string description;
         private int quality;
@@ -28,7 +39,7 @@ namespace Genshin_Trade_Center.Models
         [Key]
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
-        public string MainStat { get => mainStat; set => mainStat = value; }
+        public EnumStat MainStat { get => mainStat; set => mainStat = value; }
         public EnumWeapon Type { get => type; set => type = value; }
         public string Description { get => description; set => description = value; }
         public int Quality { get => quality; set => quality = value; }
@@ -43,12 +54,15 @@ namespace Genshin_Trade_Center.Models
         {
             id = currentId++;
             name = "";
+            mainStat = EnumStat.ATK;
+            type = EnumWeapon.Sword;
+            description = "";
+            quality = 0;
         }
 
-        public Weapon(string name, string mainStat, EnumWeapon type,
-            string description, int quality)
+        public Weapon(string name, EnumStat mainStat, EnumWeapon type,
+            string description, int quality) : this()
         {
-            id = currentId++;
             this.name = name;
             this.mainStat = mainStat;
             this.type = type;

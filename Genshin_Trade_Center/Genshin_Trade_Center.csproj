@@ -171,21 +171,23 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CharacterArchetypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WeaponsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305080943444_Init.cs" />
-    <Compile Include="Migrations\202305080943444_Init.designer.cs">
-      <DependentUpon>202305080943444_Init.cs</DependentUpon>
+    <Compile Include="Migrations\202305081152172_init.cs" />
+    <Compile Include="Migrations\202305081152172_init.designer.cs">
+      <DependentUpon>202305081152172_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\CharacterArchetype.cs" />
+    <Compile Include="Models\CharactersController.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -287,6 +289,21 @@
     <Content Include="Views\CharacterArchetypes\Details.cshtml" />
     <Content Include="Views\CharacterArchetypes\Edit.cshtml" />
     <Content Include="Views\CharacterArchetypes\Index.cshtml" />
+    <Content Include="Views\Weapons\Create.cshtml" />
+    <Content Include="Views\Weapons\Delete.cshtml" />
+    <Content Include="Views\Weapons\Details.cshtml" />
+    <Content Include="Views\Weapons\Edit.cshtml" />
+    <Content Include="Views\Weapons\Index.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Characters\Create.cshtml" />
+    <Content Include="Views\Characters\Delete.cshtml" />
+    <Content Include="Views\Characters\Details.cshtml" />
+    <Content Include="Views\Characters\Edit.cshtml" />
+    <Content Include="Views\Characters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,8 +336,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305080943444_Init.resx">
-      <DependentUpon>202305080943444_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305081152172_init.resx">
+      <DependentUpon>202305081152172_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

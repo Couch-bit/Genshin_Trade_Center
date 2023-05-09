@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Genshin_Trade_Center.Models
 {
-    public class Product
+    public abstract class Product
     {
         private static int currentId;
         private int id;

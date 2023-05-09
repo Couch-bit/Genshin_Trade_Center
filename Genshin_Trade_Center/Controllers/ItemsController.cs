@@ -7,115 +7,120 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Genshin_Trade_Center.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace Genshin_Trade_Center.Controllers
 {
-    public class ProductsController : Controller
+    public class ItemsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Products
+        // GET: Items
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Seller);
+            var products = db.Products.Include(i => i.Seller).Include(i => ((Item)i).Type);
             return View(products.ToList());
         }
 
-        // GET: Products/Details/5
+        // GET: Items/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+            Item item = (Item)db.Products.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(item);
         }
 
-        // GET: Products/Create
+        // GET: Items/Create
         public ActionResult Create()
         {
-            ViewBag.SellerId = new SelectList(db.Userss, "Id", "Email");
-            return View(new Product());
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name");
+            return View(new Item());
         }
 
-        // POST: Products/Create
+        // POST: Items/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,Level,SellerId")] Product product)
+        public ActionResult Create([Bind(Include = "Id,Name,Price,Level,SellerId,Refinement,TypeId")] Item item)
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
+                db.Products.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SellerId = new SelectList(db.Userss, "Id", "Email", product.SellerId);
-            return View(product);
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", item.SellerId);
+            ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name", item.TypeId);
+            return View(item);
         }
 
-        // GET: Products/Edit/5
+        // GET: Items/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+            Item item = (Item)db.Products.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SellerId = new SelectList(db.Userss, "Id", "Email", product.SellerId);
-            return View(product);
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", item.SellerId);
+            ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name", item.TypeId);
+            return View(item);
         }
 
-        // POST: Products/Edit/5
+        // POST: Items/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Level,SellerId")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,Name,Price,Level,SellerId,Refinement,TypeId")] Item item)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
+                db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SellerId = new SelectList(db.Userss, "Id", "Email", product.SellerId);
-            return View(product);
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", item.SellerId);
+            ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name", item.TypeId);
+            return View(item);
         }
 
-        // GET: Products/Delete/5
+        // GET: Items/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+            Item item = (Item)db.Products.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(item);
         }
 
-        // POST: Products/Delete/5
+        // POST: Items/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            Item item = (Item)db.Products.Find(id);
+            db.Products.Remove(item);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

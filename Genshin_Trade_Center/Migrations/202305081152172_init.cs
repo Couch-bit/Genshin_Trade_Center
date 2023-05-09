@@ -3,33 +3,10 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.Products",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Level = c.Int(nullable: false),
-                        SellerId = c.Int(nullable: false),
-                        Friendship = c.Int(),
-                        ArchetypeId = c.Int(),
-                        Refinement = c.Int(),
-                        TypeId = c.Int(),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CharacterArchetypes", t => t.ArchetypeId, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.SellerId, cascadeDelete: true)
-                .ForeignKey("dbo.Weapons", t => t.TypeId, cascadeDelete: true)
-                .Index(t => t.SellerId)
-                .Index(t => t.ArchetypeId)
-                .Index(t => t.TypeId);
-            
             CreateTable(
                 "dbo.CharacterArchetypes",
                 c => new
@@ -41,6 +18,30 @@
                         VisionType = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Products",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Level = c.Int(nullable: false),
+                        SellerId = c.Int(nullable: false),
+                        Friendship = c.Int(),
+                        ArchetypeId = c.Int(),
+                        Constellation = c.Int(),
+                        Refinement = c.Int(),
+                        TypeId = c.Int(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.CharacterArchetypes", t => t.ArchetypeId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.SellerId, cascadeDelete: true)
+                .ForeignKey("dbo.Weapons", t => t.TypeId, cascadeDelete: true)
+                .Index(t => t.SellerId)
+                .Index(t => t.ArchetypeId)
+                .Index(t => t.TypeId);
             
             CreateTable(
                 "dbo.Users",
@@ -59,7 +60,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        MainStat = c.String(),
+                        MainStat = c.Int(nullable: false),
                         Type = c.Int(nullable: false),
                         Description = c.String(),
                         Quality = c.Int(nullable: false),
@@ -190,8 +191,8 @@
             DropTable("dbo.Resources");
             DropTable("dbo.Weapons");
             DropTable("dbo.Users");
-            DropTable("dbo.CharacterArchetypes");
             DropTable("dbo.Products");
+            DropTable("dbo.CharacterArchetypes");
         }
     }
 }
