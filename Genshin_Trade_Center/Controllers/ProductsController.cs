@@ -10,107 +10,112 @@ using Genshin_Trade_Center.Models;
 
 namespace Genshin_Trade_Center.Controllers
 {
-    public class UsersController : Controller
+    public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Users
+        // GET: Products
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            var products = db.Products.Include(p => p.Seller);
+            return View(products.ToList());
         }
 
-        // GET: Users/Details/5
+        // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            Product product = db.Products.Find(id);
+            if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(product);
         }
 
-        // GET: Users/Create
+        // GET: Products/Create
         public ActionResult Create()
         {
-            return View(new User());
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email");
+            return View();
         }
 
-        // POST: Users/Create
+        // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,Password,Nickname")] User user)
+        public ActionResult Create([Bind(Include = "Id,Name,Price,Level,SellerId")] Product product)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
+                db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", product.SellerId);
+            return View(product);
         }
 
-        // GET: Users/Edit/5
+        // GET: Products/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            Product product = db.Products.Find(id);
+            if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", product.SellerId);
+            return View(product);
         }
 
-        // POST: Users/Edit/5
+        // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,Password,Nickname")] User user)
+        public ActionResult Edit([Bind(Include = "Id,Name,Price,Level,SellerId")] Product product)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(user);
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", product.SellerId);
+            return View(product);
         }
 
-        // GET: Users/Delete/5
+        // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            Product product = db.Products.Find(id);
+            if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(product);
         }
 
-        // POST: Users/Delete/5
+        // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            Product product = db.Products.Find(id);
+            db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -26,7 +26,7 @@ namespace Genshin_Trade_Center.Models
 
         }
 
-        public DbSet<User> Userss { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Resource> Resources { get; set; }
         public DbSet<Character> Characters { get; set; }

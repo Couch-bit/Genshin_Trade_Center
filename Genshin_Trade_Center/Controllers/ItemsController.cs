@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Genshin_Trade_Center.Models;
-using Microsoft.Ajax.Utilities;
 
 namespace Genshin_Trade_Center.Controllers
 {
@@ -18,8 +17,11 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Items
         public ActionResult Index()
         {
-            var products = db.Products.Include(i => i.Seller).Include(i => ((Item)i).Type);
-            return View(products.ToList());
+            IQueryable<Item> items = db.Products.Where(i => i is Item).AsEnumerable()
+                .Cast<Item>().AsQueryable()
+                .Include(i => i.Seller)
+                .Include(i => i.Type);
+            return View(items.ToList());
         }
 
         // GET: Items/Details/5
@@ -42,7 +44,7 @@ namespace Genshin_Trade_Center.Controllers
         {
             ViewBag.SellerId = new SelectList(db.Users, "Id", "Email");
             ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name");
-            return View(new Item());
+            return View();
         }
 
         // POST: Items/Create
@@ -54,7 +56,7 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(item);
+                db.Products.Add((Product)item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

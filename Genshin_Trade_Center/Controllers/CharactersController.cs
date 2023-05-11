@@ -6,8 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Genshin_Trade_Center.Models;
 
-namespace Genshin_Trade_Center.Models
+namespace Genshin_Trade_Center.Controllers
 {
     public class CharactersController : Controller
     {
@@ -16,8 +17,10 @@ namespace Genshin_Trade_Center.Models
         // GET: Characters
         public ActionResult Index()
         {
-            var products = db.Products.Include(c => c.Seller).Include(c => ((Character)c).Archetype);
-            return View(products.ToList());
+            IQueryable<Character> characters = db.Products.Where(i => i is Character).AsEnumerable()
+                .Cast<Character>().AsQueryable()
+                .Include(i => i.Seller).Include(i => i.Archetype);
+            return View(characters.ToList());
         }
 
         // GET: Characters/Details/5
@@ -38,7 +41,7 @@ namespace Genshin_Trade_Center.Models
         // GET: Characters/Create
         public ActionResult Create()
         {
-            ViewBag.SellerId = new SelectList(db.Userss, "Id", "Email");
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email");
             ViewBag.ArchetypeId = new SelectList(db.CharacterArchetypes, "Id", "Name");
             return View();
         }
@@ -52,12 +55,12 @@ namespace Genshin_Trade_Center.Models
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(character);
+                db.Products.Add((Product)character);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SellerId = new SelectList(db.Userss, "Id", "Email", character.SellerId);
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", character.SellerId);
             ViewBag.ArchetypeId = new SelectList(db.CharacterArchetypes, "Id", "Name", character.ArchetypeId);
             return View(character);
         }
@@ -74,7 +77,7 @@ namespace Genshin_Trade_Center.Models
             {
                 return HttpNotFound();
             }
-            ViewBag.SellerId = new SelectList(db.Userss, "Id", "Email", character.SellerId);
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", character.SellerId);
             ViewBag.ArchetypeId = new SelectList(db.CharacterArchetypes, "Id", "Name", character.ArchetypeId);
             return View(character);
         }
@@ -92,7 +95,7 @@ namespace Genshin_Trade_Center.Models
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SellerId = new SelectList(db.Userss, "Id", "Email", character.SellerId);
+            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", character.SellerId);
             ViewBag.ArchetypeId = new SelectList(db.CharacterArchetypes, "Id", "Name", character.ArchetypeId);
             return View(character);
         }

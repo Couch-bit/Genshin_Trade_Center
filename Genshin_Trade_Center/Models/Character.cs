@@ -17,10 +17,11 @@ namespace Genshin_Trade_Center.Models
 
         public Character() : base() {}
         public Character(string name, int price, int level,
-            int friendship) : 
+            int friendship, int constellation) : 
             base(name, price, level) 
         {
             this.friendship = friendship;
+            this.constellation = constellation;
         }
     }
 }
