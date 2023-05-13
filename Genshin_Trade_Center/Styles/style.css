@@ -1,0 +1,198 @@
+:root{
+    --pretty_blue : #112a49;
+    --pretty_gold : #FAAC02
+}
+
+.title {
+    color: white;
+    font-family: GenshinFont; 
+    font-weight: 400; 
+    font-size: 20px; 
+}
+
+body{
+    background-image: url("../Images/BackgroundLiyue.jpg");
+    background-attachment: fixed;
+}
+
+.header{
+    background-image: url("../Images/header_dark.jpg");
+    padding: 15px; 
+    text-align: center;
+    position: relative; 
+}
+
+.footer {
+    padding: 15px; 
+    text-align: center; 
+    background-color: var(--pretty_blue);
+    color: white;
+    font-family: GenshinFont; 
+    font-weight: 400; 
+    font-size: 16px;
+}
+
+.container-main {
+    text-align: justify; 
+    text-justify: inter-word; 
+    font-family: standard; 
+    font-weight: 400;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    background-color: rgba(255, 246, 232, 0.5);
+    border-radius: 5px;
+}
+
+.container {
+    text-align: justify; 
+    text-justify: inter-word; 
+    font-family: standard; 
+    font-weight: 400;
+    background-color: rgb(255, 252, 245);
+    min-height: 100vh;
+    padding-right: 1%;
+    padding-left: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 8px;
+}
+
+.landing-page{
+    width: auto;
+}
+
+.moving-arrow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: -80%;
+    display: block;
+    margin: auto;
+    height: 5%;
+    width: auto;
+    animation-name: bounce;
+    animation-timing-function: ease;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transform-origin: center;
+}
+
+h1 {
+    color: var(--pretty_blue);
+    font-family: Segoe UI, Arial, sans-serif; 
+    text-align: center; 
+}
+
+.standard-image {
+    border-radius: 8px; 
+    display: block;
+    margin-left: auto; 
+    margin-right: auto; 
+    width: auto; 
+    height: 500px;
+}
+
+.standard-image2 {
+    border-radius: 8px; 
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 100%; 
+    max-height: 500px;
+}
+
+@media only screen and (min-width:3000px){
+    .standard-image2 {width:auto;}
+    .polaroid {max-width: 2000px; margin-left: auto; margin-right: auto;}
+}
+
+.polaroid {
+    background-color: var(--pretty_blue);
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px #3e454fa5;
+    padding-top: 2.5%;
+    padding-bottom: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+    color: white;
+    font-family: standard;
+    text-align: center;
+    max-width: 1500px;
+}
+
+a:link {
+    color: rgb(250, 114, 51);
+    font-family: GenshinFont;
+    text-decoration: none; 
+    font-weight: 400; 
+  }
+
+a:visited {
+    color: #da871b;
+    text-decoration: none;
+    font-family: GenshinFont; 
+    font-weight: 400; 
+}
+
+a:hover {
+    color: var(--pretty_gold);
+    text-decoration: underline;
+    font-family: GenshinFont; 
+    font-weight: 400; 
+}
+
+hr {
+    border-top: 5px solid;
+    color: var(--pretty_gold);
+    width: 50%;
+    border-radius: 8px;
+}
+
+.flexbox{
+    display: flex;
+    align-items:stretch;
+}
+
+.item{
+    flex-basis: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-grow: 1;
+}
+
+.ayato_button{
+    background-color: var(--pretty_blue);
+    color: white;
+    font-family: GenshinFont;
+    border-radius: 10px;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#emoji {
+    position: fixed;
+    display: none;
+    width: auto;
+    height: 15%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: float;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+  }

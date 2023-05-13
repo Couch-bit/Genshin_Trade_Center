@@ -21,9 +21,15 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Characters", "Index", "Characters", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Items", "Index", "Items", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Resources", "Index", "Resources", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
                 </ul>
                  @Html.Partial("_LoginPartial")
-            </dixv>
+            </div>
         </div>
     </nav>
     <div class="container body-content">
