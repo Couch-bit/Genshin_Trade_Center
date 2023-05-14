@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Genshin_Trade_Center.Models;
 
@@ -12,7 +11,7 @@ namespace Genshin_Trade_Center.Controllers
 {
     public class ResourcesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Resources
         public ActionResult Index()

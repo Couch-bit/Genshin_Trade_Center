@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Genshin_Trade_Center.Models;
 
@@ -12,7 +9,7 @@ namespace Genshin_Trade_Center.Controllers
 {
     public class CharactersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Characters
         public ActionResult Index()
