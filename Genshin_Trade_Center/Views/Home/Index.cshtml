@@ -1,199 +1,136 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Genshin Trade Center</title>
-    <link rel="stylesheet" media="screen" href="../../Styles/style.css" />
-    <link rel="stylesheet" media="screen" href="../../Styles/style_menu_gorne.css" />
-    <link rel="stylesheet" media="screen" href="../../Styles/style_table.css" />
-    <link rel="stylesheet"
-          media="screen"
-          href="../../Styles/fonts_and_animations.css" />
-    <link rel="stylesheet" media="screen" href="../../Styles/style_side_menu.css" />
-    <link rel="shortcut icon" href="../../Images/Icon.jpg" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Genshin Website" />
-    <meta name="keywords" content="Genshin Impact, Anime, Game" />
-    <meta name="author" content="Wiktoria Arendarczyk, Cezary Moskal, Martyna Guzik" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style></style>
-</head>
-<body style="margin: 0px">
-    <div id="side-contain" class="side-menu-container">
-        <nav id="side" class="side-menu">
-            <a href="https://www.facebook.com/Genshinimpact/">
-                <div>
-                    <img class="side-menu-image" src="../../Images/fb.png" alt="Side Menu" />
-                </div>
-            </a>
-            <a href="https://twitter.com/GenshinImpact?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
-                <div>
-                    <img class="side-menu-image"
-                         src="Images/twitter.png"
-                         alt="Side menu twitter" />
-                </div>
-            </a>
-            <a id="song-change">
-                <div>
-                    <audio class="audio" src="../../Images/Soundtrack.mp3"></audio>
-                    <img id="song-on"
-                         class="side-menu-image"
-                         src="Images/volume.png"
-                         alt="Side menu volume on" />
-                    <img id="song-off"
-                         class="side-menu-image"
-                         src="Images/mute.png"
-                         alt="Side menu volume off" />
-                </div>
-            </a>
-        </nav>
-    </div>
-    <header class="header">
-        <p class="title">Genshin Impact Trade Center</p>
-    </header>
-    <div class="nav-bar">
-        <div class="item_napis">
-            <p class="logo_name">Genshin Impact</p>
-            <div class="appear">
-                <img class="logo_icon" src="../../Images/Icon.jpg" alt="Icon" />
+﻿<header class="header">
+    <p class="title">Genshin Impact Trade Center</p>
+</header>
+<div class="landing-page" style="position: relative">
+    <img src="../../Images/LandingWallpaperFinal.png"
+         alt="Genshin landing page"
+         style="width: 100%; height: 100%; position: relative" />
+    <img src="../../Images/down-arrow.png"
+         alt="Moving arrow"
+         class="moving-arrow"
+         onclick="scroll1()"/>
+</div>
+<div id="side-contain" class="side-menu-container">
+    <nav id="side" class="side-menu">
+        <a href="https://www.facebook.com/Genshinimpact/">
+            <div>
+                <img class="side-menu-image" src="../../Images/fb.png" alt="Side Menu" />
             </div>
-        </div>
-        <nav class="item_button">
-            <a id="ToHome" class="menu_link">Home</a>
-            <a>
-                <img onclick="scroll1()"
-                     class="menu_icon"
-                     src="../../Images/home.png"
-                     alt="Upper menu home" />
-            </a>
-            <a id="ToTarget" class="menu_link">Introduction</a>
-            <a>
-                <img onclick="scroll2()"
-                     class="menu_icon"
-                     src="../../Images/info.png"
-                     alt="Upper menu icon" />
-            </a>
-            <a id="ToMarket" class="menu_link">Market</a>
-            <a>
-                <img class="menu_icon"
-                     src="../../Images/Shop.png"
-                     alt="Upper menu market link" />
-            </a>
-            <a id="ToUser" class="menu_link">User</a>
-            <a>
-                <img class="menu_icon"
-                     src="../../Images/user.png"
-                     alt="Upper menu user link" />
-            </a>
-        </nav>
-    </div>
-    <div class="landing-page" style="position: relative">
-        <img src="../../Images/LandingWallpaperFinal.png"
-             alt="Genshin landing page"
-             style="width: 100%; height: 100%; position: relative" />
-        <img src="../../Images/down-arrow.png"
-             alt="Moving arrow"
-             class="moving-arrow"
-             onclick="scroll1()" />
-    </div>
-    <div class="container-main">
-        <hr />
-        <div class="container" id="sekcja1">
-            <h1>What is Genshin Impact Trade Center?</h1>
-            <p>
-                Our <b>Genshin Impact Trade Center</b> is the proof that dreams
-                sometimes come true! What Genshin player has never fantasized about
-                trading Mora with your poor friends, or perhaps selling a rare
-                character for a great price? Wouldn't <b>you</b> dream of buying a
-                great weapon from a suspiciously lucky Chinese player?
-            </p>
-            <p>
-                Our <b>Genshin Impact Trade Center</b> is being developed by three
-                humble students of AGH University of Science and Technology. For
-                further information detailing the development process, please reach
-                for documentation and README file.
-                <b>We are not the owners nor creators of Genshin Impact franchise.</b>
-                If you wish to look at miHoYo Company you can reach their social media
-                via the sticky side menu. Additionally, you can toggle the music -
-                it's the soundtrack from the game (Port Ormos)!
-            </p>
-            <div class="polaroid">
-                <img src="../../Images/GenshinFirst.jpg"
-                     alt="Genshin first image"
-                     class="standard-image2" />
-                <br />
-                <p>
-                    Through Scarlet Leaves and Mists of Smoke travel the land of Teyvat.
-                    Create an account and join this Land of Wonders -
-                    <a href="https://genshin.hoyoverse.com/pc-launcher/?utm_source=EU_google_EUT2_search_20220719&mhy_trace_channel=ga_channel&new=1&gad=1&gclid=Cj0KCQjwmN2iBhCrARIsAG_G2i5tj9N5KLP2-CrhGmG95CW91usd-wDn-m6nDNCT3hPP1ux2aSpgUSUaAkmzEALw_wcB#/GI008">click here!</a>
-                </p>
+        </a>
+        <a href="https://twitter.com/GenshinImpact?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+            <div>
+                <img class="side-menu-image"
+                     src="../../Images/twitter.png"
+                     alt="Side menu twitter" />
             </div>
-        </div>
-        <hr />
-        <div class="container" id="sekcja2">
-            <h1>How to use the Trade Center?</h1>
-            <p>
-                Lovely! You decided to learn how to use our Trade Center. What you are
-                looking for is the tab named "Market" on the sticky upper menu. Before
-                clicking on it, there are serval basic rules to follow, and knowledge
-                to acquire.
-            </p>
-            <ul>
-                <li>
-                    <b>You can only trade characters, weapons, and Mora for now.</b> We
-                    are planning on expanding the Trade Center in the future, so stay in
-                    touch!
-                </li>
-                <li>
-                    Characters can be traded only without toggled artifacts and weapons,
-                    so
-                    <b>
-                        you are selling a character - and its constellation - without any
-                        add-ons!
-                    </b>
-                </li>
-                <li>
-                    You can trade between servers, so don't limit yourself to your home
-                    server.
-                </li>
-                <li>
-                    <b>The only available currency is Euro (€)</b>, any transactions
-                    will be handled according to your bank policy and its exhanging
-                    rates.
-                </li>
-                <li>
-                    <b>You have to be registered on this page to buy and sell.</b> We
-                    need to have your account, which is linked to your Genshin Impact
-                    account.
-                </li>
-                <li>
-                    Trading Mora is possible only via set amounts by the store. So you
-                    can only sell certain round values, such as 1 million Mora.
-                    <b>Mora has set price, which cannot be modified by users.</b>
-                </li>
-            </ul>
-            <p>
-                Any further questions? Any doubts? Go visit our detailed documentation
-                for further instruction. It is available at our Github repository.
-            </p>
-            <div class="polaroid">
-                <img src="../../Images/GenshinHuTao.jpg"
-                     alt="Genshin second image"
-                     class="standard-image2" />
+        </a>
+        <a id="song-change">
+            <div>
+                <audio class="audio" src="../../Images/Soundtrack.mp3"></audio>
+                <img id="song-on"
+                     class="side-menu-image"
+                     src="../../Images/volume.png"
+                     alt="Side menu volume on" />
+                <img id="song-off"
+                     class="side-menu-image"
+                     src="../../Images/mute.png"
+                     alt="Side menu volume off" />
             </div>
-            <h2 style="text-align: center">
-                Click to summon Kamisato Ayato for a good luck!
-            </h2>
-            <div style="text-align: center">
-                <button id="button" class="ayato_button">Click me!</button>
-                <img src="../../Images/ayato_emoji.png" id="emoji" alt="Ayato emote" />
-            </div>
+        </a>
+    </nav>
+</div>
+<div class="container-main">
+    <hr />
+    <div class="container-body" id="sekcja1">
+        <h1>What is Genshin Impact Trade Center?</h1>
+        <p>
+            Our <b>Genshin Impact Trade Center</b> is the proof that dreams
+            sometimes come true! What Genshin player has never fantasized about
+            trading Mora with your poor friends, or perhaps selling a rare
+            character for a great price? Wouldn't <b>you</b> dream of buying a
+            great weapon from a suspiciously lucky Chinese player?
+        </p>
+        <p>
+            Our <b>Genshin Impact Trade Center</b> is being developed by three
+            humble students of AGH University of Science and Technology. For
+            further information detailing the development process, please reach
+            for documentation and README file.
+            <b>We are not the owners nor creators of Genshin Impact franchise.</b>
+            If you wish to look at miHoYo Company you can reach their social media
+            via the sticky side menu. Additionally, you can toggle the music -
+            it's the soundtrack from the game (Port Ormos)!
+        </p>
+        <div class="polaroid">
+            <img src="../../Images/GenshinFirst.jpg"
+                 alt="Genshin first image"
+                 class="standard-image2" />
+            <br />
+            <p>
+                Through Scarlet Leaves and Mists of Smoke travel the land of Teyvat.
+                Create an account and join this Land of Wonders -
+                <a href="https://genshin.hoyoverse.com/pc-launcher/?utm_source=EU_google_EUT2_search_20220719&mhy_trace_channel=ga_channel&new=1&gad=1&gclid=Cj0KCQjwmN2iBhCrARIsAG_G2i5tj9N5KLP2-CrhGmG95CW91usd-wDn-m6nDNCT3hPP1ux2aSpgUSUaAkmzEALw_wcB#/GI008">click here!</a>
+            </p>
         </div>
     </div>
     <hr />
-    <footer class="footer">
-        <p>Wiktoria Arendarczyk, Cezary Moskal, Martyna Guzik 2023 ©</p>
-    </footer>
-    <script src="../../JS/indexJS.js"></script>
-</body>
-</html>
+    <div class="container-body" id="sekcja2">
+        <h1>How to use the Trade Center?</h1>
+        <p>
+            Lovely! You decided to learn how to use our Trade Center. What you are
+            looking for is the tab named "Market" on the sticky upper menu. Before
+            clicking on it, there are serval basic rules to follow, and knowledge
+            to acquire.
+        </p>
+        <ul>
+            <li>
+                <b>You can only trade characters, weapons, and Mora for now.</b> We
+                are planning on expanding the Trade Center in the future, so stay in
+                touch!
+            </li>
+            <li>
+                Characters can be traded only without toggled artifacts and weapons,
+                so
+                <b>
+                    you are selling a character - and its constellation - without any
+                    add-ons!
+                </b>
+            </li>
+            <li>
+                You can trade between servers, so don't limit yourself to your home
+                server.
+            </li>
+            <li>
+                <b>The only available currency is Euro (€)</b>, any transactions
+                will be handled according to your bank policy and its exhanging
+                rates.
+            </li>
+            <li>
+                <b>You have to be registered on this page to buy and sell.</b> We
+                need to have your account, which is linked to your Genshin Impact
+                account.
+            </li>
+            <li>
+                Trading Mora is possible only via set amounts by the store. So you
+                can only sell certain round values, such as 1 million Mora.
+                <b>Mora has set price, which cannot be modified by users.</b>
+            </li>
+        </ul>
+        <p>
+            Any further questions? Any doubts? Go visit our detailed documentation
+            for further instruction. It is available at our Github repository.
+        </p>
+        <div class="polaroid">
+            <img src="../../Images/GenshinHuTao.jpg"
+                 alt="Genshin second image"
+                 class="standard-image2" />
+        </div>
+        <h2 style="text-align: center">
+            Click to summon Kamisato Ayato for a good luck!
+        </h2>
+        <div style="text-align: center">
+            <button id="button" class="ayato_button">Click me!</button>
+            <img src="../../Images/ayato_emoji.png" id="emoji" alt="Ayato emote" />
+        </div>
+    </div>
+</div>
+<script src="../../JS/indexJS.js"></script>

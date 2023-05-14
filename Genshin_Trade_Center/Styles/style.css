@@ -1,6 +1,6 @@
 :root{
     --pretty_blue : #112a49;
-    --pretty_gold : #FAAC02
+    --pretty_gold : #FAAC02;
 }
 
 .title {
@@ -10,12 +10,17 @@
     font-size: 20px; 
 }
 
-body{
+body {
+    color: white;
     background-image: url("../Images/BackgroundLiyue.jpg");
     background-attachment: fixed;
 }
 
-.header{
+body * {
+   color: white;
+}
+
+.header {
     background-image: url("../Images/header_dark.jpg");
     padding: 15px; 
     text-align: center;
@@ -47,7 +52,8 @@ body{
     border-radius: 5px;
 }
 
-.container {
+.container-body {
+    color: black;
     text-align: justify; 
     text-justify: inter-word; 
     font-family: standard; 
@@ -61,7 +67,11 @@ body{
     border-radius: 8px;
 }
 
-.landing-page{
+.container-body {
+    color: black;
+}
+
+.landing-page {
     width: auto;
 }
 
@@ -155,9 +165,9 @@ hr {
     border-radius: 8px;
 }
 
-.flexbox{
+.flexbox {
     display: flex;
-    align-items:stretch;
+    align-items: stretch;
 }
 
 .item{
@@ -195,4 +205,4 @@ hr {
     animation-name: float;
     animation-duration: 2s;
     animation-iteration-count: 1;
-  }
+}
