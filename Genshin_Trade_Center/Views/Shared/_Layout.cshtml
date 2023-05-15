@@ -1,39 +1,50 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <link rel="stylesheet" media="screen" href="../../Styles/style.css" />
+    <link rel="stylesheet" media="screen" href="../../Styles/style_menu_gorne.css" />
+    <link rel="stylesheet" media="screen" href="../../Styles/style_table.css" />
+    <link rel="stylesheet"
+          media="screen"
+          href="../../Styles/fonts_and_animations.css" />
+    <link rel="stylesheet" media="screen" href="../../Styles/style_side_menu.css" />
+    <link rel="shortcut icon" href="../../Images/Icon.jpg" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Genshin Website" />
+    <meta name="keywords" content="Genshin Impact, Anime, Game" />
+    <meta name="author" content="Wiktoria Arendarczyk, Cezary Moskal, Martyna Guzik" />
+    <style></style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-                 @Html.Partial("_LoginPartial")
-            </dixv>
+<body style="margin:0%">
+    <div class="nav-bar">
+        <div class="item_napis">
+            <p class="logo_name">Genshin Impact</p>
+            <div class="appear">
+                <img class="logo_icon" src="../../Images/Icon.jpg" alt="Icon" />
+            </div>
         </div>
-    </nav>
+        <nav class="container-nav">
+            <ul class="nav-list">
+                <li class="menu_link">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { })</li>
+                <li class="menu_link">@Html.ActionLink("Characters", "Index", "Characters", new { area = "" }, new { })</li>
+                <li class="menu_link">@Html.ActionLink("Items", "Index", "Items", new { area = "" }, new { })</li>
+                <li class="menu_link">@Html.ActionLink("Weapons", "Index", "Characters", new { area = "" }, new { })</li>
+                <li class="menu_link">@Html.ActionLink("Character Archetypes", "Index", "CharacterArchetypes", new { area = "" }, new { })</li>
+                <li class="menu_link">@Html.ActionLink("Resources", "Index", "Resources", new { area = "" }, new { })</li>
+            </ul>
+        </nav>
+    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="footer">
+            <p>Wiktoria Arendarczyk, Cezary Moskal, Martyna Guzik 2023 ©</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

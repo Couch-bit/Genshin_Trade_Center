@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -158,9 +161,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -181,9 +181,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305081152172_init.cs" />
-    <Compile Include="Migrations\202305081152172_init.designer.cs">
-      <DependentUpon>202305081152172_init.cs</DependentUpon>
+    <Compile Include="Migrations\202305131156406_init.cs" />
+    <Compile Include="Migrations\202305131156406_init.designer.cs">
+      <DependentUpon>202305131156406_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -220,12 +220,35 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\artifacts.png" />
+    <Content Include="Images\ayato_emoji.png" />
+    <Content Include="Images\BackgroundLiyue.jpg" />
+    <Content Include="Images\characters.png" />
+    <Content Include="Images\down-arrow.png" />
+    <Content Include="Images\fb.png" />
+    <Content Include="Images\GenshinFirst.jpg" />
+    <Content Include="Images\GenshinHuTao.jpg" />
+    <Content Include="Images\GenshinLore.jpeg" />
+    <Content Include="Images\header_dark.jpg" />
+    <Content Include="Images\home.png" />
+    <Content Include="Images\Icon.jpg" />
+    <Content Include="Images\info.png" />
+    <Content Include="Images\LandingWallpaper.jpg" />
+    <Content Include="Images\LandingWallpaperFinal.png" />
+    <Content Include="Images\mute.png" />
+    <Content Include="Images\Shop.png" />
+    <Content Include="Images\Soundtrack.mp3" />
+    <Content Include="Images\twitter.png" />
+    <Content Include="Images\user.png" />
+    <Content Include="Images\volume.png" />
+    <Content Include="JS\indexJS.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Images\LandingWallpaper.psd" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -237,6 +260,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Styles\fonts_and_animations.css" />
+    <Content Include="Styles\Genshin_Trade_Center.csproj.user" />
+    <Content Include="Styles\style.css" />
+    <Content Include="Styles\style_menu_gorne.css" />
+    <Content Include="Styles\style_side_menu.css" />
+    <Content Include="Styles\style_table.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -301,6 +330,9 @@
     <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Styles\downloaded.ttf" />
+    <Content Include="Styles\Genshin_Trade_Center.csproj" />
+    <Content Include="Styles\zh-cn.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,8 +366,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305081152172_init.resx">
-      <DependentUpon>202305081152172_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305131156406_init.resx">
+      <DependentUpon>202305131156406_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

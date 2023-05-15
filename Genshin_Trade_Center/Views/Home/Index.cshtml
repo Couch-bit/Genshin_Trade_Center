@@ -1,33 +1,136 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
-
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
+﻿<header class="header">
+    <p class="title">Genshin Impact Trade Center</p>
+</header>
+<div class="landing-page" style="position: relative">
+    <img src="../../Images/LandingWallpaperFinal.png"
+         alt="Genshin landing page"
+         style="width: 100%; height: 100%; position: relative" />
+    <img src="../../Images/down-arrow.png"
+         alt="Moving arrow"
+         class="moving-arrow"
+         onclick="scroll1()"/>
+</div>
+<div id="side-contain" class="side-menu-container">
+    <nav id="side" class="side-menu">
+        <a href="https://www.facebook.com/Genshinimpact/">
+            <div>
+                <img class="side-menu-image" src="../../Images/fb.png" alt="Side Menu" />
+            </div>
+        </a>
+        <a href="https://twitter.com/GenshinImpact?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+            <div>
+                <img class="side-menu-image"
+                     src="../../Images/twitter.png"
+                     alt="Side menu twitter" />
+            </div>
+        </a>
+        <a id="song-change">
+            <div>
+                <audio class="audio" src="../../Images/Soundtrack.mp3"></audio>
+                <img id="song-on"
+                     class="side-menu-image"
+                     src="../../Images/volume.png"
+                     alt="Side menu volume on" />
+                <img id="song-off"
+                     class="side-menu-image"
+                     src="../../Images/mute.png"
+                     alt="Side menu volume off" />
+            </div>
+        </a>
+    </nav>
+</div>
+<div class="container-main">
+    <hr />
+    <div class="container-body" id="sekcja1">
+        <h1>What is Genshin Impact Trade Center?</h1>
+        <p>
+            Our <b>Genshin Impact Trade Center</b> is the proof that dreams
+            sometimes come true! What Genshin player has never fantasized about
+            trading Mora with your poor friends, or perhaps selling a rare
+            character for a great price? Wouldn't <b>you</b> dream of buying a
+            great weapon from a suspiciously lucky Chinese player?
+        </p>
+        <p>
+            Our <b>Genshin Impact Trade Center</b> is being developed by three
+            humble students of AGH University of Science and Technology. For
+            further information detailing the development process, please reach
+            for documentation and README file.
+            <b>We are not the owners nor creators of Genshin Impact franchise.</b>
+            If you wish to look at miHoYo Company you can reach their social media
+            via the sticky side menu. Additionally, you can toggle the music -
+            it's the soundtrack from the game (Port Ormos)!
+        </p>
+        <div class="polaroid">
+            <img src="../../Images/GenshinFirst.jpg"
+                 alt="Genshin first image"
+                 class="standard-image2" />
+            <br />
             <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
+                Through Scarlet Leaves and Mists of Smoke travel the land of Teyvat.
+                Create an account and join this Land of Wonders -
+                <a href="https://genshin.hoyoverse.com/pc-launcher/?utm_source=EU_google_EUT2_search_20220719&mhy_trace_channel=ga_channel&new=1&gad=1&gclid=Cj0KCQjwmN2iBhCrARIsAG_G2i5tj9N5KLP2-CrhGmG95CW91usd-wDn-m6nDNCT3hPP1ux2aSpgUSUaAkmzEALw_wcB#/GI008">click here!</a>
             </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+        </div>
     </div>
-</main>
+    <hr />
+    <div class="container-body" id="sekcja2">
+        <h1>How to use the Trade Center?</h1>
+        <p>
+            Lovely! You decided to learn how to use our Trade Center. What you are
+            looking for is the tab named "Market" on the sticky upper menu. Before
+            clicking on it, there are serval basic rules to follow, and knowledge
+            to acquire.
+        </p>
+        <ul>
+            <li>
+                <b>You can only trade characters, weapons, and Mora for now.</b> We
+                are planning on expanding the Trade Center in the future, so stay in
+                touch!
+            </li>
+            <li>
+                Characters can be traded only without toggled artifacts and weapons,
+                so
+                <b>
+                    you are selling a character - and its constellation - without any
+                    add-ons!
+                </b>
+            </li>
+            <li>
+                You can trade between servers, so don't limit yourself to your home
+                server.
+            </li>
+            <li>
+                <b>The only available currency is Euro (€)</b>, any transactions
+                will be handled according to your bank policy and its exhanging
+                rates.
+            </li>
+            <li>
+                <b>You have to be registered on this page to buy and sell.</b> We
+                need to have your account, which is linked to your Genshin Impact
+                account.
+            </li>
+            <li>
+                Trading Mora is possible only via set amounts by the store. So you
+                can only sell certain round values, such as 1 million Mora.
+                <b>Mora has set price, which cannot be modified by users.</b>
+            </li>
+        </ul>
+        <p>
+            Any further questions? Any doubts? Go visit our detailed documentation
+            for further instruction. It is available at our Github repository.
+        </p>
+        <div class="polaroid">
+            <img src="../../Images/GenshinHuTao.jpg"
+                 alt="Genshin second image"
+                 class="standard-image2" />
+        </div>
+        <h2 style="text-align: center">
+            Click to summon Kamisato Ayato for a good luck!
+        </h2>
+        <div style="text-align: center">
+            <button id="button" class="ayato_button">Click me!</button>
+            <img src="../../Images/ayato_emoji.png" id="emoji" alt="Ayato emote" />
+        </div>
+    </div>
+</div>
+<script src="../../JS/indexJS.js"></script>
