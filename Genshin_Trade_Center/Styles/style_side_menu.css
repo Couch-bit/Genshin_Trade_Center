@@ -9,7 +9,7 @@
       }
       .side-menu-container {
         position: fixed;
-        height: 50vh;
+        height: 100vh;
         left: 0px;
       }
       .side-menu > a {

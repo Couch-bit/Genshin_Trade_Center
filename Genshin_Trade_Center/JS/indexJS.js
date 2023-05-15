@@ -26,7 +26,7 @@ function scroll2(){
 $(window).scroll(function() {
     var scroll = $(window).scrollTop();
     var ograniczenie = $("#sekcja1").offset().top - 35;
-    if(scroll  > ograniczenie) {
+    if(scroll > ograniczenie) {
         $("#side-contain").slideDown("slow");
     }
     if(scroll < ograniczenie){

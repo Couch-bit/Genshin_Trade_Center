@@ -11,8 +11,8 @@ namespace Genshin_Trade_Center.Models
         private int constellation;
 
         public int Friendship { get => friendship; set => friendship = value; }
-        public int ArchetypeId { get; set; }
         public int Constellation { get => constellation; set => constellation = value; }
+        public int ArchetypeId { get; set; }
         public virtual CharacterArchetype Archetype { get; set; }
 
         public Character() : base() {}

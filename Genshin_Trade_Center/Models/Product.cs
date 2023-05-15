@@ -19,7 +19,7 @@ namespace Genshin_Trade_Center.Models
         public string Name { get => name; set => name = value; }
         public decimal Price { get => price; set => price = value; }
         public int Level { get => level; set => level = value; }
-        public int SellerId { get; set; }
+        public string SellerId { get; set; }
         public virtual User Seller { get; set; }
 
         static Product()

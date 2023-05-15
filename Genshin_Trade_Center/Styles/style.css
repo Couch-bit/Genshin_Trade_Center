@@ -11,13 +11,12 @@
 }
 
 body {
-    color: white;
     background-image: url("../Images/BackgroundLiyue.jpg");
     background-attachment: fixed;
 }
 
-body * {
-   color: white;
+* {
+   color: black;
 }
 
 .header {

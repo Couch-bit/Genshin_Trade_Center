@@ -9,6 +9,7 @@ using Genshin_Trade_Center.Models;
 
 namespace Genshin_Trade_Center.Controllers
 {
+    [Authorize]
     public class ResourcesController : Controller
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();

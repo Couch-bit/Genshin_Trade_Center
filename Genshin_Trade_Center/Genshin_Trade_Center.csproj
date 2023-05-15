@@ -176,25 +176,28 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WeaponsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305131156406_init.cs" />
-    <Compile Include="Migrations\202305131156406_init.designer.cs">
-      <DependentUpon>202305131156406_init.cs</DependentUpon>
+    <Compile Include="Migrations\202305150712040_init.cs" />
+    <Compile Include="Migrations\202305150712040_init.designer.cs">
+      <DependentUpon>202305150712040_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305150804423_2.cs" />
+    <Compile Include="Migrations\202305150804423_2.designer.cs">
+      <DependentUpon>202305150804423_2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\CharacterArchetype.cs" />
+    <Compile Include="Models\CharacterViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Resource.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserResourceVM.cs" />
     <Compile Include="Models\Weapon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -300,11 +303,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Resources\Create.cshtml" />
     <Content Include="Views\Resources\Delete.cshtml" />
     <Content Include="Views\Resources\Details.cshtml" />
@@ -366,8 +364,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305131156406_init.resx">
-      <DependentUpon>202305131156406_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305150712040_init.resx">
+      <DependentUpon>202305150712040_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305150804423_2.resx">
+      <DependentUpon>202305150804423_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
