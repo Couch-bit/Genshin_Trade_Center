@@ -25,19 +25,34 @@ namespace Genshin_Trade_Center.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-
+            Database.SetInitializer(new DBInitializer<ApplicationDbContext>());
         }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Resource> Resources { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
+        public DbSet<CharacterArchetype> CharacterArchetypes { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+    }
 
-        public System.Data.Entity.DbSet<Genshin_Trade_Center.Models.CharacterArchetype> CharacterArchetypes { get; set; }
+    class DBInitializer<T> : DropCreateDatabaseAlways<ApplicationDbContext>
+    {
+        protected override void Seed(ApplicationDbContext context)
+        {
+            List<CharacterArchetype> characterArchetypes = new List<CharacterArchetype>
+            {
+                new CharacterArchetype("Raiden Shogun", 5, EnumWeapon.Spear, EnumVision.Electro),
+                new CharacterArchetype("Zhongli", 5, EnumWeapon.Spear, EnumVision.Geo),
+                new CharacterArchetype("Wanderer", 5, EnumWeapon.Catalyst, EnumVision.Anemo),
+                new CharacterArchetype("Layla", 4, EnumWeapon.Sword, EnumVision.Cryo)
+            };
+            characterArchetypes.ForEach(archetype => context.CharacterArchetypes.Add(archetype));
+            context.SaveChanges();
+        }
     }
 }

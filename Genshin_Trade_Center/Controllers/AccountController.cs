@@ -17,7 +17,8 @@ namespace Genshin_Trade_Center.Controllers
 
         public AccountController() {}
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager,
+            ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -27,7 +28,8 @@ namespace Genshin_Trade_Center.Controllers
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return _signInManager ?? HttpContext.GetOwinContext()
+                    .Get<ApplicationSignInManager>();
             }
             private set 
             { 
@@ -39,7 +41,8 @@ namespace Genshin_Trade_Center.Controllers
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager ?? HttpContext.GetOwinContext()
+                    .GetUserManager<ApplicationUserManager>();
             }
             private set
             {
@@ -47,30 +50,30 @@ namespace Genshin_Trade_Center.Controllers
             }
         }
 
-        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+
             return View();
         }
 
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model,
+            string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            SignInStatus result = await SignInManager
+                .PasswordSignInAsync(model.Email, model.Password,
+                model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -78,7 +81,9 @@ namespace Genshin_Trade_Center.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("SendCode",
+                        new { ReturnUrl = returnUrl,
+                            RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -86,20 +91,20 @@ namespace Genshin_Trade_Center.Controllers
             }
         }
 
-        //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
+        public async Task<ActionResult> VerifyCode(string provider,
+            string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
                 return View("Error");
             }
-            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            return View(new VerifyCodeViewModel { Provider = provider,
+                ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
-        //
         // POST: /Account/VerifyCode
         [HttpPost]
         [AllowAnonymous]
@@ -129,7 +134,6 @@ namespace Genshin_Trade_Center.Controllers
             }
         }
 
-        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()

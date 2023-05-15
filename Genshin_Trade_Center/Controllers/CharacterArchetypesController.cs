@@ -8,7 +8,8 @@ namespace Genshin_Trade_Center.Controllers
 {
     public class CharacterArchetypesController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db = new
+            ApplicationDbContext();
 
         // GET: CharacterArchetypes
         public ActionResult Index()
@@ -21,13 +22,17 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new 
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CharacterArchetype characterArchetype = db.CharacterArchetypes.Find(id);
+
+            CharacterArchetype characterArchetype =
+                db.CharacterArchetypes.Find(id);
             if (characterArchetype == null)
             {
                 return HttpNotFound();
             }
+
             return View(characterArchetype);
         }
 
@@ -38,20 +43,21 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: CharacterArchetypes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Quality,WeaponType,VisionType")] CharacterArchetype characterArchetype)
+        public ActionResult Create([Bind(Include = "Id,Name,Quality," +
+            "WeaponType,VisionType")]
+            CharacterArchetype characterArchetype)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.CharacterArchetypes.Add(characterArchetype);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(characterArchetype);
             }
 
-            return View(characterArchetype);
+            db.CharacterArchetypes.Add(characterArchetype);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // GET: CharacterArchetypes/Edit/5
@@ -74,7 +80,9 @@ namespace Genshin_Trade_Center.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Quality,WeaponType,VisionType")] CharacterArchetype characterArchetype)
+        public ActionResult Edit([Bind(Include = "Id,Name,Quality," +
+            "WeaponType,VisionType")]
+            CharacterArchetype characterArchetype)
         {
             if (ModelState.IsValid)
             {
@@ -117,6 +125,7 @@ namespace Genshin_Trade_Center.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }
