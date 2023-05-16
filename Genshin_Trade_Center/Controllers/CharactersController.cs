@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Genshin_Trade_Center.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Genshin_Trade_Center.Controllers
 {
@@ -45,9 +46,6 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Characters/Create
         public ActionResult Create()
         {
-            ViewBag.SellerId = new 
-                SelectList(db.Users,
-                "Id", "Email");
             ViewBag.ArchetypeId = new 
                 SelectList(db.CharacterArchetypes,
                 "Id", "Name");
@@ -59,25 +57,26 @@ namespace Genshin_Trade_Center.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "Id,Name,Price,Level,SellerId," +
+            [Bind(Include = "Id,Name,Price,Level," +
             "Friendship,ArchetypeId,Constellation")] 
             Character character)
         {
-            if (ModelState.IsValid)
-            {
-                db.Products.Add(character);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.SellerId = new 
+            ViewBag.SellerId = new
                 SelectList(db.Users,
                 "Id", "Email", character.SellerId);
-            ViewBag.ArchetypeId = new 
+            ViewBag.ArchetypeId = new
                 SelectList(db.CharacterArchetypes,
                 "Id", "Name", character.ArchetypeId);
 
-            return View(character);
+            character.SellerId = User.Identity.GetUserId();
+            if (!ModelState.IsValid)
+            {
+                return View(character);
+            }
+
+            db.Products.Add(character);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Characters/Edit/5
@@ -95,9 +94,6 @@ namespace Genshin_Trade_Center.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.SellerId = new 
-                SelectList(db.Users,
-                "Id", "Email", character.SellerId);
             ViewBag.ArchetypeId = new 
                 SelectList(db.CharacterArchetypes,
                 "Id", "Name", character.ArchetypeId);
@@ -109,7 +105,7 @@ namespace Genshin_Trade_Center.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            [Bind(Include = "Id,Name,Price,Level,SellerId," +
+            [Bind(Include = "Id,Name,Price,Level" +
             "Friendship,ArchetypeId,Constellation")]
             Character character)
         {
@@ -117,7 +113,6 @@ namespace Genshin_Trade_Center.Controllers
             {
                 return new
                     HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
             }
 
             ViewBag.SellerId = new

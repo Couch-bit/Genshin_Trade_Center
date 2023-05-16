@@ -25,7 +25,8 @@ namespace Genshin_Trade_Center.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new DBInitializer<ApplicationDbContext>());
+            Database.SetInitializer
+                (new DBInitializer<ApplicationDbContext>());
         }
 
         public DbSet<Product> Products { get; set; }
@@ -40,7 +41,8 @@ namespace Genshin_Trade_Center.Models
         }
     }
 
-    class DBInitializer<T> : DropCreateDatabaseAlways<ApplicationDbContext>
+    class DBInitializer<T> :
+        CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {

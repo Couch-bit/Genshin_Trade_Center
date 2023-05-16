@@ -4,13 +4,15 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Genshin_Trade_Center.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Genshin_Trade_Center.Controllers
 {
     [Authorize]
     public class ItemsController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db =
+            new ApplicationDbContext();
 
         // GET: Items
         public ActionResult Index()
@@ -46,15 +48,17 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: Items/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,Level,SellerId,Refinement,TypeId")] Item item)
+        public ActionResult Create([Bind(Include = "Id,Name,Price," +
+            "Level,Refinement,TypeId")]
+            Item item)
         {
+            item.SellerId = User.Identity.GetUserId();
+
             if (ModelState.IsValid)
             {
-                db.Products.Add((Product)item);
+                db.Products.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -86,7 +90,7 @@ namespace Genshin_Trade_Center.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Level,SellerId,Refinement,TypeId")] Item item)
+        public ActionResult Edit([Bind(Include = "Id,Name,Price,Level,Refinement,TypeId")] Item item)
         {
             if (ModelState.IsValid)
             {
