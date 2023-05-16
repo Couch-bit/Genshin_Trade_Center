@@ -16,8 +16,13 @@ namespace Genshin_Trade_Center.Models
 
         [Key]
         public int Id { get => id; set => id = value; }
+        [Required]
+        [StringLength(64, MinimumLength = 5)]
         public string Name { get => name; set => name = value; }
+        [Required]
         public decimal Price { get => price; set => price = value; }
+        [Required]
+        [Range(1, 90)]
         public int Level { get => level; set => level = value; }
         public string SellerId { get; set; }
         public virtual User Seller { get; set; }
