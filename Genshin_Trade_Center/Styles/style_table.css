@@ -36,3 +36,6 @@
 .fl-table tr:nth-child(even) {
     background: #F8F8F8;
 }
+
+.table-container {
+}
