@@ -41,7 +41,7 @@ namespace Genshin_Trade_Center.Models
         }
     }
 
-    class DBInitializer<T> :
+    internal class DBInitializer<T> :
         CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)

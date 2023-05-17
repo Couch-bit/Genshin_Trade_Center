@@ -254,7 +254,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Styles\fonts_and_animations.css" />
-    <Content Include="Styles\Genshin_Trade_Center.csproj.user" />
     <Content Include="Styles\style.css" />
     <Content Include="Styles\style_menu_gorne.css" />
     <Content Include="Styles\style_side_menu.css" />
