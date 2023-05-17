@@ -4,71 +4,74 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Character</h4>
+<div class="container-main">
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Seller.Email)
-        </dt>
+    <div class="container-body">
+            <h2 id="title">Character Details</h2>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Seller.Email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Seller.Email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Seller.Email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Level)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Level)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Level)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Level)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Friendship)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Friendship)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Friendship)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Friendship)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Constellation)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Constellation)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Constellation)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Constellation)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Archetype.Name)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Archetype.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Archetype.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Archetype.Name)
+                </dd>
 
-    </dl>
+            </dl>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+    <hr />
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
