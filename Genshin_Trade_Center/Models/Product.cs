@@ -24,7 +24,6 @@ namespace Genshin_Trade_Center.Models
         [Required]
         [Range(1, 90, ErrorMessage = "Level must be between 1 and 90")]
         public int Level { get => level; set => level = value; }
-        [Required]
         [DisplayName("Seller")]
         public string SellerId { get; set; }
         public virtual User Seller { get; set; }

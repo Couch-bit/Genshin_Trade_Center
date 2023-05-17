@@ -9,7 +9,8 @@ namespace Genshin_Trade_Center.Controllers
     [Authorize]
     public class ProductsController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db =
+            new ApplicationDbContext();
 
         // GET: Products
         public ActionResult Index()
@@ -23,12 +24,16 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new 
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Product product = db.Products.Find(id);
             if (product == null)
             {
-                return HttpNotFound();
+                return new 
+                    HttpStatusCodeResult
+                    (HttpStatusCode.InternalServerError);
             }
             return View(product);
         }
@@ -36,26 +41,27 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.SellerId = new SelectList
+                (db.Users, "Id", "UserName");
             return View();
         }
 
         // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,Level,SellerId")] Product product)
+        public ActionResult Create([Bind(Include = "Id,Name,Price," +
+            "Level,SellerId")] Product product)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.InternalServerError);
             }
 
-            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", product.SellerId);
-            return View(product);
+            db.Products.Add(product);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Products/Edit/5
@@ -63,23 +69,25 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult
+                    (HttpStatusCode.BadRequest);
             }
             Product product = db.Products.Find(id);
             if (product == null)
             {
-                return HttpNotFound();
+                return new 
+                    HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", product.SellerId);
+            ViewBag.SellerId = new SelectList(db.Users, "Id",
+                "UserName", product.SellerId);
             return View(product);
         }
 
         // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Level,SellerId")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,Name,Price," +
+            "Level,SellerId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +95,8 @@ namespace Genshin_Trade_Center.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", product.SellerId);
+            ViewBag.SellerId = new SelectList(db.Users,
+                "Id", "UserName", product.SellerId);
             return View(product);
         }
 
@@ -96,7 +105,8 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product product = db.Products.Find(id);
             if (product == null)

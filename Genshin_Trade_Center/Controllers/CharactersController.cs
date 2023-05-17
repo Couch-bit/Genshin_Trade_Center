@@ -61,18 +61,15 @@ namespace Genshin_Trade_Center.Controllers
             "Friendship,ArchetypeId,Constellation")] 
             Character character)
         {
-            ViewBag.SellerId = new
-                SelectList(db.Users,
-                "Id", "Email", character.SellerId);
-            ViewBag.ArchetypeId = new
-                SelectList(db.CharacterArchetypes,
-                "Id", "Name", character.ArchetypeId);
 
-            character.SellerId = User.Identity.GetUserId();
             if (!ModelState.IsValid)
             {
-                return View(character);
+                return new 
+                    HttpStatusCodeResult
+                    (HttpStatusCode.InternalServerError);
             }
+
+            character.SellerId = User.Identity.GetUserId();
 
             db.Products.Add(character);
             db.SaveChanges();
@@ -115,12 +112,7 @@ namespace Genshin_Trade_Center.Controllers
                     HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            ViewBag.SellerId = new
-                SelectList(db.Users,
-                "Id", "Email", character.SellerId);
-            ViewBag.ArchetypeId = new 
-                SelectList(db.CharacterArchetypes,
-                "Id", "Name", character.ArchetypeId);
+            character.SellerId = User.Identity.GetUserId();
 
             db.Entry(character).State = EntityState.Modified;
             db.SaveChanges();
