@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Genshin_Trade_Center.Models
 {
@@ -10,7 +8,11 @@ namespace Genshin_Trade_Center.Models
     {
         private int refinement;
 
+        [Required]
+        [Range(1, 5)]
         public int Refinement { get => refinement; set => refinement = value; }
+        [Required]
+        [DisplayName("Type")]
         public int TypeId { get; set; }
         public virtual Weapon Type { get; set; }
 

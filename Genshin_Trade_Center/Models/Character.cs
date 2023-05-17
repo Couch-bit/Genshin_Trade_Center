@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Genshin_Trade_Center.Models
 {
@@ -10,8 +8,14 @@ namespace Genshin_Trade_Center.Models
         private int friendship;
         private int constellation;
 
+        [Required]
+        [Range(1, 10)]
         public int Friendship { get => friendship; set => friendship = value; }
+        [Required]
+        [Range(1, 6)]
         public int Constellation { get => constellation; set => constellation = value; }
+        [Required]
+        [DisplayName("Archetype")]
         public int ArchetypeId { get; set; }
         public virtual CharacterArchetype Archetype { get; set; }
 

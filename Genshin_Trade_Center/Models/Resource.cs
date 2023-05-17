@@ -12,7 +12,13 @@ namespace Genshin_Trade_Center.Models
 
         [Key]
         public int Id { get => id; set => id = value; }
+        [Required]
+        [StringLength(64, MinimumLength = 5,
+            ErrorMessage = "Name must be between 5 and 64 characters")]
         public string Name { get => name; set => name = value; }
+        [Required]
+        [Range(0.1, (double)decimal.MaxValue,
+            ErrorMessage = "Price cannot be less than 0")]
         public decimal Price { get => price; set => price = value; }
         public virtual List<User> Sellers { get; set; }
 

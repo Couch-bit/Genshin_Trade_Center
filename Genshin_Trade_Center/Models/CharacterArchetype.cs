@@ -28,10 +28,19 @@ namespace Genshin_Trade_Center.Models
 
         [Key]
         public int Id { get => id; set => id = value; }
+        [Required]
+        [StringLength(64, MinimumLength = 1,
+            ErrorMessage ="Name cannot be longer than 64 characters")]
         public string Name { get => name; set => name = value; }
+        [Required]
+        [Range(1, 5)]
         public int Quality { get => quality; set => quality = value; }
-        public EnumWeapon WeaponType { get => weaponType; set => weaponType = value; }
-        public EnumVision VisionType { get => visionType; set => visionType = value; }
+        [Required]
+        public EnumWeapon WeaponType { get => weaponType;
+            set => weaponType = value; }
+        [Required]
+        public EnumVision VisionType { get => visionType;
+            set => visionType = value; }
         public virtual List<Character> Characters { get; set; }
 
         static CharacterArchetype()

@@ -35,10 +35,22 @@ namespace Genshin_Trade_Center.Models
 
         [Key]
         public int Id { get => id; set => id = value; }
+        [Required]
+        [StringLength(64, MinimumLength = 5,
+            ErrorMessage = "Name must be between 5 and 64 characters")]
         public string Name { get => name; set => name = value; }
-        public EnumStat MainStat { get => mainStat; set => mainStat = value; }
+        [Required]
+        public EnumStat MainStat { get => mainStat;
+            set => mainStat = value; }
+        [Required]
         public EnumWeapon Type { get => type; set => type = value; }
-        public string Description { get => description; set => description = value; }
+        [Required]
+        [StringLength(1024,
+            ErrorMessage = "Name must be between 5 and 64 characters")]
+        public string Description { get => description;
+            set => description = value; }
+        [Required]
+        [Range(1, 5)]
         public int Quality { get => quality; set => quality = value; }
         public virtual List<Item> Items { get; set; }
 
