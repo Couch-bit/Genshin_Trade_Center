@@ -32,6 +32,13 @@ body {
     font-size: 16px;
 }
 
+.login {
+    padding-left: 10%;
+    padding-right: 10%;
+    align-content:center;
+    align-items:center;
+}
+
 .container-main {
     text-align: justify; 
     text-justify: inter-word; 
@@ -45,6 +52,13 @@ body {
     padding-bottom: 2.5%;
     background-color: rgba(255, 246, 232, 0.5);
     border-radius: 5px;
+}
+
+#title {
+    color: var(--pretty_blue);
+    font-family: GenshinFont;
+    font-weight: 400;
+    text-align: center;
 }
 
 .container-body {
