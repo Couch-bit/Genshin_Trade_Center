@@ -27,15 +27,43 @@
                 <img class="logo_icon" src="../../Images/Icon.jpg" alt="Icon" />
             </div>
         </div>
-        <nav class="container-nav">
-            <ul class="nav-list">
-                <li class="menu_link">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { })</li>
-                <li class="menu_link">@Html.ActionLink("Characters", "Index", "Characters", new { area = "" }, new { })</li>
-                <li class="menu_link">@Html.ActionLink("Items", "Index", "Items", new { area = "" }, new { })</li>
-                <li class="menu_link">@Html.ActionLink("Weapons", "Index", "Characters", new { area = "" }, new { })</li>
-                <li class="menu_link">@Html.ActionLink("Character Archetypes", "Index", "CharacterArchetypes", new { area = "" }, new { })</li>
-                <li class="menu_link">@Html.ActionLink("Resources", "Index", "Resources", new { area = "" }, new { })</li>
-            </ul>
+        <nav class="item_button">
+            <a id="ToHome" class="menu_link" href="@Url.Action("Index", "Home", new { area = "" })">Home</a>
+            <a href="@Url.Action("Index", "Home", new { area = "" })">
+                <img class="menu_icon"
+                     src="../../Images/home.png"
+                     alt="Upper menu home" />
+            </a>
+            <a id="ToCharacter" class="menu_link" href="@Url.Action("Index", "Characters", new { area = "" })">Characters</a>
+            <a href="@Url.Action("Index", "Characters", new { area = "" })">
+                <img class="menu_icon"
+                     src="../../Images/characters.png"
+                     alt="Upper menu character icon" />
+            </a>
+            <a id="ToItem" class="menu_link" href="@Url.Action("Index", "Items", new { area = "" })">Items</a>
+            <a href="@Url.Action("Index", "Items", new { area = "" })">
+                <img class="menu_icon"
+                     src="../../Images/item.png"
+                     alt="Upper menu item link" />
+            </a>
+            <a id="ToWeapons" class="menu_link" href="@Url.Action("Index", "Characters", new { area = "" })">Weapons</a>
+            <a href="@Url.Action("Index", "Characters", new { area = "" })">
+                <img class="menu_icon"
+                     src="../../Images/weapon.png"
+                     alt="Upper menu weapon link" />
+            </a>
+            <a id="ToArchetype" class="menu_link" href="@Url.Action("Index", "CharacterArchetypes", new { area = "" })">Character Archetypes</a>
+            <a href="@Url.Action("Index", "CharacterArchetypes", new { area = "" })">
+                <img class="menu_icon"
+                     src="../../Images/user.png"
+                     alt="Upper menu archetype link" />
+            </a>
+            <a id="ToResource" class="menu_link" href="@Url.Action("Index", "Resources", new { area = "" })">Resources</a>
+            <a href="@Url.Action("Index", "Resources", new { area = "" })">
+                <img class="menu_icon"
+                     src="../../Images/resource.png"
+                     alt="Upper menu resource link" />
+            </a>
         </nav>
     </div>
     <div class="container body-content">

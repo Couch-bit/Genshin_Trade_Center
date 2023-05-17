@@ -15,10 +15,6 @@ body {
     background-attachment: fixed;
 }
 
-* {
-   color: black;
-}
-
 .header {
     background-image: url("../Images/header_dark.jpg");
     padding: 15px; 
