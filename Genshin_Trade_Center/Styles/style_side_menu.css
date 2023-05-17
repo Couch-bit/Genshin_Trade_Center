@@ -1,24 +1,24 @@
-.side-menu-container,
-      .side-menu,
-      .side-menu > a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-      }
-      .side-menu-container {
-        position: fixed;
-        height: 100vh;
-        left: 0px;
-      }
-      .side-menu > a {
+#side-contain,
+#side,
+#side > a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+}
+    #side-contain {
+    position: fixed;
+    height: 100vh;
+    left: 0px;
+}
+      #side > a {
         margin: 5px 0px;
         height: 40px;
         background-color: var(--pretty_blue);
         border-radius: 5px;
       }
-      .side-menu > a:hover {
+      #side > a:hover {
         margin: 5px 0px;
         height: 40px;
         color: #fff;

@@ -226,14 +226,17 @@
     <Content Include="Images\home.png" />
     <Content Include="Images\Icon.jpg" />
     <Content Include="Images\info.png" />
+    <Content Include="Images\item.png" />
     <Content Include="Images\LandingWallpaper.jpg" />
     <Content Include="Images\LandingWallpaperFinal.png" />
     <Content Include="Images\mute.png" />
+    <Content Include="Images\resource.png" />
     <Content Include="Images\Shop.png" />
     <Content Include="Images\Soundtrack.mp3" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\user.png" />
     <Content Include="Images\volume.png" />
+    <Content Include="Images\weapon.png" />
     <Content Include="JS\indexJS.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
