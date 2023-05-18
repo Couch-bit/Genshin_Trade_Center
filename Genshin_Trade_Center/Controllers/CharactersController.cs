@@ -152,7 +152,6 @@ namespace Genshin_Trade_Center.Controllers
             db.SaveChanges();
 
             return RedirectToAction("MyStore");
-
         }
 
         // GET: Characters/Delete/5
@@ -198,7 +197,6 @@ namespace Genshin_Trade_Center.Controllers
             {
                 return HttpNotFound();
             }
-
             return View(character);
         }
 
@@ -212,7 +210,7 @@ namespace Genshin_Trade_Center.Controllers
             db.Products.Remove(character);
             db.SaveChanges();
 
-            return RedirectToAction("MyStore");
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

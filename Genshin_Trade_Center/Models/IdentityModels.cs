@@ -50,6 +50,7 @@ namespace Genshin_Trade_Center.Models
     {
         protected override void Seed(ApplicationDbContext context)
         {
+            // Add Data.
             List<CharacterArchetype> characterArchetypes = new
                 List<CharacterArchetype>
             {
@@ -62,8 +63,31 @@ namespace Genshin_Trade_Center.Models
                 new CharacterArchetype("Layla", 4,
                 EnumWeapon.Sword, EnumVision.Cryo)
             };
+            List<Weapon> weapons = new
+                List<Weapon>
+            {
+                new Weapon("Polar Star", EnumStat.CRITRate,
+                EnumWeapon.Bow, "\"I was once a wounded wolf," +
+                " betrayed by the whole world,\"", 5),
+                new Weapon("Wandering Evenstar",
+                EnumStat.ElementalMastery, EnumWeapon.Catalyst,
+                "\"The rainforest trail road was" +
+                " so treacherous that mortals could only tell the way" +
+                " ahead by the moonlight breaking" +
+                " through the leaves.\"", 4),
+                new Weapon("Redhorn Stonethresher", EnumStat.CRITDMG,
+                EnumWeapon.Claymore, "The full name of this weapon is" +
+                " the \"Mighty Redhorn Stoic Stonethreshing" +
+                " Gilded Goldcrushing Lion Lord.\"", 5),
+                new Weapon("Dragon's Bane", EnumStat.ElementalMastery,
+                EnumWeapon.Spear, "Rumored to be a" +
+                " legendary polearm of Liyue.", 4),
+            };
+
             characterArchetypes.ForEach(archetype => context
             .CharacterArchetypes.Add(archetype));
+            weapons.ForEach(weapon => context
+            .Weapons.Add(weapon));
             context.SaveChanges();
         }
     }

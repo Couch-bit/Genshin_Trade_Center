@@ -1,22 +1,23 @@
 ﻿@model Genshin_Trade_Center.Models.Item
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Buy";
 }
 
 <div class="container-main">
     <hr />
     <div class="container-body">
+        <h2 id="title">Are you sure you want to buy this?</h2>
         <div>
-            <h2 id="title">Item Details</h2>
+            <h4>Character</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Seller.Email)
+                    @Html.DisplayNameFor(model => model.Seller.UserName)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Seller.Email)
+                    @Html.DisplayFor(model => model.Seller.UserName)
                 </dd>
 
                 <dt>
@@ -58,16 +59,20 @@
                 <dd>
                     @Html.DisplayFor(model => model.Type.Name)
                 </dd>
-
             </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Buy" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
         </div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
     </div>
     <hr />
 </div>
-
 
 

@@ -19,7 +19,7 @@ namespace Genshin_Trade_Center.Models
         public string Name { get => name; set => name = value; }
         [Required]
         [Range(0.1, 200,
-            ErrorMessage = "Price cannot be less than 0")]
+            ErrorMessage = "The Price must be between 0.1 and 200")]
         public decimal Price { get => price; set => price = value; }
         [Required]
         [Range(1, 90, ErrorMessage = "Level must be between 1 and 90")]

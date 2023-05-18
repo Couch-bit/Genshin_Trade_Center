@@ -17,20 +17,51 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Items
         public ActionResult Index()
         {
-            IQueryable<Item> items = db.Products.Where(i => i is Item).AsEnumerable()
+            IQueryable<Item> items = db.Products
+                .Where(i => i is Item)
+                .AsEnumerable()
                 .Cast<Item>().AsQueryable()
+                .Where(i => i.SellerId != User.Identity.GetUserId())
+                .Include(i => i.Seller).Include(i => i.Type);
+            return View(items.ToList());
+        }
+
+        // GET: Items/MyStore
+        public ActionResult MyStore()
+        {
+            IQueryable<Item> items = db.Products
+                .Where(i => i is Item).AsEnumerable()
+                .Cast<Item>().AsQueryable()
+                .Where(i => i.SellerId == User.Identity.GetUserId())
                 .Include(i => i.Seller)
                 .Include(i => i.Type);
             return View(items.ToList());
         }
 
-        // GET: Items/Details/5
-        public ActionResult Details(int? id)
+        // GET: Items/DetailsClient/5
+        public ActionResult DetailsClient(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             }
+
+            Item item = (Item)db.Products.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            return View(item);
+        }
+
+        // GET: Items/DetailsSeller/5
+        public ActionResult DetailsSeller(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
             Item item = (Item)db.Products.Find(id);
             if (item == null)
             {
@@ -42,7 +73,6 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Items/Create
         public ActionResult Create()
         {
-            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email");
             ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name");
             return View();
         }
@@ -54,18 +84,16 @@ namespace Genshin_Trade_Center.Controllers
             "Level,Refinement,TypeId")]
             Item item)
         {
-            item.SellerId = User.Identity.GetUserId();
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Products.Add(item);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
 
-            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", item.SellerId);
-            ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name", item.TypeId);
-            return View(item);
+            item.SellerId = User.Identity.GetUserId();
+
+            db.Products.Add(item);
+            db.SaveChanges();
+            return RedirectToAction("MyStore");
         }
 
         // GET: Items/Edit/5
@@ -73,34 +101,50 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             }
-            Item item = (Item)db.Products.Find(id);
-            if (item == null)
+
+            Item character = (Item)db.Products.Find(id);
+            if (character == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", item.SellerId);
-            ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name", item.TypeId);
-            return View(item);
+
+            EditItemViewModel ItemView = new
+                EditItemViewModel()
+            {
+                Id = character.Id,
+                Name = character.Name,
+                Price = character.Price,
+                Level = character.Level,
+                Refinement = character.Refinement,
+            };
+
+            return View(ItemView);
         }
 
         // POST: Items/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Level,Refinement,TypeId")] Item item)
+        public ActionResult Edit(EditItemViewModel ItemView)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
-            ViewBag.SellerId = new SelectList(db.Users, "Id", "Email", item.SellerId);
-            ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name", item.TypeId);
-            return View(item);
+
+            Item character =
+                (Item)db.Products.Find(ItemView.Id);
+
+            character.Name = ItemView.Name;
+            character.Price = ItemView.Price;
+            character.Level = ItemView.Level;
+            character.Refinement = ItemView.Refinement;
+
+            db.Entry(character).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("MyStore");
         }
 
         // GET: Items/Delete/5
@@ -126,6 +170,35 @@ namespace Genshin_Trade_Center.Controllers
             Item item = (Item)db.Products.Find(id);
             db.Products.Remove(item);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: Items/Buy/5
+        public ActionResult Buy(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            Item character = (Item)db.Products.Find(id);
+            if (character == null)
+            {
+                return HttpNotFound();
+            }
+            return View(character);
+        }
+
+        // POST: Items/Buy/5
+        [HttpPost, ActionName("Buy")]
+        [ValidateAntiForgeryToken]
+        public ActionResult BuyConfirmed(int id)
+        {
+            Item character = (Item)db.Products.Find(id);
+
+            db.Products.Remove(character);
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

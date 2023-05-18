@@ -15,9 +15,6 @@
             <table class="fl-table">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Seller.UserName)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
                     <th>
@@ -35,9 +32,6 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Seller.UserName)
-                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>

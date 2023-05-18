@@ -1,22 +1,19 @@
 ﻿@model IEnumerable<Genshin_Trade_Center.Models.Item>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "MyStore";
 }
-
 
 <div class="container-main">
     <hr />
     <div class="container-body">
         <p>
-            @Html.ActionLink("My Store", "MyStore")
+            @Html.ActionLink("Create New", "Create")
+            @Html.ActionLink("Back To Offers", "Index")
         </p>
         <div class="table-container">
             <table class="fl-table">
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Seller.UserName)
-                    </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
@@ -25,9 +22,6 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Level)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Refinement)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Type.Name)
@@ -39,9 +33,6 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Seller.UserName)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td>
@@ -51,14 +42,12 @@
                             @Html.DisplayFor(modelItem => item.Level)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Refinement)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.Type.Name)
                         </td>
                         <td>
-                            @Html.ActionLink("Details", "DetailsClient", new { id = item.Id }) |
-                            @Html.ActionLink("Buy", "Buy", new { id = item.Id })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "DetailsSeller", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                         </td>
                     </tr>
                 }

@@ -1,4 +1,10 @@
-﻿<header class="header">
+﻿@model Genshin_Trade_Center.Models.Item
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<header class="header">
     <p class="title">Genshin Impact Trade Center</p>
 </header>
 <div id="side-contain" class="side-menu-container">
@@ -37,7 +43,7 @@
     <img src="../../Images/down-arrow.png"
          alt="Moving arrow"
          class="moving-arrow"
-         onclick="scroll1()"/>
+         onclick="scroll1()" />
 </div>
 <div class="container-main">
     <hr />

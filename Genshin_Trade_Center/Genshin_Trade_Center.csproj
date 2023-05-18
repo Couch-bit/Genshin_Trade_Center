@@ -313,7 +313,6 @@
     <Content Include="Views\Characters\Index.cshtml" />
     <Content Include="Views\Items\Create.cshtml" />
     <Content Include="Views\Items\Delete.cshtml" />
-    <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Styles\downloaded.ttf" />
@@ -325,6 +324,10 @@
     <Content Include="Views\Characters\Buy.cshtml" />
     <Content Include="Views\Characters\DetailsClient.cshtml" />
     <Content Include="Views\Characters\DetailsSeller.cshtml" />
+    <Content Include="Views\Items\Buy.cshtml" />
+    <Content Include="Views\Items\DetailsClient.cshtml" />
+    <Content Include="Views\Items\DetailsSeller.cshtml" />
+    <Content Include="Views\Items\MyStore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
