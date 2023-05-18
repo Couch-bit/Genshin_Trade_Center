@@ -1,7 +1,6 @@
 ﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 using Genshin_Trade_Center.Models;
 using Microsoft.AspNet.Identity;
@@ -38,12 +37,28 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // GET: Characters/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult DetailsClient(int? id)
         {
             if (id == null)
             {
-                return new 
-                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
+            }
+
+            Character character = (Character)db.Products.Find(id);
+            if (character == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(character);
+        }
+
+        // GET: Characters/Details/5
+        public ActionResult DetailsSeller(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
             }
 
             Character character = (Character)db.Products.Find(id);
@@ -76,16 +91,14 @@ namespace Genshin_Trade_Center.Controllers
 
             if (!ModelState.IsValid)
             {
-                return new 
-                    HttpStatusCodeResult
-                    (HttpStatusCode.InternalServerError);
+                return HttpNotFound();
             }
 
             character.SellerId = User.Identity.GetUserId();
 
             db.Products.Add(character);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("MyStore");
         }
 
         // GET: Characters/Edit/5
@@ -93,8 +106,7 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new
-                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             }
 
             Character character = (Character)db.Products.Find(id);
@@ -103,33 +115,43 @@ namespace Genshin_Trade_Center.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.ArchetypeId = new 
-                SelectList(db.CharacterArchetypes,
-                "Id", "Name", character.ArchetypeId);
+            EditCharacterViewModel characterView = new
+                EditCharacterViewModel() 
+            {
+                Id = character.Id,
+                Name = character.Name,
+                Price = character.Price,
+                Level = character.Level,
+                Friendship = character.Friendship,
+                Constellation = character.Constellation,
+            };
 
-            return View(character);
+            return View(characterView);
         }
 
         // POST: Characters/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(
-            [Bind(Include = "Id,Name,Price,Level" +
-            "Friendship,ArchetypeId,Constellation")]
-            Character character)
+        public ActionResult Edit(EditCharacterViewModel characterView)
         {
             if (!ModelState.IsValid)
             {
-                return new
-                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             }
 
-            character.SellerId = User.Identity.GetUserId();
+            Character character = 
+                (Character)db.Products.Find(characterView.Id);
+            
+            character.Name = characterView.Name;
+            character.Price = characterView.Price;
+            character.Level = characterView.Level;
+            character.Friendship = characterView.Friendship;
+            character.Constellation = characterView.Constellation;
 
             db.Entry(character).State = EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("MyStore");
 
         }
 
@@ -138,15 +160,13 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new 
-                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             }
 
             Character character = (Character)db.Products.Find(id);
             if (character == null)
             {
-                return new
-                    HttpStatusCodeResult(HttpStatusCode.NotFound);
+                return HttpNotFound();
             }
 
             return View(character);
@@ -162,7 +182,37 @@ namespace Genshin_Trade_Center.Controllers
             db.Products.Remove(character);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("MyStore");
+        }
+
+        // GET: Characters/Buy/5
+        public ActionResult Buy(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            Character character = (Character)db.Products.Find(id);
+            if (character == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(character);
+        }
+
+        // POST: Characters/Buy/5
+        [HttpPost, ActionName("Buy")]
+        [ValidateAntiForgeryToken]
+        public ActionResult BuyConfirmed(int id)
+        {
+            Character character = (Character)db.Products.Find(id);
+
+            db.Products.Remove(character);
+            db.SaveChanges();
+
+            return RedirectToAction("MyStore");
         }
 
         protected override void Dispose(bool disposing)

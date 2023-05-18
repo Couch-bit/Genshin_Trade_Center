@@ -50,8 +50,8 @@
                             @Html.DisplayFor(modelItem => item.Archetype.Name)
                         </td>
                         <td>
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Buy", "Delete", new { id = item.Id })
+                            @Html.ActionLink("Details", "DetailsClient", new { id = item.Id }) |
+                            @Html.ActionLink("Buy", "Buy", new { id = item.Id })
                         </td>
                     </tr>
                 }
