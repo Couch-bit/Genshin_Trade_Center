@@ -20,6 +20,18 @@ namespace Genshin_Trade_Center.Controllers
             IQueryable<Character> characters = db.Products
                 .Where(i => i is Character).AsEnumerable()
                 .Cast<Character>().AsQueryable()
+                .Where(i => i.SellerId != User.Identity.GetUserId())
+                .Include(i => i.Seller).Include(i => i.Archetype);
+
+            return View(characters.ToList());
+        }
+
+        public ActionResult MyStore()
+        {
+            IQueryable<Character> characters = db.Products
+                .Where(i => i is Character).AsEnumerable()
+                .Cast<Character>().AsQueryable()
+                .Where(i => i.SellerId == User.Identity.GetUserId())
                 .Include(i => i.Seller).Include(i => i.Archetype);
 
             return View(characters.ToList());

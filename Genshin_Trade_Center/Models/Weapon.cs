@@ -45,6 +45,7 @@ namespace Genshin_Trade_Center.Models
         [Required]
         public EnumWeapon Type { get => type; set => type = value; }
         [Required]
+        [DataType(DataType.MultilineText)]
         [StringLength(1024,
             ErrorMessage = "Name must be between 5 and 64 characters")]
         public string Description { get => description;

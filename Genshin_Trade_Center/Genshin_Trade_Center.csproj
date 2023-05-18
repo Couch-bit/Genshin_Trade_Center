@@ -300,7 +300,6 @@
     <Content Include="Views\Resources\Index.cshtml" />
     <Content Include="Views\CharacterArchetypes\Create.cshtml" />
     <Content Include="Views\CharacterArchetypes\Delete.cshtml" />
-    <Content Include="Views\CharacterArchetypes\Details.cshtml" />
     <Content Include="Views\CharacterArchetypes\Edit.cshtml" />
     <Content Include="Views\CharacterArchetypes\Index.cshtml" />
     <Content Include="Views\Weapons\Create.cshtml" />
@@ -323,6 +322,7 @@
     <Content Include="Styles\zh-cn.ttf" />
     <Content Include="Views\Home\_AboutPartial.cshtml" />
     <Content Include="Views\Home\_GuidePartial.cshtml" />
+    <Content Include="Views\Characters\MyStore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

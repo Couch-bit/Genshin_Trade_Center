@@ -29,7 +29,7 @@ namespace Genshin_Trade_Center.Models
         [Required]
         [DisplayName("Character")]
         [StringLength(64, MinimumLength = 1,
-            ErrorMessage ="Name cannot be longer than 64 characters")]
+            ErrorMessage =" Name cannot be longer than 64 characters")]
         public string Name { get => name; set => name = value; }
         [Required]
         [Range(4, 5)]
@@ -58,7 +58,8 @@ namespace Genshin_Trade_Center.Models
             visionType = EnumVision.Dendro;
         }
 
-        public CharacterArchetype(string name, int quality, EnumWeapon weaponType, EnumVision visionType) : this()
+        public CharacterArchetype(string name, int quality,
+            EnumWeapon weaponType, EnumVision visionType) : this()
         {
             id = currentId;
             this.name = name;
