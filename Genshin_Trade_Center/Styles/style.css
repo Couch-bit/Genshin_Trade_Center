@@ -22,6 +22,59 @@ body {
     position: relative; 
 }
 
+.flexbox {
+    display: flex;
+    align-items: stretch;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item {
+    flex-basis: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-grow: 1;
+}
+
+.nice-button {
+    background-color: var(--pretty_gold);
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.nice-button:hover,
+.nice-button:focus {
+    background-color: #F082AC;
+}
+
 .footer {
     padding: 15px; 
     text-align: center; 
