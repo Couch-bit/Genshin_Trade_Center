@@ -7,15 +7,16 @@
 <div class="container-main">
     <hr />
     <div class="container-body">
-        <div class="button-container">
-            <button class="nice-button">Left Button</button>
-            <button class="nice-button">Right Button</button>
+        <div class="flexbox">
+            <div class="item">
+                <p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>
+            </div>
+            <div class="item">
+                @Html.ActionLink("Back To Offers", "Index")
+            </div>
         </div>
-
-        <p>
-            @Html.ActionLink("Create New", "Create")
-            @Html.ActionLink("Back To Offers", "Index")
-        </p>
         <div class="table-container">
             <table class="fl-table">
                 <tr>

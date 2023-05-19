@@ -27,11 +27,6 @@ body {
     align-items: stretch;
 }
 
-.button-container {
-    display: flex;
-    justify-content: space-between;
-}
-
 .item {
     flex-basis: 10%;
     padding-left: 5%;
