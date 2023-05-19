@@ -10,10 +10,12 @@ namespace Genshin_Trade_Center.Models
 
         [Required]
         [Range(1, 10)]
-        public int Friendship { get => friendship; set => friendship = value; }
+        public int Friendship { get => friendship;
+            set => friendship = value; }
         [Required]
         [Range(1, 6)]
-        public int Constellation { get => constellation; set => constellation = value; }
+        public int Constellation { get => constellation;
+            set => constellation = value; }
         [Required]
         [DisplayName("Archetype")]
         public int ArchetypeId { get; set; }

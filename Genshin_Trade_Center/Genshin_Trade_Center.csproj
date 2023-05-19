@@ -305,7 +305,7 @@
     <Content Include="Views\CharacterArchetypes\Index.cshtml" />
     <Content Include="Views\Weapons\Create.cshtml" />
     <Content Include="Views\Weapons\Delete.cshtml" />
-    <Content Include="Views\Weapons\Details.cshtml" />
+    <Content Include="Views\Weapons\DetailsAdmin.cshtml" />
     <Content Include="Views\Weapons\Edit.cshtml" />
     <Content Include="Views\Weapons\Index.cshtml" />
     <Content Include="Views\Characters\Create.cshtml" />
@@ -329,6 +329,9 @@
     <Content Include="Views\Items\DetailsClient.cshtml" />
     <Content Include="Views\Items\DetailsSeller.cshtml" />
     <Content Include="Views\Items\MyStore.cshtml" />
+    <Content Include="Views\CharacterArchetypes\Admin.cshtml" />
+    <Content Include="Views\Weapons\Admin.cshtml" />
+    <Content Include="Views\Weapons\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

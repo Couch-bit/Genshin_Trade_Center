@@ -8,20 +8,38 @@ namespace Genshin_Trade_Center.Controllers
 {
     public class WeaponsController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db =
+            new ApplicationDbContext();
 
         // GET: Weapons
         public ActionResult Index()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Admin");
+            }
+            return View(db.Weapons.ToList());
+        }
+
+        // GET: CharacterArchetypes/Admin
+        public ActionResult Admin()
+        {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
             return View(db.Weapons.ToList());
         }
 
         // GET: Weapons/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             }
             Weapon weapon = db.Weapons.Find(id);
             if (weapon == null)
@@ -34,16 +52,35 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Weapons/Create
         public ActionResult Create()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             return View(new Weapon());
         }
 
         // POST: Weapons/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,MainStat,Type,Description,Quality")] Weapon weapon)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Weapons.Add(weapon);
@@ -57,6 +94,13 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Weapons/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -70,12 +114,17 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: Weapons/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,MainStat,Type,Description,Quality")] Weapon weapon)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(weapon).State = EntityState.Modified;
@@ -88,6 +137,13 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Weapons/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -105,6 +161,13 @@ namespace Genshin_Trade_Center.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             Weapon weapon = db.Weapons.Find(id);
             db.Weapons.Remove(weapon);
             db.SaveChanges();

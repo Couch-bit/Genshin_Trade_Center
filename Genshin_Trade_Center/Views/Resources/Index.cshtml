@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Genshin_Trade_Center.Models.Resource>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Resources";
 }
 
 <div class="container-main">
@@ -19,7 +19,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Price)
                     </th>
-                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sellers.Count)
+                    </th>
                 </tr>
 
                 @foreach (var item in Model)
@@ -32,16 +34,12 @@
                             @Html.DisplayFor(modelItem => item.Price)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            @Html.DisplayFor(modelItem => item.Sellers.Count)
                         </td>
                     </tr>
                 }
-
             </table>
         </div>
     </div>
     <hr />
 </div>
-

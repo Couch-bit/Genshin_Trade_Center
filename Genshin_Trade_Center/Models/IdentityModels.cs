@@ -87,15 +87,17 @@ namespace Genshin_Trade_Center.Models
             List<Resource> resources = new
                 List<Resource>
             {
-                new Resource("Mora 10000", 2),
-                new Resource("Mora 100000", 20),
-                new Resource("Mora 1000000", 200)
+                new Resource("10000 Mora", 2),
+                new Resource("100000 Mora", 20),
+                new Resource("1000000 Mora", 200)
             };
 
             characterArchetypes.ForEach(archetype => context
             .CharacterArchetypes.Add(archetype));
             weapons.ForEach(weapon => context
             .Weapons.Add(weapon));
+            resources.ForEach(resource => context
+            .Resources.Add(resource));
 
             // Adds Admin Account.
             RoleManager<IdentityRole> _roleManager = 
