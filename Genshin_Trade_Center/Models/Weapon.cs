@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Genshin_Trade_Center.Models
@@ -36,6 +37,7 @@ namespace Genshin_Trade_Center.Models
         [Key]
         public int Id { get => id; set => id = value; }
         [Required]
+        [DisplayName("Weapon")]
         [StringLength(64, MinimumLength = 5,
             ErrorMessage = "Name must be between 5 and 64 characters")]
         public string Name { get => name; set => name = value; }
@@ -45,6 +47,7 @@ namespace Genshin_Trade_Center.Models
         [Required]
         public EnumWeapon Type { get => type; set => type = value; }
         [Required]
+        [DataType(DataType.MultilineText)]
         [StringLength(1024,
             ErrorMessage = "Name must be between 5 and 64 characters")]
         public string Description { get => description;

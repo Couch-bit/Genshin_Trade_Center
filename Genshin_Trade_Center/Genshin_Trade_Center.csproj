@@ -174,7 +174,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Controllers\WeaponsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -183,12 +182,13 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\CharacterArchetype.cs" />
-    <Compile Include="Models\CharacterViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\Resource.cs" />
+    <Compile Include="Models\ResourceViewModel.cs" />
     <Compile Include="Models\Weapon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -272,8 +272,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -302,7 +300,6 @@
     <Content Include="Views\Resources\Index.cshtml" />
     <Content Include="Views\CharacterArchetypes\Create.cshtml" />
     <Content Include="Views\CharacterArchetypes\Delete.cshtml" />
-    <Content Include="Views\CharacterArchetypes\Details.cshtml" />
     <Content Include="Views\CharacterArchetypes\Edit.cshtml" />
     <Content Include="Views\CharacterArchetypes\Index.cshtml" />
     <Content Include="Views\Weapons\Create.cshtml" />
@@ -312,17 +309,25 @@
     <Content Include="Views\Weapons\Index.cshtml" />
     <Content Include="Views\Characters\Create.cshtml" />
     <Content Include="Views\Characters\Delete.cshtml" />
-    <Content Include="Views\Characters\Details.cshtml" />
     <Content Include="Views\Characters\Edit.cshtml" />
     <Content Include="Views\Characters\Index.cshtml" />
     <Content Include="Views\Items\Create.cshtml" />
     <Content Include="Views\Items\Delete.cshtml" />
-    <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Styles\downloaded.ttf" />
     <Content Include="Styles\Genshin_Trade_Center.csproj" />
     <Content Include="Styles\zh-cn.ttf" />
+    <Content Include="Views\Home\_AboutPartial.cshtml" />
+    <Content Include="Views\Home\_GuidePartial.cshtml" />
+    <Content Include="Views\Characters\MyStore.cshtml" />
+    <Content Include="Views\Characters\Buy.cshtml" />
+    <Content Include="Views\Characters\DetailsClient.cshtml" />
+    <Content Include="Views\Characters\DetailsSeller.cshtml" />
+    <Content Include="Views\Items\Buy.cshtml" />
+    <Content Include="Views\Items\DetailsClient.cshtml" />
+    <Content Include="Views\Items\DetailsSeller.cshtml" />
+    <Content Include="Views\Items\MyStore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

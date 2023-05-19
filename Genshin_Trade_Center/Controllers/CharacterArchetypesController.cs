@@ -51,7 +51,9 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(characterArchetype);
+                return new 
+                    HttpStatusCodeResult
+                    (HttpStatusCode.InternalServerError);
             }
 
             db.CharacterArchetypes.Add(characterArchetype);
@@ -65,9 +67,11 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult
+                    (HttpStatusCode.BadRequest);
             }
-            CharacterArchetype characterArchetype = db.CharacterArchetypes.Find(id);
+            CharacterArchetype characterArchetype =
+                db.CharacterArchetypes.Find(id);
             if (characterArchetype == null)
             {
                 return HttpNotFound();
@@ -76,21 +80,23 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: CharacterArchetypes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Quality," +
             "WeaponType,VisionType")]
             CharacterArchetype characterArchetype)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Entry(characterArchetype).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.InternalServerError);
             }
-            return View(characterArchetype);
+
+            db.Entry(characterArchetype).State =
+                    EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: CharacterArchetypes/Delete/5
@@ -98,9 +104,13 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new 
+                    HttpStatusCodeResult
+                    (HttpStatusCode.BadRequest);
             }
-            CharacterArchetype characterArchetype = db.CharacterArchetypes.Find(id);
+
+            CharacterArchetype characterArchetype =
+                db.CharacterArchetypes.Find(id);
             if (characterArchetype == null)
             {
                 return HttpNotFound();
@@ -113,7 +123,8 @@ namespace Genshin_Trade_Center.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CharacterArchetype characterArchetype = db.CharacterArchetypes.Find(id);
+            CharacterArchetype characterArchetype =
+                db.CharacterArchetypes.Find(id);
             db.CharacterArchetypes.Remove(characterArchetype);
             db.SaveChanges();
             return RedirectToAction("Index");

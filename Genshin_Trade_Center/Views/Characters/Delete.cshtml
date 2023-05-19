@@ -13,14 +13,6 @@
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Seller.Email)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Seller.Email)
-                </dd>
-
-                <dt>
                     @Html.DisplayNameFor(model => model.Name)
                 </dt>
 
@@ -67,16 +59,15 @@
                 <dd>
                     @Html.DisplayFor(model => model.Archetype.Name)
                 </dd>
-
             </dl>
 
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
 
-                <div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-default" /> |
-                    @Html.ActionLink("Back to List", "Index")
+                <div>
+                    <input type="submit" value="Delete"/> |
+                    @Html.ActionLink("Back to List", "MyStore")
                 </div>
             }
         </div>

@@ -16,12 +16,6 @@ function scroll1(){
     }, 2000);
 }
 
-function scroll2(){
-    $([document.documentElement, document.body]).animate({
-        scrollTop: $("#sekcja2").offset().top - 35
-    }, 2000);
-}
-
 
 $(window).scroll(function() {
     var scroll = $(window).scrollTop();

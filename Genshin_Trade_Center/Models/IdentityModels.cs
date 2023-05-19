@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -7,15 +8,17 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Genshin_Trade_Center.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
+        [DisplayName("Seller")]
+        public override string UserName { get; set; }
         public virtual List<Resource> Resources { get; set; }
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync
+            (UserManager<User> manager)
         {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
+            ClaimsIdentity userIdentity = await manager
+                .CreateIdentityAsync
+                (this, DefaultAuthenticationTypes.ApplicationCookie);
             return userIdentity;
         }
     }
@@ -33,7 +36,8 @@ namespace Genshin_Trade_Center.Models
         public DbSet<Resource> Resources { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
-        public DbSet<CharacterArchetype> CharacterArchetypes { get; set; }
+        public DbSet<CharacterArchetype> CharacterArchetypes
+        { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -46,14 +50,44 @@ namespace Genshin_Trade_Center.Models
     {
         protected override void Seed(ApplicationDbContext context)
         {
-            List<CharacterArchetype> characterArchetypes = new List<CharacterArchetype>
+            // Add Data.
+            List<CharacterArchetype> characterArchetypes = new
+                List<CharacterArchetype>
             {
-                new CharacterArchetype("Raiden Shogun", 5, EnumWeapon.Spear, EnumVision.Electro),
-                new CharacterArchetype("Zhongli", 5, EnumWeapon.Spear, EnumVision.Geo),
-                new CharacterArchetype("Wanderer", 5, EnumWeapon.Catalyst, EnumVision.Anemo),
-                new CharacterArchetype("Layla", 4, EnumWeapon.Sword, EnumVision.Cryo)
+                new CharacterArchetype("Raiden Shogun", 5,
+                EnumWeapon.Spear, EnumVision.Electro),
+                new CharacterArchetype("Zhongli", 5,
+                EnumWeapon.Spear, EnumVision.Geo),
+                new CharacterArchetype("Wanderer", 5,
+                EnumWeapon.Catalyst, EnumVision.Anemo),
+                new CharacterArchetype("Layla", 4,
+                EnumWeapon.Sword, EnumVision.Cryo)
             };
-            characterArchetypes.ForEach(archetype => context.CharacterArchetypes.Add(archetype));
+            List<Weapon> weapons = new
+                List<Weapon>
+            {
+                new Weapon("Polar Star", EnumStat.CRITRate,
+                EnumWeapon.Bow, "\"I was once a wounded wolf," +
+                " betrayed by the whole world,\"", 5),
+                new Weapon("Wandering Evenstar",
+                EnumStat.ElementalMastery, EnumWeapon.Catalyst,
+                "\"The rainforest trail road was" +
+                " so treacherous that mortals could only tell the way" +
+                " ahead by the moonlight breaking" +
+                " through the leaves.\"", 4),
+                new Weapon("Redhorn Stonethresher", EnumStat.CRITDMG,
+                EnumWeapon.Claymore, "The full name of this weapon is" +
+                " the \"Mighty Redhorn Stoic Stonethreshing" +
+                " Gilded Goldcrushing Lion Lord.\"", 5),
+                new Weapon("Dragon's Bane", EnumStat.ElementalMastery,
+                EnumWeapon.Spear, "Rumored to be a" +
+                " legendary polearm of Liyue.", 4),
+            };
+
+            characterArchetypes.ForEach(archetype => context
+            .CharacterArchetypes.Add(archetype));
+            weapons.ForEach(weapon => context
+            .Weapons.Add(weapon));
             context.SaveChanges();
         }
     }
