@@ -128,7 +128,7 @@ a.menu_link:hover {
     animation-fill-mode: forwards;
 }
 
-@media only screen and (min-width:1600px) {
+@media only screen and (min-width:1500px) {
 
     .logo_icon {
         display: none;
@@ -139,7 +139,7 @@ a.menu_link:hover {
     }
 }
 
-@media only screen and (max-width:1599px) {
+@media only screen and (max-width:1499px) {
 
     .logo_name {
         display: none;
@@ -150,7 +150,7 @@ a.menu_link:hover {
     }
 }
 
-@media only screen and (max-width:900px) {
+@media only screen and (max-width:1000px) {
 
     .logo_name {
         display: none;

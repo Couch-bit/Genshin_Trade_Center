@@ -235,6 +235,7 @@
     <Content Include="Images\Soundtrack.mp3" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\user.png" />
+    <Content Include="Images\user_icon.png" />
     <Content Include="Images\volume.png" />
     <Content Include="Images\weapon.png" />
     <Content Include="JS\indexJS.js" />
