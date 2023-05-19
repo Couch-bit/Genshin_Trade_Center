@@ -6,7 +6,7 @@ using Genshin_Trade_Center.Models;
 
 namespace Genshin_Trade_Center.Controllers
 {
-    public class CharacterArchetypesController : Controller
+    public class CharacterArchetypesController : BaseController
     {
         private readonly ApplicationDbContext db = new
             ApplicationDbContext();

@@ -1,0 +1,33 @@
+﻿@model Genshin_Trade_Center.Models.ManageViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <div>
+        <h4>Change your account settings</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Password:</dt>
+            <dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nickname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nickname)
+            </dd>
+        </dl>
+    </div>
+</main>

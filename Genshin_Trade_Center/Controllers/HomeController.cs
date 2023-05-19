@@ -5,7 +5,7 @@ namespace Genshin_Trade_Center.Controllers
     /// <summary>
     /// Controller for the home page
     /// </summary>
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {

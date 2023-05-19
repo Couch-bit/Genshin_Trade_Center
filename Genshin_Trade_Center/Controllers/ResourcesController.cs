@@ -7,7 +7,7 @@ using Genshin_Trade_Center.Models;
 namespace Genshin_Trade_Center.Controllers
 {
     [Authorize]
-    public class ResourcesController : Controller
+    public class ResourcesController : BaseController
     {
         private readonly ApplicationDbContext db =
             new ApplicationDbContext();
@@ -82,7 +82,8 @@ namespace Genshin_Trade_Center.Controllers
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Resource resource = db.Resources.Find(id);
             if (resource == null)
@@ -109,7 +110,6 @@ namespace Genshin_Trade_Center.Controllers
             {
                 return HttpNotFound();
             }
-
             db.Entry(resource).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -6,7 +6,7 @@ using Genshin_Trade_Center.Models;
 
 namespace Genshin_Trade_Center.Controllers
 {
-    public class WeaponsController : Controller
+    public class WeaponsController : BaseController
     {
         private readonly ApplicationDbContext db =
             new ApplicationDbContext();

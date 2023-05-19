@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 namespace Genshin_Trade_Center.Controllers
 {
     [Authorize]
-    public class ItemsController : Controller
+    public class ItemsController : BaseController
     {
         private readonly ApplicationDbContext db =
             new ApplicationDbContext();

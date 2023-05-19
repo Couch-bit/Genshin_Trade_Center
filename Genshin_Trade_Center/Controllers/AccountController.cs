@@ -10,7 +10,7 @@ using System.Net;
 namespace Genshin_Trade_Center.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -50,6 +50,20 @@ namespace Genshin_Trade_Center.Controllers
             }
         }
 
+        // GET: /Account/Index
+        public ActionResult Index()
+        {
+            User user = UserManager.FindById
+                (User.Identity.GetUserId());
+
+            ManageViewModel model = new ManageViewModel
+            {
+                Email = user.Email,
+                Nickname = user.UserName
+            };
+            return View(model);
+        }
+
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -63,86 +77,63 @@ namespace Genshin_Trade_Center.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model,
-            string returnUrl)
+        public async Task<ActionResult> Login
+            (AccountViewModel model,
+            string returnUrl,
+            string submit)
         {
             if (!ModelState.IsValid)
             {
                 return new 
                     HttpStatusCodeResult
-                    (HttpStatusCode.InternalServerError);
+                    (HttpStatusCode.BadRequest);
             }
 
-            SignInStatus result = await SignInManager
-                .PasswordSignInAsync(model.UserName, model.Password,
-                model.RememberMe, shouldLockout: false);
-            switch (result)
+            if (submit == "Log in")
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode",
-                        new { ReturnUrl = returnUrl,
-                            RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError
-                        ("", "Invalid login attempt.");
-                    return View(model);
-            }
-        }
-
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new User
-                { UserName = model.UserName, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                SignInStatus result = await SignInManager
+                .PasswordSignInAsync(model.LoginViewModel.UserName,
+                model.LoginViewModel.Password,
+                model.LoginViewModel.RememberMe, shouldLockout: false);
+                switch (result)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
-                    return RedirectToAction("Index", "Home");
+                    case SignInStatus.Success:
+                        return RedirectToLocal(returnUrl);
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode",
+                            new
+                            {
+                                ReturnUrl = returnUrl,
+                                RememberMe = 
+                                model.LoginViewModel.RememberMe
+                            });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError
+                            ("", "Invalid login attempt.");
+                        return View(model.LoginViewModel);
                 }
-                AddErrors(result);
             }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-
-        //
-        // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
-        {
-            if (userId == null || code == null)
+            else
             {
-                return View("Error");
+                User user = new User
+                {
+                    UserName = model.RegisterViewModel.UserName,
+                    Email = model.RegisterViewModel.Email 
+                };
+                IdentityResult result = await UserManager.CreateAsync
+                    (user, model.RegisterViewModel.Password);
+                if (!result.Succeeded)
+                {
+                    await SignInManager.SignInAsync
+                        (user, isPersistent: false,
+                        rememberBrowser: false);
+                    return RedirectToLocal(returnUrl);
+                }
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
-        }
-
-        // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ResetPasswordConfirmation()
-        {
-            return View();
+            return RedirectToAction("Login");
         }
 
         // POST: /Account/LogOff
@@ -202,35 +193,6 @@ namespace Genshin_Trade_Center.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
-        }
-
-        internal class ChallengeResult : HttpUnauthorizedResult
-        {
-            public ChallengeResult(string provider, string redirectUri)
-                : this(provider, redirectUri, null)
-            {
-            }
-
-            public ChallengeResult(string provider, string redirectUri, string userId)
-            {
-                LoginProvider = provider;
-                RedirectUri = redirectUri;
-                UserId = userId;
-            }
-
-            public string LoginProvider { get; set; }
-            public string RedirectUri { get; set; }
-            public string UserId { get; set; }
-
-            public override void ExecuteResult(ControllerContext context)
-            {
-                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
-                if (UserId != null)
-                {
-                    properties.Dictionary[XsrfKey] = UserId;
-                }
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
-            }
         }
         #endregion
     }

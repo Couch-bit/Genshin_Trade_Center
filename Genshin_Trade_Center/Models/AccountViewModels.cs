@@ -2,6 +2,17 @@
 
 namespace Genshin_Trade_Center.Models
 {
+    public class ManageViewModel
+    {
+        public string Email { get; set; }
+        public string Nickname { get; set; }
+    }
+
+    public class AccountViewModel
+    {
+        public LoginViewModel LoginViewModel { get; set; }
+        public RegisterViewModel RegisterViewModel { get; set; }
+    }
 
     public class LoginViewModel
     {
