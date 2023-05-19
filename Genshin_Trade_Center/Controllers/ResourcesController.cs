@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -12,42 +9,57 @@ namespace Genshin_Trade_Center.Controllers
     [Authorize]
     public class ResourcesController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db =
+            new ApplicationDbContext();
 
         // GET: Resources
         public ActionResult Index()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Admin");
+            }
             return View(db.Resources.ToList());
         }
 
-        // GET: Resources/Details/5
-        public ActionResult Details(int? id)
+        // GET: Resources/Admin
+        public ActionResult Admin()
         {
-            if (id == null)
+            if (!User.IsInRole("Admin"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new 
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
             }
-            Resource resource = db.Resources.Find(id);
-            if (resource == null)
-            {
-                return HttpNotFound();
-            }
-            return View(resource);
+            return View(db.Resources.ToList());
         }
 
         // GET: Resources/Create
         public ActionResult Create()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             return View(new Resource());
         }
 
         // POST: Resources/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price")] Resource resource)
+        public ActionResult Create([Bind(Include = "Id,Name,Price")]
+        Resource resource)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Resources.Add(resource);
@@ -61,6 +73,13 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Resources/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -74,27 +93,43 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: Resources/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price")] Resource resource)
+        public ActionResult Edit([Bind(Include = "Id,Name,Price")]
+        Resource resource)
         {
-            if (ModelState.IsValid)
+            if (!User.IsInRole("Admin"))
             {
-                db.Entry(resource).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
             }
-            return View(resource);
+
+            if (!ModelState.IsValid)
+            {
+                return HttpNotFound();
+            }
+
+            db.Entry(resource).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Resources/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.BadRequest);
             }
             Resource resource = db.Resources.Find(id);
             if (resource == null)
@@ -109,6 +144,13 @@ namespace Genshin_Trade_Center.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult
+                    (HttpStatusCode.Forbidden);
+            }
+
             Resource resource = db.Resources.Find(id);
             db.Resources.Remove(resource);
             db.SaveChanges();

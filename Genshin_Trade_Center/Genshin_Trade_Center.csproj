@@ -296,7 +296,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Resources\Create.cshtml" />
     <Content Include="Views\Resources\Delete.cshtml" />
-    <Content Include="Views\Resources\Details.cshtml" />
     <Content Include="Views\Resources\Edit.cshtml" />
     <Content Include="Views\Resources\Index.cshtml" />
     <Content Include="Views\CharacterArchetypes\Create.cshtml" />
@@ -332,6 +331,7 @@
     <Content Include="Views\CharacterArchetypes\Admin.cshtml" />
     <Content Include="Views\Weapons\Admin.cshtml" />
     <Content Include="Views\Weapons\Details.cshtml" />
+    <Content Include="Views\Resources\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

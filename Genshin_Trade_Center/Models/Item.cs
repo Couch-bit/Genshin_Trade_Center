@@ -14,6 +14,7 @@ namespace Genshin_Trade_Center.Models
         [Required]
         [DisplayName("Type")]
         public int TypeId { get; set; }
+        [Required]
         public virtual Weapon Type { get; set; }
 
         public Item() : base() {}
