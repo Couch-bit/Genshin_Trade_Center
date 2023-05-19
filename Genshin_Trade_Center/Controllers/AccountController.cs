@@ -99,21 +99,10 @@ namespace Genshin_Trade_Center.Controllers
                 {
                     case SignInStatus.Success:
                         return RedirectToLocal(returnUrl);
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.RequiresVerification:
-                        return RedirectToAction("SendCode",
-                            new
-                            {
-                                ReturnUrl = returnUrl,
-                                RememberMe = 
-                                model.LoginViewModel.RememberMe
-                            });
-                    case SignInStatus.Failure:
                     default:
                         ModelState.AddModelError
                             ("", "Invalid login attempt.");
-                        return View(model.LoginViewModel);
+                        return View(model);
                 }
             }
             else
@@ -125,7 +114,7 @@ namespace Genshin_Trade_Center.Controllers
                 };
                 IdentityResult result = await UserManager.CreateAsync
                     (user, model.RegisterViewModel.Password);
-                if (!result.Succeeded)
+                if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync
                         (user, isPersistent: false,
@@ -133,7 +122,7 @@ namespace Genshin_Trade_Center.Controllers
                     return RedirectToLocal(returnUrl);
                 }
             }
-            return RedirectToAction("Login");
+            return View(model);
         }
 
         // POST: /Account/LogOff
@@ -167,8 +156,6 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         #region Helpers
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {

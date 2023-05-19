@@ -5,10 +5,8 @@
 
 <main aria-labelledby="title">
     <h2 id="title">@ViewBag.Title.</h2>
-
-    <p class="text-success">@ViewBag.StatusMessage</p>
     <div>
-        <h4>Change your account settings</h4>
+        <h4>Hello @Html.DisplayFor(model => model.Nickname)</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>Password:</dt>
@@ -16,18 +14,16 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Email)
             </dt>
-
             <dd>
                 @Html.DisplayFor(model => model.Email)
             </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Nickname)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Nickname)
-            </dd>
         </dl>
+        <div>
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Log Off" class="nice-button"/>
+            }
+        </div>
     </div>
 </main>

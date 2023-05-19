@@ -11,12 +11,12 @@
         <div class="container-body" id="sekcja1">
             <div class="flexbox">
                 <div class="item">
-                    <h2 id="title">@ViewBag.Title.</h2>
+                    <h2 id="title">Log in</h2>
                     <div class="login">
                         <div class="row">
                             <div class="col-md-8">
                                 <section id="loginForm">
-                                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, Submit = "Log in"}, FormMethod.Post, new { id = "form_login" }))
+                                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, Submit = "Log in"}, FormMethod.Post, new { role = "form" }))
                                     {
                                         @Html.AntiForgeryToken()
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -55,8 +55,8 @@
                 </div>
                 <div class="item">
                     <div class="container-body" id="sekcja2">
-                        <h2 id="title">@ViewBag.Title.</h2>
-                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, Submit = "Register" }, FormMethod.Post, new { id = "form_register" }))
+                        <h2 id="title">Register</h2>
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, Submit = "Register" }, FormMethod.Post, new { role = "form" }))
                         {
                             @Html.AntiForgeryToken()
                             @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -86,7 +86,7 @@
                             </div>
                             <div class="row">
                                 <div class="offset-md-2 col-md-10">
-                                    <input type="submit" value="Register" class="btn btn-outline-dark" />
+                                    <input type="submit" value="Register" class="btn btn-outline-dark nice-button"/>
                                 </div>
                             </div>
                         }
