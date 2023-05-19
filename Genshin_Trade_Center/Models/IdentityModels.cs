@@ -13,6 +13,7 @@ namespace Genshin_Trade_Center.Models
         [DisplayName("Seller")]
         public override string UserName { get; set; }
         public virtual List<Resource> Resources { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync
             (UserManager<User> manager)
         {
@@ -50,7 +51,7 @@ namespace Genshin_Trade_Center.Models
     {
         protected override void Seed(ApplicationDbContext context)
         {
-            // Add Data.
+            // Adds Data.
             List<CharacterArchetype> characterArchetypes = new
                 List<CharacterArchetype>
             {
@@ -83,11 +84,43 @@ namespace Genshin_Trade_Center.Models
                 EnumWeapon.Spear, "Rumored to be a" +
                 " legendary polearm of Liyue.", 4),
             };
+            List<Resource> resources = new
+                List<Resource>
+            {
+                new Resource("Mora 10000", 2),
+                new Resource("Mora 100000", 20),
+                new Resource("Mora 1000000", 200)
+            };
 
             characterArchetypes.ForEach(archetype => context
             .CharacterArchetypes.Add(archetype));
             weapons.ForEach(weapon => context
             .Weapons.Add(weapon));
+
+            // Adds Admin Account.
+            RoleManager<IdentityRole> _roleManager = 
+                new RoleManager<IdentityRole>
+                (new RoleStore<IdentityRole>(context));
+            UserManager<User> _userManager =
+                new UserManager<User>
+                (new UserStore<User>(context));
+
+            IdentityRole role = new IdentityRole
+            {
+                Name = "Admin"
+            };
+            _roleManager.Create(role);
+
+            User user = new User
+            {
+                UserName = "Admin",
+                Email = "admin@admin.com",
+            };
+            string password = "jRs#vYtuctt#5$CF";
+            _userManager.Create(user, password);
+
+            _userManager.AddToRole(user.Id, "Admin");
+
             context.SaveChanges();
         }
     }
