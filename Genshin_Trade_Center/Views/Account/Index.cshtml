@@ -3,26 +3,30 @@
     ViewBag.Title = "Manage";
 }
 
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <div>
-        <h4>Hello @Html.DisplayFor(model => model.Nickname)</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-        </dl>
-        <div>
-            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-            {
-                @Html.AntiForgeryToken()
-                <input type="submit" value="Log Off" class="nice-button"/>
-            }
-        </div>
+<div class="container-main">
+    <hr />
+    <div class="container-body">
+        <main aria-labelledby="title">
+            <h2 id="title">@ViewBag.Title.</h2>
+            <div>
+                <h4>Hello @Html.DisplayFor(model => model.Nickname)</h4>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                </dl>
+                <div>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Log Off" class="nice-button" />
+                    }
+                </div>
+            </div>
+        </main>
     </div>
-</main>
+    <hr />
+</div>
