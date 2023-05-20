@@ -13,7 +13,6 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-
             <div class="form-horizontal">
                 <h4>CharacterArchetype</h4>
                 <hr />
@@ -59,11 +58,9 @@
                 </div>
             </div>
         }
-
         <div>
             @Html.ActionLink("Back to List", "Index")
         </div>
-
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
         }

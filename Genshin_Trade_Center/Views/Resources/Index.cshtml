@@ -21,7 +21,6 @@
                     </th>
                     <th></th>
                 </tr>
-
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -37,38 +36,26 @@
                         <td>
                             @if (!item.Sellers.Any(i => i.Id == ViewBag.Id))
                             {
-                                using (Html.BeginForm("Sell", "Resources", new { id = item.Id }, FormMethod.Post))
+                                using (Html.BeginForm("Sell", "Resources", new { id = item.Id }, FormMethod.Post, new { style = "display:inline;width:40%" }))
                                 {
                                     @Html.AntiForgeryToken()
-                                    <div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Sell" class="btn btn-default nice-button" style="display: inline-block;" />
-                                        </div>
-                                    </div>
+                                    <input type="submit" value="Sell" class="nice-button" />
                                 }
                             }
                             else
                             {
-                                using (Html.BeginForm("SellStop", "Resources", new { id = item.Id }, FormMethod.Post))
+                                using (Html.BeginForm("SellStop", "Resources", new { id = item.Id }, FormMethod.Post, new { style = "display:inline;width:40%" }))
                                 {
                                     @Html.AntiForgeryToken()
-                                    <div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Stop Selling" class="btn btn-default nice-button" style="display: inline-block;" />
-                                        </div>
-                                    </div>
+                                    <input type="submit" value="Stop Selling" class="nice-button" />
                                 }
                             }
                             @if (item.Sellers.Any(i => i.Id != ViewBag.Id))
                             {
-                                using (Html.BeginForm("Buy", "Resources", new { id = item.Id }, FormMethod.Post))
+                                using (Html.BeginForm("Buy", "Resources", new { id = item.Id }, FormMethod.Post, new { style = "display:inline;width:40%" }))
                                 {
                                     @Html.AntiForgeryToken()
-                                    <div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Buy" class="btn btn-default nice-button" style="display: inline-block;" />
-                                        </div>
-                                    </div>
+                                    <input type="submit" value="Buy" class="nice-button" />
                                 }
                             }
                         </td>

@@ -68,6 +68,11 @@ namespace Genshin_Trade_Center.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index");
+            }
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

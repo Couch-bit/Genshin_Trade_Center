@@ -1,15 +1,3 @@
-$("#ToHome").click(function() {
-    $([document.documentElement, document.body]).animate({
-        scrollTop: $("#sekcja1").offset().top - 50
-    }, 2000);
-});
-
-$("#ToTarget").click(function() {
-    $([document.documentElement, document.body]).animate({
-        scrollTop: $("#sekcja2").offset().top - 50
-    }, 2000);
-});
-
 function scroll1(){
     $([document.documentElement, document.body]).animate({
         scrollTop: $("#sekcja1").offset().top - 35

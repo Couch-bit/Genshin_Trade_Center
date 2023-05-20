@@ -1,6 +1,4 @@
-﻿@using Genshin_Trade_Center.Models
-@model AccountViewModel
-@{
+﻿@{
     ViewBag.Title = "Log in";
 }
 
@@ -8,85 +6,10 @@
 <main aria-labelledby="title">
     <div class="container-main">
         <hr />
-        <div class="container-body" id="sekcja1">
+        <div class="container-body">
             <div class="flexbox">
-                <div class="item">
-                    <h2 id="title">Log in</h2>
-                    <div class="login">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <section id="loginForm">
-                                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, Submit = "Log in" }, FormMethod.Post, new { role = "form" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        @Html.ValidationSummary("", new { @class = "text-danger" })
-                                        <div class="row">
-                                            @Html.LabelFor(m => m.LoginViewModel.UserName, new { @class = "col-md-2 col-form-label" })
-                                            <div class="col-md-10">
-                                                @Html.TextBoxFor(m => m.LoginViewModel.UserName, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(m => m.LoginViewModel.UserName, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            @Html.LabelFor(m => m.LoginViewModel.Password, new { @class = "col-md-2 col-form-label" })
-                                            <div class="col-md-10">
-                                                @Html.PasswordFor(m => m.LoginViewModel.Password, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(m => m.LoginViewModel.Password, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="offset-md-2 col-md-10">
-                                                <input type="submit" value="Log in" class="nice-button" />
-                                            </div>
-                                        </div>
-                                    }
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="container-body" id="sekcja2">
-                        <h2 id="title">Register</h2>
-                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, Submit = "Register" }, FormMethod.Post, new { role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <div class="row">
-                                @Html.LabelFor(m => m.RegisterViewModel.Email, new { @class = "col-md-2 col-form-label" })
-                                <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.RegisterViewModel.Email, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.RegisterViewModel.Email, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="row">
-                                @Html.LabelFor(m => m.RegisterViewModel.UserName, new { @class = "col-md-2 col-form-label" })
-                                <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.RegisterViewModel.UserName, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.RegisterViewModel.UserName, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="row">
-                                @Html.LabelFor(m => m.RegisterViewModel.Password, new { @class = "col-md-2 col-form-label" })
-                                <div class="col-md-10">
-                                    @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.RegisterViewModel.Password, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="row">
-                                @Html.LabelFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
-                                <div class="col-md-10">
-                                    @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.RegisterViewModel.ConfirmPassword, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="offset-md-2 col-md-10">
-                                    <input type="submit" value="Register" class="btn btn-outline-dark nice-button" />
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
+                @Html.Partial("_LoginPartial")
+                @Html.Partial("_RegisterPartial")
             </div>
         </div>
     </div>

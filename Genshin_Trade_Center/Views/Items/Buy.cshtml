@@ -9,7 +9,6 @@
     <div class="container-body">
         <h2 id="title">Are you sure you want to buy this?</h2>
         <div>
-            <h4>Character</h4>
             <table class="fl-table">
                 <tr>
                     <th>
@@ -60,14 +59,12 @@
                     </td>
                 </tr>
             </table>
-
-
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
 
                 <div class="form-actions no-color">
-                    <input type="submit" value="Buy" class="btn btn-default nice-button" /> |
+                    <input type="submit" value="Buy" class="nice-button" /> |
                     @Html.ActionLink("Back to List", "Index")
                 </div>
             }

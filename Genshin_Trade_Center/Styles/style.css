@@ -1,4 +1,4 @@
-:root{
+:root {
     --pretty_blue : #112a49;
     --pretty_gold : #FAAC02;
 }
@@ -36,10 +36,10 @@ body {
     height: 40px;
     line-height: 20px;
     list-style: none;
-    margin: 0;
+    margin-top: 1%;
+    margin-bottom: 1%;
     outline: none;
     padding: 10px 16px;
-    position: relative;
     text-align: center;
     text-decoration: none;
     transition: color 100ms;
@@ -110,6 +110,7 @@ body {
 
 .container-body {
     color: black;
+    overflow: hidden;
 }
 
 .landing-page {
@@ -211,7 +212,7 @@ hr {
     align-items: stretch;
 }
 
-.item{
+.item {
     flex-basis: 10%;
     padding-left: 5%;
     padding-right: 5%;
@@ -222,7 +223,7 @@ hr {
     flex-grow: 1;
 }
 
-.ayato_button{
+.ayato_button {
     background-color: var(--pretty_blue);
     color: white;
     font-family: GenshinFont;

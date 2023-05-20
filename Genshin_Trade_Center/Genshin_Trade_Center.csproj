@@ -219,6 +219,7 @@
     <Content Include="Images\user_icon.png" />
     <Content Include="Images\volume.png" />
     <Content Include="Images\weapon.png" />
+    <Content Include="index.html" />
     <Content Include="JS\indexJS.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -252,7 +253,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -294,6 +294,8 @@
     <Content Include="Views\Weapons\Admin.cshtml" />
     <Content Include="Views\Weapons\Details.cshtml" />
     <Content Include="Views\Resources\Admin.cshtml" />
+    <Content Include="Views\Account\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\_RegisterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

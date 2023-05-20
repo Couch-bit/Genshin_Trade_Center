@@ -23,7 +23,6 @@
     background: #112a49;
 }
 
-
 .fl-table thead th:nth-child(odd) {
     color: #ffffff;
     background: #1d4677;
@@ -35,6 +34,11 @@
 
 .fl-table tr:nth-child(even) {
     background: #F8F8F8;
+}
+
+.inline-form {
+    display: inline !important;
+    width: 30% !important;
 }
 
 .table-container {
