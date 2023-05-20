@@ -34,7 +34,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Sellers.Count)
                         </td>
-                        <th>
+                        <td>
                             @if (!item.Sellers.Any(i => i.Id == ViewBag.Id))
                             {
                                 using (Html.BeginForm("Sell", "Resources", new { id = item.Id }, FormMethod.Post))
@@ -42,7 +42,7 @@
                                     @Html.AntiForgeryToken()
                                     <div class="form-group">
                                         <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Sell" class="btn btn-default nice-button" />
+                                            <input type="submit" value="Sell" class="btn btn-default nice-button" style="display: inline-block;" />
                                         </div>
                                     </div>
                                 }
@@ -54,7 +54,7 @@
                                     @Html.AntiForgeryToken()
                                     <div class="form-group">
                                         <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Stop Selling" class="btn btn-default nice-button" />
+                                            <input type="submit" value="Stop Selling" class="btn btn-default nice-button" style="display: inline-block;" />
                                         </div>
                                     </div>
                                 }
@@ -66,12 +66,12 @@
                                     @Html.AntiForgeryToken()
                                     <div class="form-group">
                                         <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Buy" class="btn btn-default nice-button" />
+                                            <input type="submit" value="Buy" class="btn btn-default nice-button" style="display: inline-block;" />
                                         </div>
                                     </div>
                                 }
                             }
-                        </th>
+                        </td>
                     </tr>
                 }
             </table>
