@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Genshin_Trade_Center.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Genshin_Trade_Center.Controllers
 {
@@ -18,6 +19,7 @@ namespace Genshin_Trade_Center.Controllers
             {
                 return RedirectToAction("Admin");
             }
+
             return View(db.CharacterArchetypes.ToList());
         }
 
@@ -27,9 +29,9 @@ namespace Genshin_Trade_Center.Controllers
             if (!User.IsInRole("Admin"))
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
+
             return View(db.CharacterArchetypes.ToList());
         }
 
@@ -39,8 +41,7 @@ namespace Genshin_Trade_Center.Controllers
             if (!User.IsInRole("Admin"))
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             return View(new CharacterArchetype());
@@ -53,21 +54,14 @@ namespace Genshin_Trade_Center.Controllers
             "WeaponType,VisionType")]
             CharacterArchetype characterArchetype)
         {
-            if (!User.IsInRole("Admin"))
-            {
-                return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
-            }
-
             if (!ModelState.IsValid)
             {
-                return HttpNotFound();
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             db.CharacterArchetypes.Add(characterArchetype);
             db.SaveChanges();
-
             return RedirectToAction("Index");
         }
 
@@ -77,8 +71,7 @@ namespace Genshin_Trade_Center.Controllers
             if (!User.IsInRole("Admin"))
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             if (id == null)
@@ -102,22 +95,13 @@ namespace Genshin_Trade_Center.Controllers
             "WeaponType,VisionType")]
             CharacterArchetype characterArchetype)
         {
-            if (!User.IsInRole("Admin"))
-            {
-                return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
-            }
-
             if (!ModelState.IsValid)
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.InternalServerError);
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            db.Entry(characterArchetype).State =
-                    EntityState.Modified;
+            db.Entry(characterArchetype).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -128,15 +112,13 @@ namespace Genshin_Trade_Center.Controllers
             if (!User.IsInRole("Admin"))
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             if (id == null)
             {
                 return new 
-                    HttpStatusCodeResult
-                    (HttpStatusCode.BadRequest);
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             CharacterArchetype characterArchetype =
@@ -153,13 +135,6 @@ namespace Genshin_Trade_Center.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (!User.IsInRole("Admin"))
-            {
-                return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
-            }
-
             CharacterArchetype characterArchetype =
                 db.CharacterArchetypes.Find(id);
             db.CharacterArchetypes.Remove(characterArchetype);
@@ -173,7 +148,6 @@ namespace Genshin_Trade_Center.Controllers
             {
                 db.Dispose();
             }
-
             base.Dispose(disposing);
         }
     }

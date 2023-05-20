@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Genshin_Trade_Center.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Genshin_Trade_Center.Controllers
 {
@@ -19,6 +20,8 @@ namespace Genshin_Trade_Center.Controllers
             {
                 return RedirectToAction("Admin");
             }
+
+            ViewBag.Id = User.Identity.GetUserId();
             return View(db.Resources.ToList());
         }
 
@@ -28,9 +31,9 @@ namespace Genshin_Trade_Center.Controllers
             if (!User.IsInRole("Admin"))
             {
                 return new 
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
+
             return View(db.Resources.ToList());
         }
 
@@ -40,8 +43,7 @@ namespace Genshin_Trade_Center.Controllers
             if (!User.IsInRole("Admin"))
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             return View(new Resource());
@@ -53,21 +55,15 @@ namespace Genshin_Trade_Center.Controllers
         public ActionResult Create([Bind(Include = "Id,Name,Price")]
         Resource resource)
         {
-            if (!User.IsInRole("Admin"))
+            if (!ModelState.IsValid)
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            if (ModelState.IsValid)
-            {
-                db.Resources.Add(resource);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(resource);
+            db.Resources.Add(resource);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Resources/Edit/5
@@ -85,6 +81,7 @@ namespace Genshin_Trade_Center.Controllers
                 return new
                     HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Resource resource = db.Resources.Find(id);
             if (resource == null)
             {
@@ -99,17 +96,11 @@ namespace Genshin_Trade_Center.Controllers
         public ActionResult Edit([Bind(Include = "Id,Name,Price")]
         Resource resource)
         {
-            if (!User.IsInRole("Admin"))
-            {
-                return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
-            }
-
             if (!ModelState.IsValid)
             {
                 return HttpNotFound();
             }
+
             db.Entry(resource).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -121,16 +112,15 @@ namespace Genshin_Trade_Center.Controllers
             if (!User.IsInRole("Admin"))
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             if (id == null)
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.BadRequest);
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Resource resource = db.Resources.Find(id);
             if (resource == null)
             {
@@ -144,15 +134,95 @@ namespace Genshin_Trade_Center.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (!User.IsInRole("Admin"))
+            Resource resource = db.Resources.Find(id);
+            db.Resources.Remove(resource);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // POST: Resources/Sell/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Sell(int? id)
+        {
+            if (id == null)
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Resource resource = db.Resources.Find(id);
-            db.Resources.Remove(resource);
+            if (resource == null)
+            {
+                return HttpNotFound();
+            }
+            else if (resource.Sellers
+                .Any(s => s.Id == User.Identity.GetUserId()))
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            User user = db.Users.Find(User.Identity.GetUserId());
+            user.Resources.Add(resource);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // POST: Resources/SellStop/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SellStop(int? id)
+        {
+            if (id == null)
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Resource resource = db.Resources.Find(id);
+            if (resource == null)
+            {
+                return HttpNotFound();
+            }
+            else if (!resource.Sellers
+                .Any(s => s.Id == User.Identity.GetUserId()))
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            User user = db.Users.Find(User.Identity.GetUserId());
+            user.Resources.Remove(resource);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // POST: Resources/Buy/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Buy(int? id)
+        {
+            if (id == null)
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Resource resource = db.Resources.Find(id);
+            if (resource == null)
+            {
+                return HttpNotFound();
+            }
+            else if (!resource.Sellers
+                .Any(s => s.Id != User.Identity.GetUserId()))
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            resource.Sellers.Remove(resource.Sellers.ToList()
+                .Find(i => i.Id != User.Identity.GetUserId()));
             db.SaveChanges();
             return RedirectToAction("Index");
         }

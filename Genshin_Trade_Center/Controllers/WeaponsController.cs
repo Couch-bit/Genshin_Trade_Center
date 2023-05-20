@@ -18,29 +18,54 @@ namespace Genshin_Trade_Center.Controllers
             {
                 return RedirectToAction("Admin");
             }
+
             return View(db.Weapons.ToList());
         }
 
-        // GET: CharacterArchetypes/Admin
+        // GET: Weapons/Admin
         public ActionResult Admin()
         {
             if (!User.IsInRole("Admin"))
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
+
             return View(db.Weapons.ToList());
         }
 
         // GET: Weapons/Details/5
         public ActionResult Details(int? id)
         {
-
             if (id == null)
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Weapon weapon = db.Weapons.Find(id);
+            if (weapon == null)
             {
                 return HttpNotFound();
             }
+            return View(weapon);
+        }
+
+        // GET: Weapons/DetailsAdmin/5
+        public ActionResult DetailsAdmin(int? id)
+        {
+            if (!User.IsInRole("Admin"))
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
+            if (id == null)
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             Weapon weapon = db.Weapons.Find(id);
             if (weapon == null)
             {
@@ -55,15 +80,7 @@ namespace Genshin_Trade_Center.Controllers
             if (!User.IsInRole("Admin"))
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
-            }
-
-            if (!User.IsInRole("Admin"))
-            {
-                return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             return View(new Weapon());
@@ -72,23 +89,17 @@ namespace Genshin_Trade_Center.Controllers
         // POST: Weapons/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,MainStat,Type,Description,Quality")] Weapon weapon)
+        public ActionResult Create([Bind(Include = "Id,Name,MainStat," +
+            "Type,Description,Quality")] Weapon weapon)
         {
-            if (!User.IsInRole("Admin"))
+            if (!ModelState.IsValid)
             {
-                return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                
             }
 
-            if (ModelState.IsValid)
-            {
-                db.Weapons.Add(weapon);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(weapon);
+            db.Weapons.Add(weapon);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Weapons/Edit/5
@@ -97,13 +108,13 @@ namespace Genshin_Trade_Center.Controllers
             if (!User.IsInRole("Admin"))
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Weapon weapon = db.Weapons.Find(id);
             if (weapon == null)
@@ -116,22 +127,18 @@ namespace Genshin_Trade_Center.Controllers
         // POST: Weapons/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,MainStat,Type,Description,Quality")] Weapon weapon)
+        public ActionResult Edit([Bind(Include = "Id,Name,MainStat," +
+            "Type,Description,Quality")] Weapon weapon)
         {
-            if (!User.IsInRole("Admin"))
+            if (!ModelState.IsValid)
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            if (ModelState.IsValid)
-            {
-                db.Entry(weapon).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(weapon);
+            db.Entry(weapon).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Weapons/Delete/5
@@ -140,14 +147,15 @@ namespace Genshin_Trade_Center.Controllers
             if (!User.IsInRole("Admin"))
             {
                 return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Weapon weapon = db.Weapons.Find(id);
             if (weapon == null)
             {
@@ -161,13 +169,6 @@ namespace Genshin_Trade_Center.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (!User.IsInRole("Admin"))
-            {
-                return new
-                    HttpStatusCodeResult
-                    (HttpStatusCode.Forbidden);
-            }
-
             Weapon weapon = db.Weapons.Find(id);
             db.Weapons.Remove(weapon);
             db.SaveChanges();

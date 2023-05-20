@@ -31,7 +31,6 @@ namespace Genshin_Trade_Center.Models
         [StringLength(64, MinimumLength = 1,
             ErrorMessage =" Name cannot be longer than 64 characters")]
         public string Name { get => name; set => name = value; }
-        [Required]
         [Range(4, 5)]
         public int Quality { get => quality; set => quality = value; }
         [Required]

@@ -16,7 +16,6 @@ namespace Genshin_Trade_Center.Models
         [Range(1, 6)]
         public int Constellation { get => constellation;
             set => constellation = value; }
-        [Required]
         public int ArchetypeId { get; set; }
         public virtual CharacterArchetype Archetype { get; set; }
 

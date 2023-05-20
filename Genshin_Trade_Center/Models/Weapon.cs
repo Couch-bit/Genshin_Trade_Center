@@ -42,6 +42,7 @@ namespace Genshin_Trade_Center.Models
             ErrorMessage = "Name must be between 5 and 64 characters")]
         public string Name { get => name; set => name = value; }
         [Required]
+        [DisplayName("Main Stat")]
         public EnumStat MainStat { get => mainStat;
             set => mainStat = value; }
         [Required]
@@ -52,7 +53,6 @@ namespace Genshin_Trade_Center.Models
             ErrorMessage = "Name must be between 5 and 64 characters")]
         public string Description { get => description;
             set => description = value; }
-        [Required]
         [Range(1, 5)]
         public int Quality { get => quality; set => quality = value; }
         public virtual List<Item> Items { get; set; }

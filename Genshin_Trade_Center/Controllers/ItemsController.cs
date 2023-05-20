@@ -18,11 +18,11 @@ namespace Genshin_Trade_Center.Controllers
         public ActionResult Index()
         {
             IQueryable<Item> items = db.Products
-                .Where(i => i is Item)
-                .AsEnumerable()
+                .Where(i => i is Item).AsEnumerable()
                 .Cast<Item>().AsQueryable()
                 .Where(i => i.SellerId != User.Identity.GetUserId())
                 .Include(i => i.Seller).Include(i => i.Type);
+
             return View(items.ToList());
         }
 
@@ -35,6 +35,7 @@ namespace Genshin_Trade_Center.Controllers
                 .Where(i => i.SellerId == User.Identity.GetUserId())
                 .Include(i => i.Seller)
                 .Include(i => i.Type);
+
             return View(items.ToList());
         }
 
@@ -43,7 +44,8 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Item item = (Item)db.Products.Find(id);
@@ -59,13 +61,19 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Item item = (Item)db.Products.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
+            }
+            if (item.SellerId != User.Identity.GetUserId())
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(item);
         }
@@ -86,7 +94,8 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return HttpNotFound();
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             item.SellerId = User.Identity.GetUserId();
@@ -101,13 +110,19 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return new 
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Item character = (Item)db.Products.Find(id);
             if (character == null)
             {
                 return HttpNotFound();
+            }
+            if (character.SellerId != User.Identity.GetUserId())
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             EditItemViewModel ItemView = new
@@ -130,20 +145,19 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return HttpNotFound();
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Item character =
-                (Item)db.Products.Find(ItemView.Id);
+            Item item = (Item)db.Products.Find(ItemView.Id);
 
-            character.Name = ItemView.Name;
-            character.Price = ItemView.Price;
-            character.Level = ItemView.Level;
-            character.Refinement = ItemView.Refinement;
+            item.Name = ItemView.Name;
+            item.Price = ItemView.Price;
+            item.Level = ItemView.Level;
+            item.Refinement = ItemView.Refinement;
 
-            db.Entry(character).State = EntityState.Modified;
+            db.Entry(item).State = EntityState.Modified;
             db.SaveChanges();
-
             return RedirectToAction("MyStore");
         }
 
@@ -152,12 +166,19 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Item item = (Item)db.Products.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
+            }
+            if (item.SellerId != User.Identity.GetUserId())
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(item);
         }
@@ -178,7 +199,8 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Item character = (Item)db.Products.Find(id);

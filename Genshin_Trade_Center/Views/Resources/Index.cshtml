@@ -19,6 +19,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Sellers.Count)
                     </th>
+                    <th></th>
                 </tr>
 
                 @foreach (var item in Model)
@@ -33,6 +34,44 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Sellers.Count)
                         </td>
+                        <th>
+                            @if (!item.Sellers.Any(i => i.Id == ViewBag.Id))
+                            {
+                                using (Html.BeginForm("Sell", "Resources", new { id = item.Id }, FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Sell" class="btn btn-default nice-button" />
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("SellStop", "Resources", new { id = item.Id }, FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Stop Selling" class="btn btn-default nice-button" />
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            @if (item.Sellers.Any(i => i.Id != ViewBag.Id))
+                            {
+                                using (Html.BeginForm("Buy", "Resources", new { id = item.Id }, FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Buy" class="btn btn-default nice-button" />
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </th>
                     </tr>
                 }
             </table>

@@ -52,7 +52,7 @@ namespace Genshin_Trade_Center.Models
         protected override void Seed(ApplicationDbContext context)
         {
             // Adds Data.
-            List<CharacterArchetype> characterArchetypes = new
+            List<CharacterArchetype> characterArchetypes = new 
                 List<CharacterArchetype>
             {
                 new CharacterArchetype("Raiden Shogun", 5,
@@ -64,7 +64,7 @@ namespace Genshin_Trade_Center.Models
                 new CharacterArchetype("Layla", 4,
                 EnumWeapon.Sword, EnumVision.Cryo)
             };
-            List<Weapon> weapons = new
+            List<Weapon> weapons = new 
                 List<Weapon>
             {
                 new Weapon("Polar Star", EnumStat.CRITRate,

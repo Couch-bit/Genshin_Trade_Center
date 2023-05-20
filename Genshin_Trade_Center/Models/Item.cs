@@ -11,10 +11,8 @@ namespace Genshin_Trade_Center.Models
         [Required]
         [Range(1, 5)]
         public int Refinement { get => refinement; set => refinement = value; }
-        [Required]
-        [DisplayName("Type")]
+        [DisplayName("Weapon")]
         public int TypeId { get; set; }
-        [Required]
         public virtual Weapon Type { get; set; }
 
         public Item() : base() {}

@@ -53,8 +53,8 @@ namespace Genshin_Trade_Center.Controllers
         // GET: /Account/Index
         public ActionResult Index()
         {
-            User user = UserManager.FindById
-                (User.Identity.GetUserId());
+            User user = UserManager
+                .FindById(User.Identity.GetUserId());
 
             ManageViewModel model = new ManageViewModel
             {
@@ -69,7 +69,6 @@ namespace Genshin_Trade_Center.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-
             return View();
         }
 
@@ -78,51 +77,21 @@ namespace Genshin_Trade_Center.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login
-            (AccountViewModel model,
-            string returnUrl,
-            string submit)
+            (AccountViewModel model,string returnUrl, string submit)
         {
             if (!ModelState.IsValid)
             {
                 return new 
-                    HttpStatusCodeResult
-                    (HttpStatusCode.BadRequest);
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             if (submit == "Log in")
             {
-                SignInStatus result = await SignInManager
-                .PasswordSignInAsync(model.LoginViewModel.UserName,
-                model.LoginViewModel.Password,
-                model.LoginViewModel.RememberMe, shouldLockout: false);
-                switch (result)
-                {
-                    case SignInStatus.Success:
-                        return RedirectToLocal(returnUrl);
-                    default:
-                        ModelState.AddModelError
-                            ("", "Invalid login attempt.");
-                        return View(model);
-                }
+                return await 
+                    PasswordLogin(model, returnUrl);
             }
-            else
-            {
-                User user = new User
-                {
-                    UserName = model.RegisterViewModel.UserName,
-                    Email = model.RegisterViewModel.Email 
-                };
-                IdentityResult result = await UserManager.CreateAsync
-                    (user, model.RegisterViewModel.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync
-                        (user, isPersistent: false,
-                        rememberBrowser: false);
-                    return RedirectToLocal(returnUrl);
-                }
-            }
-            return View(model);
+            return await
+                Register(model, returnUrl);
         }
 
         // POST: /Account/LogOff
@@ -137,21 +106,22 @@ namespace Genshin_Trade_Center.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (!disposing)
             {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
-
-                if (_signInManager != null)
-                {
-                    _signInManager.Dispose();
-                    _signInManager = null;
-                }
+                base.Dispose(disposing);
+                return;
             }
 
+            if (_userManager != null)
+            {
+                _userManager.Dispose();
+                _userManager = null;
+            }
+            if (_signInManager != null)
+            {
+                _signInManager.Dispose();
+                _signInManager = null;
+            }
             base.Dispose(disposing);
         }
 
@@ -167,7 +137,7 @@ namespace Genshin_Trade_Center.Controllers
 
         private void AddErrors(IdentityResult result)
         {
-            foreach (var error in result.Errors)
+            foreach (string error in result.Errors)
             {
                 ModelState.AddModelError("", error);
             }
@@ -180,6 +150,45 @@ namespace Genshin_Trade_Center.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        private async Task<ActionResult> PasswordLogin
+            (AccountViewModel model, string returnUrl)
+        {
+            SignInStatus resultLogin = await SignInManager
+                .PasswordSignInAsync(model.LoginViewModel.UserName,
+                model.LoginViewModel.Password, false,
+                shouldLockout: false);
+
+            if (resultLogin != SignInStatus.Success)
+            {
+                ModelState.AddModelError
+                        ("", "Invalid login attempt.");
+                return View(model);
+            }
+            return RedirectToLocal(returnUrl);
+        }
+
+        private async Task<ActionResult> Register
+            (AccountViewModel model, string returnUrl)
+        {
+            User user = new User
+            {
+                UserName = model.RegisterViewModel.UserName,
+                Email = model.RegisterViewModel.Email
+            };
+            IdentityResult resultregister = await UserManager
+                .CreateAsync(user, model.RegisterViewModel.Password);
+
+            if (!resultregister.Succeeded)
+            {
+                AddErrors(resultregister);
+                return View(model);
+            }
+
+            await SignInManager .SignInAsync(user,
+                isPersistent: false, rememberBrowser: false);
+            return RedirectToLocal(returnUrl);
         }
         #endregion
     }
