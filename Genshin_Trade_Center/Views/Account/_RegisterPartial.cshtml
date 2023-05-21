@@ -6,7 +6,6 @@
         <h2 id="title">Register</h2>
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, Submit = "Register" }, FormMethod.Post, new { role = "form" }))
         {
-            @Html.AntiForgeryToken()
             <div class="row">
                 @Html.LabelFor(m => m.RegisterViewModel.Email, new { @class = "col-md-2 col-form-label" })
                 <div class="col-md-10">

@@ -80,7 +80,6 @@ namespace Genshin_Trade_Center.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login
             (AccountViewModel model,string returnUrl, string submit)
         {
