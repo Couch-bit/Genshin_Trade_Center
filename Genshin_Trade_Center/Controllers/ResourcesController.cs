@@ -221,7 +221,7 @@ namespace Genshin_Trade_Center.Controllers
                     HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            resource.Sellers.Remove(resource.Sellers.ToList()
+            resource.Sellers.Remove(resource.Sellers
                 .Find(i => i.Id != User.Identity.GetUserId()));
             db.SaveChanges();
             return RedirectToAction("Index");

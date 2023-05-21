@@ -11,8 +11,16 @@ namespace Genshin_Trade_Center.Controllers
     /// <remarks></remarks>
     public class BaseController : Controller
     {
+        /// <summary>
+        /// Ensures The Culture is european every time
+        /// an action is executed.
+        /// </summary>
+        /// <param name="filterContext">
+        /// the Action Executing Context
+        /// </param>
+        /// <remarks></remarks>
         protected override void OnActionExecuting(
-            ActionExecutingContext filterContext)
+                    ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo("eu");

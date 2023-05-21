@@ -4,6 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Genshin_Trade_Center.Models
 {
+    /// <summary>
+    /// Enum for the stat types present in Genshin Impact.
+    /// </summary>
+    /// <remarks></remarks>
     public enum EnumStat
     {
         ATK,
@@ -15,6 +19,10 @@ namespace Genshin_Trade_Center.Models
         EnergyRecharge,
         PhysicalDMG
     }
+    /// <summary>
+    /// Enum for the weapon types present in Genshin Impact.
+    /// </summary>
+    /// <remarks></remarks>
     public enum EnumWeapon
     {
         Sword,
@@ -24,6 +32,10 @@ namespace Genshin_Trade_Center.Models
         Spear
     }
 
+    /// <summary>
+    /// Represent weapons present in Genshin Impact.
+    /// </summary>
+    /// <remarks></remarks>
     public class Weapon
     {
         private static int currentId;
@@ -34,27 +46,90 @@ namespace Genshin_Trade_Center.Models
         private string description;
         private int quality;
 
+        /// <summary>
+        /// Gets or sets the id.
+        /// This is a primary key.
+        /// </summary>
+        /// <value>
+        /// The id.
+        /// </value>
+        /// <remarks></remarks>
         [Key]
         public int Id { get => id; set => id = value; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// It must be from 5 to 64 characters long.
+        /// Displays as Weapon.
+        /// This is a required field.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        /// <remarks></remarks>
         [Required]
         [DisplayName("Weapon")]
         [StringLength(64, MinimumLength = 5,
-            ErrorMessage = "Name must be between 5 and 64 characters")]
+                    ErrorMessage = "Name must be between 5 and 64 characters")]
         public string Name { get => name; set => name = value; }
+        /// <summary>
+        /// Gets or sets the main stat.
+        /// This is a required property.
+        /// </summary>
+        /// <value>
+        /// The main stat.
+        /// </value>
+        /// <remarks></remarks>
         [Required]
         [DisplayName("Main Stat")]
-        public EnumStat MainStat { get => mainStat;
-            set => mainStat = value; }
+        public EnumStat MainStat
+        {
+            get => mainStat;
+            set => mainStat = value;
+        }
+        /// <summary>
+        /// Gets or sets the weapon type.
+        /// This is a required property.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        /// <remarks></remarks>
         [Required]
         public EnumWeapon Type { get => type; set => type = value; }
+        /// <summary>
+        /// Gets or sets the description.
+        /// It must be from 5 to 1024 characters long.
+        /// This is a required field.
+        /// </summary>
+        /// <value></value>
+        /// <remarks></remarks>
         [Required]
         [DataType(DataType.MultilineText)]
-        [StringLength(1024,
-            ErrorMessage = "Name must be between 5 and 64 characters")]
-        public string Description { get => description;
-            set => description = value; }
+        [StringLength(1024, MinimumLength = 5,
+                    ErrorMessage = "Name must be between 5 and 64 characters")]
+        public string Description
+        {
+            get => description;
+            set => description = value;
+        }
+        /// <summary>
+        /// Gets or sets the quality.
+        /// It must be from 1 to 5.
+        /// </summary>
+        /// <value>
+        /// The quality.
+        /// </value>
+        /// <remarks></remarks>
         [Range(1, 5)]
         public int Quality { get => quality; set => quality = value; }
+        /// <summary>
+        /// Gets or sets the list containing the items being
+        /// sold which are this weapon.
+        /// </summary>
+        /// <value>
+        /// The items.
+        /// </value>
+        /// <remarks></remarks>
         public virtual List<Item> Items { get; set; }
 
         static Weapon()

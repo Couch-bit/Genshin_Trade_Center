@@ -8,10 +8,14 @@ using Microsoft.AspNet.Identity;
 
 namespace Genshin_Trade_Center.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks></remarks>
     [Authorize]
     public class CharactersController : BaseController
     {
-        private readonly ApplicationDbContext db = new 
+        private readonly ApplicationDbContext db = new
             ApplicationDbContext();
 
         // GET: Characters
@@ -42,7 +46,7 @@ namespace Genshin_Trade_Center.Controllers
         {
             if (id == null)
             {
-                return new 
+                return new
                     HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
@@ -79,7 +83,7 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Characters/Create
         public ActionResult Create()
         {
-            ViewBag.ArchetypeId = new 
+            ViewBag.ArchetypeId = new
                 SelectList(db.CharacterArchetypes,
                 "Id", "Name");
             return View();
@@ -90,12 +94,12 @@ namespace Genshin_Trade_Center.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(
             [Bind(Include = "Id,Name,Price,Level," +
-            "Friendship,ArchetypeId,Constellation")] 
+            "Friendship,ArchetypeId,Constellation")]
             Character character)
         {
             if (!ModelState.IsValid)
             {
-                return new 
+                return new
                     HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
@@ -151,9 +155,9 @@ namespace Genshin_Trade_Center.Controllers
                     HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Character character = 
+            Character character =
                 (Character)db.Products.Find(characterView.Id);
-            
+
             character.Name = characterView.Name;
             character.Price = characterView.Price;
             character.Level = characterView.Level;
