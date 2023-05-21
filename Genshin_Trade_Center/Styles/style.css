@@ -248,3 +248,10 @@ hr {
     animation-duration: 2s;
     animation-iteration-count: 1;
 }
+
+.rotating-image {
+    animation: rotate 5s infinite linear;
+    display: block;
+    margin: 0 auto;
+    border-radius:10px;
+}
