@@ -9,21 +9,44 @@ using System.Net;
 
 namespace Genshin_Trade_Center.Controllers
 {
+    /// <summary>
+    /// Authorize only Controller responsible for managing all account requests
+    /// made by the website. 
+    /// </summary>
+    /// <remarks></remarks>
     [Authorize]
     public class AccountController : BaseController
     {
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController() {}
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="Genshin_Trade_Center.Controllers.AccountController" /> class. 
+        /// </summary>
+        /// <remarks></remarks>
+        public AccountController() { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Genshin_Trade_Center.Controllers.AccountController" /> class. 
+        /// </summary>
+        /// <param name="userManager"> The User Manager</param>
+        /// <param name="signInManager"> The Sign in Manager</param>
+        /// <remarks></remarks>
         public AccountController(ApplicationUserManager userManager,
-            ApplicationSignInManager signInManager)
+                    ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
+        /// <summary>
+        /// Gets or sets the Sign in Manager.
+        /// </summary>
+        /// <value>The Sign in Manager if not null, otherwise
+        /// return a new Sign in Manager</value>
+        /// <remarks></remarks>
         public ApplicationSignInManager SignInManager
         {
             get
@@ -31,12 +54,18 @@ namespace Genshin_Trade_Center.Controllers
                 return _signInManager ?? HttpContext.GetOwinContext()
                     .Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the User Manager.
+        /// </summary>
+        /// <value>The User Manager not null, otherwise
+        /// return a new User Manager</value>
+        /// <remarks></remarks>
         public ApplicationUserManager UserManager
         {
             get
@@ -51,6 +80,15 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // GET: /Account/Index
+        /// <summary>
+        /// Gets the Index View of the Account,
+        /// containing basic user Information.
+        /// </summary>
+        /// <returns>
+        /// A View Containing the Email and
+        /// NickName of the Current User.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult Index()
         {
             User user = UserManager
@@ -65,6 +103,18 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // GET: /Account/Login
+        /// <summary>
+        /// Returns a View containing the login and register forms.
+        /// Redirects to the Index if the User is already logged in.
+        /// Allows Anonymous Requests.
+        /// </summary>
+        /// <param name="returnUrl">
+        /// The Url to return to after a successful login.
+        /// </param>
+        /// <returns>
+        /// The Login View with an option to login or register.
+        /// </returns>
+        /// <remarks></remarks>
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -78,20 +128,41 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: /Account/Login
+        /// <summary>
+        /// Post Method which logs the user in or
+        /// registers a new user based on the form submited.
+        /// if successful redirects to the return Url.
+        /// </summary>
+        /// <param name="model">
+        /// Model representing the data on the Login View.
+        /// </param>
+        /// <param name="returnUrl">
+        /// The Url to return to after the user logs in (or registers).
+        /// </param>
+        /// <param name="submit">
+        /// String containing the information on which form
+        /// was sumbitted.
+        /// </param>
+        /// <returns>
+        /// The View represented by the return Url if successful,
+        /// otherwise the Login View with Added Errors.
+        /// </returns>
+        /// <remarks></remarks>
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Login
-            (AccountViewModel model,string returnUrl, string submit)
+                    (AccountViewModel model, string returnUrl,
+            string submit)
         {
             if (!ModelState.IsValid)
             {
-                return new 
+                return new
                     HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             if (submit == "Log in")
             {
-                return await 
+                return await
                     PasswordLogin(model, returnUrl);
             }
             return await
@@ -99,6 +170,14 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: /Account/LogOff
+        /// <summary>
+        /// Logs the User out of the website and
+        /// redirects to Home.
+        /// </summary>
+        /// <returns>
+        /// The Home View.
+        /// </returns>
+        /// <remarks></remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -190,7 +269,7 @@ namespace Genshin_Trade_Center.Controllers
                 return View(model);
             }
 
-            await SignInManager .SignInAsync(user,
+            await SignInManager.SignInAsync(user,
                 isPersistent: false, rememberBrowser: false);
             return RedirectToLocal(returnUrl);
         }
