@@ -95,7 +95,7 @@ namespace Genshin_Trade_Center.Models
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see "Product" /> class. 
+        /// Initializes a new instance of the <see cref="Product" /> class. 
         /// </summary>
         /// <param name="name">the name</param>
         /// <param name="price">the price</param>

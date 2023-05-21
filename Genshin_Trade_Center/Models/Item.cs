@@ -42,6 +42,7 @@ namespace Genshin_Trade_Center.Models
         /// </summary>
         /// <remarks></remarks>
         public Item() : base() { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Item" /> class. 
         /// </summary>

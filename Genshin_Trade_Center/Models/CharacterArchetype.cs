@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Genshin_Trade_Center.Models
 {
     /// <summary>
-    /// Enum for the vision types present in Genshin Impact
+    /// Enum for the vision types present in Genshin Impact.
     /// </summary>
     /// <remarks></remarks>
     public enum EnumVision

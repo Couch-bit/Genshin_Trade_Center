@@ -9,7 +9,8 @@ using Microsoft.AspNet.Identity;
 namespace Genshin_Trade_Center.Controllers
 {
     /// <summary>
-    /// 
+    /// Authorize only Controller responsible for managing
+    /// all character requests made by the website. 
     /// </summary>
     /// <remarks></remarks>
     [Authorize]
@@ -19,6 +20,18 @@ namespace Genshin_Trade_Center.Controllers
             ApplicationDbContext();
 
         // GET: Characters
+        /// <summary>
+        /// Returns a view containing the list of 
+        /// all <see cref="Character" /> objects stored in the database
+        /// not sold by the current user with the option to buy or
+        /// dispaly details.
+        /// </summary>
+        /// <returns>
+        /// Index View containing all
+        /// <see cref="Character" /> objects not sold by
+        /// the current user.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult Index()
         {
             IQueryable<Character> characters = db.Products
@@ -30,6 +43,17 @@ namespace Genshin_Trade_Center.Controllers
             return View(characters.ToList());
         }
 
+        /// <summary>
+        /// Returns a view containing the List of 
+        /// all <see cref="Character" /> objects stored in the database
+        /// sold by the current user.
+        /// </summary>
+        /// <returns>
+        /// Index View containing all
+        /// <see cref="Character" /> objects sold by
+        /// the current user.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult MyStore()
         {
             IQueryable<Character> characters = db.Products
@@ -41,7 +65,72 @@ namespace Genshin_Trade_Center.Controllers
             return View(characters.ToList());
         }
 
-        // GET: Characters/Details/5
+        // GET: Characters/Create
+        /// <summary>
+        /// Returns a form which allows for 
+        /// <see cref="Character" /> Creation.
+        /// </summary>
+        /// <returns>
+        /// Form which allows for <see cref="Character" /> Creation.
+        /// </returns>
+        /// <remarks></remarks>
+        public ActionResult Create()
+        {
+            ViewBag.ArchetypeId = new
+                SelectList(db.CharacterArchetypes,
+                "Id", "Name");
+            return View();
+        }
+
+        // POST: Characters/Create
+        /// <summary>
+        /// Adds the given
+        /// <see cref="Character" /> to the database.
+        /// If Successful Redirects to MyStore.
+        /// Returns HTTP 400 if the model
+        /// sent to the method is invalid.
+        /// </summary>
+        /// <param name="character">
+        /// The Character to be added.
+        /// </param>
+        /// <returns>
+        /// The MyStore View.
+        /// </returns>
+        /// <remarks></remarks>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(
+                    [Bind(Include = "Id,Name,Price,Level," +
+            "Friendship,ArchetypeId,Constellation")]
+            Character character)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            character.SellerId = User.Identity.GetUserId();
+
+            db.Products.Add(character);
+            db.SaveChanges();
+            return RedirectToAction("MyStore");
+        }
+
+        // GET: Characters/DetailsClient/5
+        /// <summary>
+        /// Returns the details of the given <see cref="Character" />.
+        /// Return HTTP 400 if the id provided was null.
+        /// Returns HTTP 404 if the id provided didn't correspond
+        /// to a <see cref="Character" /> in the database.
+        /// </summary>
+        /// <param name="id">
+        /// the id of the <see cref="Character" /> to display
+        /// </param>
+        /// <returns>
+        /// The Details Client View.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult DetailsClient(int? id)
         {
             if (id == null)
@@ -58,7 +147,20 @@ namespace Genshin_Trade_Center.Controllers
             return View(character);
         }
 
-        // GET: Characters/Details/5
+        // GET: Characters/DetailsSeller/5
+        /// <summary>
+        /// Returns the details of the given <see cref="Character" />.
+        /// Return HTTP 400 if the id provided was null.
+        /// Returns HTTP 404 if the id provided didn't correspond
+        /// to a <see cref="Character" /> in the database.
+        /// </summary>
+        /// <param name="id">
+        /// the id of the <see cref="Character" /> to display
+        /// </param>
+        /// <returns>
+        /// The Details Client View.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult DetailsSeller(int? id)
         {
             if (id == null)
@@ -80,37 +182,22 @@ namespace Genshin_Trade_Center.Controllers
             return View(character);
         }
 
-        // GET: Characters/Create
-        public ActionResult Create()
-        {
-            ViewBag.ArchetypeId = new
-                SelectList(db.CharacterArchetypes,
-                "Id", "Name");
-            return View();
-        }
-
-        // POST: Characters/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(
-            [Bind(Include = "Id,Name,Price,Level," +
-            "Friendship,ArchetypeId,Constellation")]
-            Character character)
-        {
-            if (!ModelState.IsValid)
-            {
-                return new
-                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            character.SellerId = User.Identity.GetUserId();
-
-            db.Products.Add(character);
-            db.SaveChanges();
-            return RedirectToAction("MyStore");
-        }
-
         // GET: Characters/Edit/5
+        /// <summary>
+        /// Returns a form which allows for 
+        /// <see cref="Character" /> edition.
+        /// Returns HTTP 400 if no id was given.
+        /// Returns HTTP 404 if the given id
+        /// didn't correspond to a <see cref="Character" />
+        /// in the database. 
+        /// </summary>
+        /// <param name="id">
+        /// The id of the <see cref="Character" />.
+        /// </param>
+        /// <returns>
+        /// Form which allows for character edition.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -145,6 +232,19 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: Characters/Edit/5
+        /// <summary>
+        /// Edits the given <see cref="Character"/>
+        /// in the database.
+        /// Returns HTTP 400 if the model state is invalid.
+        /// Redirects to the MyStore View if successful.
+        /// </summary>
+        /// <param name="characterView">
+        /// View Model used in the view.
+        /// </param>
+        /// <returns>
+        /// The MyStore View.
+        /// </returns>
+        /// <remarks></remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditCharacterViewModel characterView)

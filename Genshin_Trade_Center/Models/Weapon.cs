@@ -91,7 +91,7 @@ namespace Genshin_Trade_Center.Models
         /// This is a required property.
         /// </summary>
         /// <value>
-        /// The type.
+        /// The weapon type.
         /// </value>
         /// <remarks></remarks>
         [Required]
@@ -101,7 +101,9 @@ namespace Genshin_Trade_Center.Models
         /// It must be from 5 to 1024 characters long.
         /// This is a required field.
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// The description.
+        /// </value>
         /// <remarks></remarks>
         [Required]
         [DataType(DataType.MultilineText)]
@@ -127,7 +129,7 @@ namespace Genshin_Trade_Center.Models
         /// sold which are this weapon.
         /// </summary>
         /// <value>
-        /// The items.
+        /// The items which are this weapon.
         /// </value>
         /// <remarks></remarks>
         public virtual List<Item> Items { get; set; }
@@ -137,6 +139,11 @@ namespace Genshin_Trade_Center.Models
             currentId = 1;
         }
 
+        /// <summary>
+        /// Initializes a new instance of
+        /// the <see cref="Weapon" /> class. 
+        /// </summary>
+        /// <remarks></remarks>
         public Weapon()
         {
             id = currentId++;
@@ -147,8 +154,18 @@ namespace Genshin_Trade_Center.Models
             quality = 0;
         }
 
+        /// <summary>
+        /// Initializes a new instance of
+        /// the <see cref="Weapon" /> class. 
+        /// </summary>
+        /// <param name="name">the name</param>
+        /// <param name="mainStat">the main stat</param>
+        /// <param name="type">the weapon type</param>
+        /// <param name="description">the description</param>
+        /// <param name="quality">the quality</param>
+        /// <remarks></remarks>
         public Weapon(string name, EnumStat mainStat, EnumWeapon type,
-            string description, int quality) : this()
+                    string description, int quality) : this()
         {
             this.name = name;
             this.mainStat = mainStat;

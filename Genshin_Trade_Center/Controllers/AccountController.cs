@@ -10,8 +10,8 @@ using System.Net;
 namespace Genshin_Trade_Center.Controllers
 {
     /// <summary>
-    /// Authorize only Controller responsible for managing all account requests
-    /// made by the website. 
+    /// Authorize only Controller responsible for managing
+    /// all account requests made by the website. 
     /// </summary>
     /// <remarks></remarks>
     [Authorize]
@@ -23,7 +23,7 @@ namespace Genshin_Trade_Center.Controllers
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="Genshin_Trade_Center.Controllers.AccountController" /> class. 
+        /// <see cref="AccountController" /> class. 
         /// </summary>
         /// <remarks></remarks>
         public AccountController() { }
