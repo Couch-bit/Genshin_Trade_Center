@@ -1,5 +1,4 @@
 ﻿@model Genshin_Trade_Center.Models.Character
-
 @{
     ViewBag.Title = "Characters";
 }
@@ -8,57 +7,58 @@
     <hr />
     <div class="container-body">
         <h2 id="title">Character Details</h2>
-        <table class="fl-table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <td>
-                    @Html.DisplayFor(model => model.Name)
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <td>
-                    @Html.DisplayFor(model => model.Price)
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Level)
-                </th>
-                <td>
-                    @Html.DisplayFor(model => model.Level)
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Friendship)
-                </th>
-                <td>
-                    @Html.DisplayFor(model => model.Friendship)
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Constellation)
-                </th>
-                <td>
-                    @Html.DisplayFor(model => model.Constellation)
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Archetype.Name)
-                </th>
-                <td>
-                    @Html.DisplayFor(model => model.Archetype.Name)
-                </td>
-            </tr>
-        </table>
-
+        <div class="table-container">
+            <table class="fl-table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Price)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Level)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Level)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Friendship)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Friendship)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Constellation)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Constellation)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Archetype.Name)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Archetype.Name)
+                    </td>
+                </tr>
+            </table>
+        </div>
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
             @Html.ActionLink("Back to List", "MyStore")

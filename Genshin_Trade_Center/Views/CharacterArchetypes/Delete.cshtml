@@ -1,5 +1,4 @@
 ﻿@model Genshin_Trade_Center.Models.CharacterArchetype
-
 @{
     ViewBag.Title = "Character Archetypes";
 }
@@ -8,40 +7,42 @@
     <hr />
     <div class="container-body">
         <h2 id="title">Are you sure you want to delete this?</h2>
-        <table class="fl-table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <td>
-                    @Html.DisplayFor(model => model.Name)
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Quality)
-                </th>
-                <td>
-                    @Html.DisplayFor(model => model.Quality)
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.WeaponType)
-                </th>
-                <td>
-                    @Html.DisplayFor(model => model.WeaponType)
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.VisionType)
-                </th>
-                <td>
-                    @Html.DisplayFor(model => model.VisionType)
-                </td>
-            </tr>
-        </table>
+        <div class="table-container">
+            <table class="fl-table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quality)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Quality)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WeaponType)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.WeaponType)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VisionType)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.VisionType)
+                    </td>
+                </tr>
+            </table>
+        </div>
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
@@ -49,8 +50,9 @@
                 <input type="submit" value="Delete" class="nice-button" />
             </div>
         }
-        @Html.ActionLink("Back to List", "Index")
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
     </div>
     <hr />
 </div>
-

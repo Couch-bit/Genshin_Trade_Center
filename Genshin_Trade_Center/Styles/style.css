@@ -114,6 +114,7 @@ body {
 }
 
 .landing-page {
+    z-index: 2;
     width: auto;
 }
 

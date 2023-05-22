@@ -1,5 +1,4 @@
 ﻿@model Genshin_Trade_Center.Models.CharacterArchetype
-
 @{
     ViewBag.Title = "Character Archetypes";
 }
@@ -7,11 +6,11 @@
 <div class="container-main">
     <hr />
     <div class="container-body">
+        <h2 id="title">Create Character Archetype</h2>
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
             <div>
-                <h2 id="title">Create Character Archetype</h2>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div>
                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -20,7 +19,6 @@
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div>
                     @Html.LabelFor(model => model.Quality, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div>
@@ -28,7 +26,6 @@
                         @Html.ValidationMessageFor(model => model.Quality, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div>
                     @Html.LabelFor(model => model.WeaponType, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div>
@@ -36,7 +33,6 @@
                         @Html.ValidationMessageFor(model => model.WeaponType, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div>
                     @Html.LabelFor(model => model.VisionType, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div>
@@ -44,21 +40,20 @@
                         @Html.ValidationMessageFor(model => model.VisionType, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div>
                     <div>
-                        <input type="submit" value="Create" class="nice-button"/>
+                        <input type="submit" value="Create" class="nice-button" />
                     </div>
                 </div>
             </div>
         }
-
         <div>
             @Html.ActionLink("Back to List", "Index")
         </div>
     </div>
     <hr />
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

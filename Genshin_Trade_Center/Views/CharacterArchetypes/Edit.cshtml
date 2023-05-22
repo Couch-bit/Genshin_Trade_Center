@@ -1,5 +1,4 @@
 ﻿@model Genshin_Trade_Center.Models.CharacterArchetype
-
 @{
     ViewBag.Title = "Character Archetypes";
 }
@@ -7,49 +6,45 @@
 <div class="container-main">
     <hr />
     <div class="container-body">
+        <h2 id="title">Edit Character Archetype</h2>
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            <div class="form-horizontal">
+            <div>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id)
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div>
+                    @Html.LabelFor(model => model.Name)
+                    <div>
                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Quality, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div>
+                    @Html.LabelFor(model => model.Quality)
+                    <div>
                         @Html.EditorFor(model => model.Quality, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Quality, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.WeaponType, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div>
+                    @Html.LabelFor(model => model.WeaponType)
+                    <div>
                         @Html.EnumDropDownListFor(model => model.WeaponType, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.WeaponType, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.VisionType, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div>
+                    @Html.LabelFor(model => model.VisionType)
+                    <div>
                         @Html.EnumDropDownListFor(model => model.VisionType, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.VisionType, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default nice-button" />
+                        <input type="submit" value="Save" class="nice-button" />
                     </div>
                 </div>
             </div>
@@ -57,9 +52,11 @@
         <div>
             @Html.ActionLink("Back to List", "Index")
         </div>
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-        }
     </div>
     <hr />
 </div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
