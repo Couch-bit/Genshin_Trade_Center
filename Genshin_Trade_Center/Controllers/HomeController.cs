@@ -9,10 +9,10 @@ namespace Genshin_Trade_Center.Controllers
     public class HomeController : BaseController
     {
         /// <summary>
-        /// Returns the the Home page.
+        /// Returns the kome page.
         /// </summary>
         /// <returns>
-        /// The Home page.
+        /// The home page.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Index()

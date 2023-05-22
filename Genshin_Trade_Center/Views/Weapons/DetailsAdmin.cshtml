@@ -6,57 +6,55 @@
 <div class="container-main">
     <hr />
     <div class="container-body">
-        <div>
-            <h2 id="title">Details of Weapon</h2>
-            <div class="table-container">
-                <table class="fl-table">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Name)
-                        </th>
-                        <td>
-                            @Html.DisplayFor(model => model.Name)
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.MainStat)
-                        </th>
-                        <td>
-                            @Html.DisplayFor(model => model.MainStat)
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Type)
-                        </th>
-                        <td>
-                            @Html.DisplayFor(model => model.Type)
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Description)
-                        </th>
-                        <td>
-                            @Html.DisplayFor(model => model.Description)
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Quality)
-                        </th>
-                        <td>
-                            @Html.DisplayFor(model => model.Quality)
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-                @Html.ActionLink("Back to List", "Index")
-            </p>
+        <h2 id="title">Details of Weapon</h2>
+        <div class="table-container">
+            <table class="fl-table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MainStat)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.MainStat)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Type)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Description)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quality)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Quality)
+                    </td>
+                </tr>
+            </table>
         </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
     </div>
     <hr />
 </div>

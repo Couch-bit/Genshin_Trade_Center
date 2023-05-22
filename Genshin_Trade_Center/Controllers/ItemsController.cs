@@ -9,7 +9,8 @@ using Microsoft.AspNet.Identity;
 namespace Genshin_Trade_Center.Controllers
 {
     /// <summary>
-    /// Controller for items sold in the store.
+    /// Controller which manages requests related to
+    /// <see cref="Item" /> objects.
     /// </summary>
     /// <remarks></remarks>
     [Authorize]
@@ -22,13 +23,13 @@ namespace Genshin_Trade_Center.Controllers
         /// <summary>
         /// Returns a view containing the list of 
         /// all <see cref="Item" /> objects stored in the database
-        /// not sold by the current user with the option to buy or
-        /// dispal details.
+        /// not sold by the current <see cref="User" /> with the option to buy or
+        /// display details.
         /// </summary>
         /// <returns>
-        /// Index View containing all
+        /// Index view containing all
         /// <see cref="Item" /> objects not sold by
-        /// the current user.
+        /// the current <see cref="User" />.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Index()
@@ -44,14 +45,14 @@ namespace Genshin_Trade_Center.Controllers
 
         // GET: Items/MyStore
         /// <summary>
-        /// Returns a view containing the List of 
+        /// Returns a view containing the list of 
         /// all <see cref="Item" /> objects stored in the database
-        /// sold by the current user.
+        /// sold by the current <see cref="User" />.
         /// </summary>
         /// <returns>
-        /// Index View containing all
+        /// Index view containing all
         /// <see cref="Item" /> objects sold by
-        /// the current user.
+        /// the current <see cref="User" />.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult MyStore()
@@ -69,10 +70,10 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Items/Create
         /// <summary>
         /// Returns a form which allows for 
-        /// <see cref="Item" /> Creation.
+        /// <see cref="Item" /> creation.
         /// </summary>
         /// <returns>
-        /// Form which allows for <see cref="Item" /> Creation.
+        /// Form which allows for <see cref="Item" /> creation.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Create()
@@ -83,17 +84,18 @@ namespace Genshin_Trade_Center.Controllers
 
         // POST: Items/Create
         /// <summary>
-        /// Adds the Given
-        /// <see cref="CharacterArchetype" /> to the Database.
-        /// If Successful Redirects to Index.
+        /// Adds the given
+        /// <see cref="Item" /> to the database.
         /// Returns HTTP 400 if the model
         /// sent to the method is invalid.
+        /// If successful redirects to <see cref="Index" />.
         /// </summary>
-        /// <param name="characterArchetype">
-        /// The Character Archetype to be added
+        /// <param name="item">
+        /// The <see cref="Item" /> to be added
         /// </param>
         /// <returns>
-        /// The Index View.
+        /// The <see cref="Index" /> view.
+        /// HTTP 400 if the model is invalid.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost]
@@ -117,17 +119,17 @@ namespace Genshin_Trade_Center.Controllers
 
         // GET: Items/DetailsClient/5
         /// <summary>
-        /// Adds the given
-        /// <see cref="Item" /> to the database.
-        /// If Successful Redirects to MyStore.
-        /// Returns HTTP 400 if the model
-        /// sent to the method is invalid.
+        /// Returns the details of the given <see cref="Item" />.
+        /// Returns HTTP 400 if the id provided was null.
+        /// Returns HTTP 404 if the id provided didn't correspond
+        /// to an <see cref="Item" /> in the database.
         /// </summary>
-        /// <param name="item">
-        /// The Character to be added.
+        /// <param name="id">
+        /// the id of the <see cref="Item" /> to display.
         /// </param>
         /// <returns>
-        /// The MyStore View.
+        /// The details view for the client.
+        /// HTTP 400, 404 on failure.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult DetailsClient(int? id)
@@ -149,15 +151,18 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Items/DetailsSeller/5
         /// <summary>
         /// Returns the details of the given <see cref="Item" />.
-        /// Return HTTP 400 if the id provided was null.
+        /// Returns HTTP 400 if the id provided was null.
         /// Returns HTTP 404 if the id provided didn't correspond
         /// to a <see cref="Item" /> in the database.
+        /// Returns HTTP 403 if the current <see cref="User" />
+        /// doesn't match the <see cref="Product.Seller".
         /// </summary>
         /// <param name="id">
-        /// the id of the <see cref="Item" /> to display
+        /// the id of the <see cref="Item" /> to display.
         /// </param>
         /// <returns>
-        /// The Details Client View.
+        /// The details view for the seller.
+        /// HTTP 400, 403, 404 on failure.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult DetailsSeller(int? id)
@@ -184,17 +189,20 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Items/Edit/5
         /// <summary>
         /// Returns a form which allows for 
-        /// <see cref="Character" /> edition.
+        /// <see cref="Item" /> edition.
         /// Returns HTTP 400 if no id was given.
         /// Returns HTTP 404 if the given id
-        /// didn't correspond to a <see cref="Character" />
+        /// didn't correspond to a <see cref="Item" />
+        /// Returns HTTP 403 if the current <see cref="User" />
+        /// doesn't match the <see cref="Product.Seller".
         /// in the database. 
         /// </summary>
         /// <param name="id">
-        /// The id of the <see cref="Character" />.
+        /// The id of the <see cref="Item" />.
         /// </param>
         /// <returns>
-        /// Form which allows for character edition.
+        /// Form which allows for <see cref="Item" /> edition.
+        /// HTTP 400, 403, 404 on failure.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Edit(int? id)
@@ -230,6 +238,19 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: Items/Edit/5
+        /// <summary>
+        /// Edits the given <see cref="Item"/>
+        /// in the database.
+        /// Returns HTTP 400 if the model state is invalid.
+        /// Redirects to the <see cref="MyStore"/> view if successful.
+        /// </summary>
+        /// <param name="ItemView">
+        /// View model used in the view.
+        /// </param>
+        /// <returns>
+        /// The <see cref="MyStore"/> view.
+        /// </returns>
+        /// <remarks></remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditItemViewModel ItemView)
@@ -253,6 +274,21 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // GET: Items/Delete/5
+        /// <summary>
+        /// Returns a form which allows for <see cref="Item"/> deletion.
+        /// Returns HTTP 400 if id was null.
+        /// Returns HTTP 404 if the <see cref="Item"/> couldn't be found.
+        /// Returns HTTP 403 if the <see cref="Product.Seller"/> 
+        /// doesn't match the current <see cref="User"/>.
+        /// </summary>
+        /// <param name="id">
+        /// The id of the <see cref="Item"/> to delete.
+        /// </param>
+        /// <returns>
+        /// The delete form.
+        /// HTTP 400, 403, 404 on failure.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -275,6 +311,18 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: Items/Delete/5
+        /// <summary>
+        /// Deletes the given <see cref="Item" />
+        /// from the database.
+        /// Redirects to <see cref="MyStore"/> view.
+        /// </summary>
+        /// <param name="id">
+        /// The id of the <see cref="Item" />.
+        /// </param>
+        /// <returns>
+        /// The <see cref="MyStore"/> View.
+        /// </returns>
+        /// <remarks></remarks>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -282,10 +330,23 @@ namespace Genshin_Trade_Center.Controllers
             Item item = (Item)db.Products.Find(id);
             db.Products.Remove(item);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("MyStore");
         }
 
         // GET: Items/Buy/5
+        /// <summary>
+        /// Returns a form which allows for <see cref="Item" /> purchase.
+        /// Returns HTTP 400 if id was null.
+        /// Returns HTTP 404 if the <see cref="Item" /> couldn't be found.
+        /// </summary>
+        /// <param name="id">
+        /// The id of the <see cref="Item" /> to delete.
+        /// </param>
+        /// <returns>
+        /// The purchase form.
+        /// HTTP 400, 404 on failure.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult Buy(int? id)
         {
             if (id == null)
@@ -303,6 +364,18 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: Items/Buy/5
+        /// <summary>
+        /// Deletes the given <see cref="Item" />
+        /// from the database.
+        /// Redirects to <see cref="MyStore"/> view.
+        /// </summary>
+        /// <param name="id">
+        /// The id of the <see cref="Item" />.
+        /// </param>
+        /// <returns>
+        /// The <see cref="MyStore"/> view.
+        /// </returns>
+        /// <remarks></remarks>
         [HttpPost, ActionName("Buy")]
         [ValidateAntiForgeryToken]
         public ActionResult BuyConfirmed(int id)

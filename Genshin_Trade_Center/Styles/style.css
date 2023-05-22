@@ -20,6 +20,7 @@ body {
     padding: 15px;
     text-align: center;
     position: relative;
+    z-index: 1;
 }
 
 .nice-button {
@@ -159,7 +160,7 @@ h1 {
     max-height: 500px;
 }
 
-@media only screen and (min-width:3000px){
+@media only screen and (min-width:3000px) {
     .standard-image2 {width:auto;}
     .polaroid {max-width: 2000px; margin-left: auto; margin-right: auto;}
 }

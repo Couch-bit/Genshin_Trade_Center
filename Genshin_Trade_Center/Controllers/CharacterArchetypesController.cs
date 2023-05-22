@@ -8,7 +8,7 @@ namespace Genshin_Trade_Center.Controllers
 {
     /// <summary>
     /// Controller responsible for managing requests related to
-    /// Character archetypes.
+    /// <see cref="CharacterArchetype" /> objects.
     /// </summary>
     /// <remarks></remarks>
     public class CharacterArchetypesController : BaseController
@@ -18,9 +18,11 @@ namespace Genshin_Trade_Center.Controllers
 
         // GET: CharacterArchetypes
         /// <summary>
-        /// Returns a view containing the List of 
-        /// all <see cref="CharacterArchetype" /> objects stored in the Database.
-        /// If the User has Admin Privileges redirects to the Admin View.
+        /// Returns a view containing the list of 
+        /// all <see cref="CharacterArchetype" />
+        /// objects stored in the database.
+        /// If the <see cref="User" /> has 
+        /// admin privileges redirects to <see cref="Admin" />.
         /// </summary>
         /// <returns>
         /// Index View containing all
@@ -39,15 +41,18 @@ namespace Genshin_Trade_Center.Controllers
 
         // GET: CharacterArchetypes/Admin
         /// <summary>
-        /// Returns a view containing the List of 
+        /// Returns a view containing the list of 
         /// all <see cref="CharacterArchetype" />
-        /// objects stored in the Database
+        /// objects stored in the database
         /// with CRUD operations.
-        /// If the User doesn't have Admin Privelages 
+        /// If the <see cref="User" /> doesn't have admin privileges. 
         /// returns HTTP 403.
         /// </summary>
         /// <returns>
-        /// Index View containing all Character Archetypes.
+        /// Admin View containing all
+        /// <see cref="CharacterArchetype" /> objects.
+        /// HTTP 403 if the <see cref="User" /> doesn't have
+        /// admin privileges.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Admin()
@@ -65,11 +70,13 @@ namespace Genshin_Trade_Center.Controllers
         /// <summary>
         /// Returns a form which allows for 
         /// <see cref="CharacterArchetype" /> Creation.
-        /// If the User doesn't have Admin Privelages returns
-        /// HTTP 403.
+        /// If the <see cref="User" /> doesn't
+        /// have admin privileges returns HTTP 403.
         /// </summary>
         /// <returns>
         /// Form which allows for <see cref="CharacterArchetype" /> Creation.
+        /// HTTP 403 if the <see cref="User" /> doesn't have admin
+        /// privileges.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Create()
@@ -85,17 +92,18 @@ namespace Genshin_Trade_Center.Controllers
 
         // POST: CharacterArchetypes/Create
         /// <summary>
-        /// Adds the Given
-        /// <see cref="CharacterArchetype" /> to the Database.
-        /// If Successful Redirects to Index.
+        /// Adds the given
+        /// <see cref="CharacterArchetype" /> to the database.
         /// Returns HTTP 400 if the model
         /// sent to the method is invalid.
+        /// If successful redirects to <see cref="Index" />.
         /// </summary>
         /// <param name="characterArchetype">
-        /// The Character Archetype to be added
+        /// The <see cref="CharacterArchetype" /> to be added.
         /// </param>
         /// <returns>
-        /// The Index View.
+        /// The <see cref="Index" /> view.
+        /// HTTP 400 if the model is invalid.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost]
@@ -118,9 +126,9 @@ namespace Genshin_Trade_Center.Controllers
         // GET: CharacterArchetypes/Edit/5
         /// <summary>
         /// Returns a form which allows for 
-        /// <see cref="CharacterArchetype" /> Edition.
-        /// Returns HTTP 403 if the User doesn't have
-        /// Adming Privileges (or isn't logged in).
+        /// <see cref="CharacterArchetype" /> edition.
+        /// Returns HTTP 403 if the <see cref="User" /> doesn't have
+        /// admin Privileges (or isn't logged in).
         /// Returns HTTP 400 if no id was given.
         /// Returns HTTP 404 if the given id
         /// didn't correspond to a <see cref="CharacterArchetype" />
@@ -128,7 +136,9 @@ namespace Genshin_Trade_Center.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Form which allows for Character Archetype Edition.
+        /// Form which allows for
+        /// <see cref="CharacterArchetype" /> edition.
+        /// HTTP 403, HTTP 400, HTTP 404 on failure.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Edit(int? id)
@@ -159,13 +169,14 @@ namespace Genshin_Trade_Center.Controllers
         /// Edits the given <see cref="CharacterArchetype"/>
         /// in the database.
         /// Returns HTTP 400 if the model state is invalid.
-        /// Redirects to the Index View if successful.
+        /// Redirects to <see cref="Index"/> if successful.
         /// </summary>
         /// <param name="characterArchetype">
-        /// The <see cref="CharacterArchetype" />
+        /// The <see cref="CharacterArchetype" />.
         /// </param>
         /// <returns>
-        /// The Index View.
+        /// The <see cref="Index"/> view.
+        /// HTTP 400 if the model is invalid.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost]
@@ -187,21 +198,22 @@ namespace Genshin_Trade_Center.Controllers
 
         // GET: CharacterArchetypes/Delete/5
         /// <summary>
-        /// Returns a Form which allows for
-        /// <see cref="CharacterArchetype" /> Deletion.
-        /// Returns HTTP 403 if the User doesn't have
-        /// Admin Privileges.
+        /// Returns a form which allows for
+        /// <see cref="CharacterArchetype" /> deletion.
+        /// Returns HTTP 403 if the <see cref="User"/> doesn't have
+        /// admin privileges.
         /// Returns HTTP 400 if no id was given.
         /// Returns HTTP 404 if the id given
         /// didn't correspond to a <see cref="CharacterArchetype" />
-        /// in the Database.
-        /// Returns the Delete View if Successful.
+        /// in the database.
+        /// Returns the delete view if successful.
         /// </summary>
         /// <param name="id">
-        /// The id of the <see cref="CharacterArchetype" />
+        /// The id of the <see cref="CharacterArchetype" />.
         /// </param>
         /// <returns>
-        /// The Delete View.
+        /// The delete view.
+        /// HTTP 400, HTTP 403, HTTP 404 on failure.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Delete(int? id)
@@ -231,11 +243,13 @@ namespace Genshin_Trade_Center.Controllers
         /// <summary>
         /// Deletes the given <see cref="CharacterArchetype" />
         /// from the database.
-        /// Redirects to Index View.
+        /// Redirects to <see cref="Index"/>.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">
+        /// The id of the <see cref="CharacterArchetype"/>.
+        /// </param>
         /// <returns>
-        /// The Index View.
+        /// The <see cref="Index"/> view.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost, ActionName("Delete")]

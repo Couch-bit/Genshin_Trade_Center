@@ -10,8 +10,8 @@ using System.Net;
 namespace Genshin_Trade_Center.Controllers
 {
     /// <summary>
-    /// Authorize only Controller responsible for managing
-    /// all account requests made by the website. 
+    /// Authorize only controller responsible for managing
+    /// all <see cref="User" /> requests made by the website. 
     /// </summary>
     /// <remarks></remarks>
     [Authorize]
@@ -29,10 +29,11 @@ namespace Genshin_Trade_Center.Controllers
         public AccountController() { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Genshin_Trade_Center.Controllers.AccountController" /> class. 
+        /// Initializes a new instance of the
+        /// <see cref="AccountController" /> class. 
         /// </summary>
-        /// <param name="userManager"> The User Manager</param>
-        /// <param name="signInManager"> The Sign in Manager</param>
+        /// <param name="userManager"> The user manager</param>
+        /// <param name="signInManager"> The sign in manager</param>
         /// <remarks></remarks>
         public AccountController(ApplicationUserManager userManager,
                     ApplicationSignInManager signInManager)
@@ -42,10 +43,10 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         /// <summary>
-        /// Gets or sets the Sign in Manager.
+        /// Gets or sets the sign in manager.
         /// </summary>
-        /// <value>The Sign in Manager if not null, otherwise
-        /// return a new Sign in Manager</value>
+        /// <value>The sign in manager if not null, otherwise
+        /// return a new sign in manager</value>
         /// <remarks></remarks>
         public ApplicationSignInManager SignInManager
         {
@@ -61,10 +62,10 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         /// <summary>
-        /// Gets or sets the User Manager.
+        /// Gets or sets the user manager.
         /// </summary>
-        /// <value>The User Manager not null, otherwise
-        /// return a new User Manager</value>
+        /// <value>The user manager if not null, otherwise
+        /// return a new user manager</value>
         /// <remarks></remarks>
         public ApplicationUserManager UserManager
         {
@@ -81,12 +82,11 @@ namespace Genshin_Trade_Center.Controllers
 
         // GET: /Account/Index
         /// <summary>
-        /// Gets the Index View of the Account,
-        /// containing basic user Information.
+        /// Returns the index view of the account,
+        /// containing basic user information.
         /// </summary>
         /// <returns>
-        /// A View Containing the Email and
-        /// NickName of the Current User.
+        /// The index view.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Index()
@@ -104,15 +104,16 @@ namespace Genshin_Trade_Center.Controllers
 
         // GET: /Account/Login
         /// <summary>
-        /// Returns a View containing the login and register forms.
-        /// Redirects to the Index if the User is already logged in.
-        /// Allows Anonymous Requests.
+        /// Returns a view containing the login and register forms.
+        /// Redirects to <see cref="Index" /> if the <see cref="User" />
+        /// is already logged in.
+        /// Allows anonymous requests.
         /// </summary>
         /// <param name="returnUrl">
-        /// The Url to return to after a successful login.
+        /// The url to return to after a successful login.
         /// </param>
         /// <returns>
-        /// The Login View with an option to login or register.
+        /// The login view with an option to login or register.
         /// </returns>
         /// <remarks></remarks>
         [AllowAnonymous]
@@ -129,23 +130,27 @@ namespace Genshin_Trade_Center.Controllers
 
         // POST: /Account/Login
         /// <summary>
-        /// Post Method which logs the user in or
-        /// registers a new user based on the form submited.
-        /// if successful redirects to the return Url.
+        /// Logs the <see cref="User" /> in or
+        /// registers a new <see cref="User" />
+        /// based on the form submitted.
+        /// Returns HTTP 400 if the the model is invalid.
+        /// if successful redirects to the return url.
         /// </summary>
         /// <param name="model">
-        /// Model representing the data on the Login View.
+        /// Model representing the data on the login view.
         /// </param>
         /// <param name="returnUrl">
-        /// The Url to return to after the user logs in (or registers).
+        /// The url to return to after the <see cref="User" /> 
+        /// logs in (or registers).
         /// </param>
         /// <param name="submit">
         /// String containing the information on which form
-        /// was sumbitted.
+        /// was submitted.
         /// </param>
         /// <returns>
-        /// The View represented by the return Url if successful,
-        /// otherwise the Login View with Added Errors.
+        /// The view represented by the return url if successful,
+        /// otherwise the login view with added errors.
+        /// HTTP 400 if the model is invalid.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost]
@@ -171,11 +176,11 @@ namespace Genshin_Trade_Center.Controllers
 
         // POST: /Account/LogOff
         /// <summary>
-        /// Logs the User out of the website and
-        /// redirects to Home.
+        /// Logs the <see cref="User" /> out of the website and
+        /// redirects to <see cref="HomeController.Index" />.
         /// </summary>
         /// <returns>
-        /// The Home View.
+        /// The <see cref="HomeController.Index" /> View.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost]

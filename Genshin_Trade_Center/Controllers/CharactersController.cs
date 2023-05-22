@@ -9,8 +9,8 @@ using Microsoft.AspNet.Identity;
 namespace Genshin_Trade_Center.Controllers
 {
     /// <summary>
-    /// Authorize only Controller responsible for managing
-    /// all character requests made by the website. 
+    /// Authorize only controller responsible for managing
+    /// all <see cref="Character"/> requests made by the website. 
     /// </summary>
     /// <remarks></remarks>
     [Authorize]
@@ -23,13 +23,13 @@ namespace Genshin_Trade_Center.Controllers
         /// <summary>
         /// Returns a view containing the list of 
         /// all <see cref="Character" /> objects stored in the database
-        /// not sold by the current user with the option to buy or
-        /// dispal details.
+        /// not sold by the current <see cref="User"/> with
+        /// the option to buy or display details.
         /// </summary>
         /// <returns>
         /// Index View containing all
         /// <see cref="Character" /> objects not sold by
-        /// the current user.
+        /// the current <see cref="User" />.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Index()
@@ -45,14 +45,14 @@ namespace Genshin_Trade_Center.Controllers
 
         // GET: Items/MyStore
         /// <summary>
-        /// Returns a view containing the List of 
+        /// Returns a view containing the list of 
         /// all <see cref="Character" /> objects stored in the database
-        /// sold by the current user.
+        /// sold by the current user with CRUD operations.
         /// </summary>
         /// <returns>
-        /// Index View containing all
+        /// View containing all
         /// <see cref="Character" /> objects sold by
-        /// the current user.
+        /// the current <see cref="User"/>.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult MyStore()
@@ -69,10 +69,10 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Characters/Create
         /// <summary>
         /// Returns a form which allows for 
-        /// <see cref="Character" /> Creation.
+        /// <see cref="Character" /> creation.
         /// </summary>
         /// <returns>
-        /// Form which allows for <see cref="Character" /> Creation.
+        /// Form which allows for <see cref="Character" /> creation.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Create()
@@ -87,15 +87,16 @@ namespace Genshin_Trade_Center.Controllers
         /// <summary>
         /// Adds the given
         /// <see cref="Character" /> to the database.
-        /// If Successful Redirects to MyStore.
         /// Returns HTTP 400 if the model
         /// sent to the method is invalid.
+        /// If successful redirects to <see cref="MyStore" />.
         /// </summary>
         /// <param name="character">
-        /// The Character to be added.
+        /// The <see cref="Character" /> to be added.
         /// </param>
         /// <returns>
-        /// The MyStore View.
+        /// The <see cref="MyStore" /> View.
+        /// HTTP 400 if the model is invalid.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost]
@@ -121,15 +122,15 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Characters/DetailsClient/5
         /// <summary>
         /// Returns the details of the given <see cref="Character" />.
-        /// Return HTTP 400 if the id provided was null.
+        /// Returns HTTP 400 if the id provided was null.
         /// Returns HTTP 404 if the id provided didn't correspond
         /// to a <see cref="Character" /> in the database.
         /// </summary>
         /// <param name="id">
-        /// the id of the <see cref="Character" /> to display
+        /// the id of the <see cref="Character" /> to display.
         /// </param>
         /// <returns>
-        /// The Details Client View.
+        /// The details view for the client.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult DetailsClient(int? id)
@@ -151,15 +152,15 @@ namespace Genshin_Trade_Center.Controllers
         // GET: Characters/DetailsSeller/5
         /// <summary>
         /// Returns the details of the given <see cref="Character" />.
-        /// Return HTTP 400 if the id provided was null.
+        /// Returns HTTP 400 if the id provided was null.
         /// Returns HTTP 404 if the id provided didn't correspond
         /// to a <see cref="Character" /> in the database.
         /// </summary>
         /// <param name="id">
-        /// the id of the <see cref="Character" /> to display
+        /// the id of the <see cref="Character" /> to display.
         /// </param>
         /// <returns>
-        /// The Details Client View.
+        /// The details view for the seller.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult DetailsSeller(int? id)
@@ -197,6 +198,7 @@ namespace Genshin_Trade_Center.Controllers
         /// </param>
         /// <returns>
         /// Form which allows for character edition.
+        /// HTTP 400, 404 on failure.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Edit(int? id)
@@ -237,13 +239,13 @@ namespace Genshin_Trade_Center.Controllers
         /// Edits the given <see cref="Character"/>
         /// in the database.
         /// Returns HTTP 400 if the model state is invalid.
-        /// Redirects to the MyStore View if successful.
+        /// Redirects to the <see cref="MyStore" /> view if successful.
         /// </summary>
         /// <param name="characterView">
-        /// View Model used in the view.
+        /// View model used in the view.
         /// </param>
         /// <returns>
-        /// The MyStore View.
+        /// The <see cref="MyStore" /> View.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost]
@@ -272,16 +274,18 @@ namespace Genshin_Trade_Center.Controllers
 
         // GET: Characters/Delete/5
         /// <summary>
-        /// Returns a form which allows for character deletion.
+        /// Returns a form which allows for <see cref="Character" /> deletion.
         /// Returns HTTP 400 if id was null.
         /// Returns HTTP 404 if the character couldn't be found.
-        /// Returns HTTP 403 if the Seller doesn't match the current user.
+        /// Returns HTTP 403 if the <see cref="Product.Seller" />
+        /// doesn't match the current <see cref="User" />.
         /// </summary>
         /// <param name="id">
-        /// The id of the Character delete.
+        /// The id of the <see cref="Character" /> to delete.
         /// </param>
         /// <returns>
         /// The delete form.
+        /// HTTP 400, 403, 404 on failure.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Delete(int? id)
@@ -309,13 +313,13 @@ namespace Genshin_Trade_Center.Controllers
         /// <summary>
         /// Deletes the given <see cref="Character" />
         /// from the database.
-        /// Redirects to MyStore View.
+        /// Redirects to <see cref="MyStore" /> view.
         /// </summary>
         /// <param name="id">
-        /// The id of the character.
+        /// The id of the <see cref="Character" />.
         /// </param>
         /// <returns>
-        /// The MyStore View.
+        /// The <see cref="MyStore" /> view.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost, ActionName("Delete")]
@@ -330,16 +334,19 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // GET: Characters/Buy/5
-        // <summary>
-        /// Returns a form which allows for character purchase.
+        /// <summary>
+        /// Returns a form which allows for
+        /// <see cref="Character" /> purchase.
         /// Returns HTTP 400 if id was null.
-        /// Returns HTTP 404 if the character couldn't be found.
+        /// Returns HTTP 404 if the
+        /// <see cref="Character" /> couldn't be found.
         /// </summary>
         /// <param name="id">
-        /// The id of the Character to delete.
+        /// The id of the <see cref="Character" /> to delete.
         /// </param>
         /// <returns>
-        /// The buy form.
+        /// The purchase form.
+        /// HTTP 400, 404 on failure.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult Buy(int? id)
@@ -360,15 +367,15 @@ namespace Genshin_Trade_Center.Controllers
 
         // POST: Characters/Buy/5
         /// <summary>
-        /// Deletes the given <see cref="CharacterArchetype" />
+        /// Deletes the given <see cref="Character" />
         /// from the database.
-        /// Redirects to MyStore View.
+        /// Redirects to <see cref="Index" /> view.
         /// </summary>
         /// <param name="id">
-        /// The id of the character.
+        /// The id of the <see cref="Character" /> to delete.
         /// </param>
         /// <returns>
-        /// The MyStore View.
+        /// The <see cref="MyStore" /> view.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost, ActionName("Buy")]
