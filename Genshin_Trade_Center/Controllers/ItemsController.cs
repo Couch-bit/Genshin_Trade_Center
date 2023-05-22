@@ -8,6 +8,10 @@ using Microsoft.AspNet.Identity;
 
 namespace Genshin_Trade_Center.Controllers
 {
+    /// <summary>
+    /// Controller for items sold in the store.
+    /// </summary>
+    /// <remarks></remarks>
     [Authorize]
     public class ItemsController : BaseController
     {
@@ -15,6 +19,18 @@ namespace Genshin_Trade_Center.Controllers
             new ApplicationDbContext();
 
         // GET: Items
+        /// <summary>
+        /// Returns a view containing the list of 
+        /// all <see cref="Item" /> objects stored in the database
+        /// not sold by the current user with the option to buy or
+        /// dispal details.
+        /// </summary>
+        /// <returns>
+        /// Index View containing all
+        /// <see cref="Item" /> objects not sold by
+        /// the current user.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult Index()
         {
             IQueryable<Item> items = db.Products
@@ -27,6 +43,17 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // GET: Items/MyStore
+        /// <summary>
+        /// Returns a view containing the List of 
+        /// all <see cref="Item" /> objects stored in the database
+        /// sold by the current user.
+        /// </summary>
+        /// <returns>
+        /// Index View containing all
+        /// <see cref="Item" /> objects sold by
+        /// the current user.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult MyStore()
         {
             IQueryable<Item> items = db.Products
@@ -39,7 +66,70 @@ namespace Genshin_Trade_Center.Controllers
             return View(items.ToList());
         }
 
+        // GET: Items/Create
+        /// <summary>
+        /// Returns a form which allows for 
+        /// <see cref="Item" /> Creation.
+        /// </summary>
+        /// <returns>
+        /// Form which allows for <see cref="Item" /> Creation.
+        /// </returns>
+        /// <remarks></remarks>
+        public ActionResult Create()
+        {
+            ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name");
+            return View();
+        }
+
+        // POST: Items/Create
+        /// <summary>
+        /// Adds the Given
+        /// <see cref="CharacterArchetype" /> to the Database.
+        /// If Successful Redirects to Index.
+        /// Returns HTTP 400 if the model
+        /// sent to the method is invalid.
+        /// </summary>
+        /// <param name="characterArchetype">
+        /// The Character Archetype to be added
+        /// </param>
+        /// <returns>
+        /// The Index View.
+        /// </returns>
+        /// <remarks></remarks>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Name,Price," +
+            "Level,Refinement,TypeId")]
+            Item item)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new
+                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            item.SellerId = User.Identity.GetUserId();
+
+            db.Products.Add(item);
+            db.SaveChanges();
+            return RedirectToAction("MyStore");
+        }
+
         // GET: Items/DetailsClient/5
+        /// <summary>
+        /// Adds the given
+        /// <see cref="Item" /> to the database.
+        /// If Successful Redirects to MyStore.
+        /// Returns HTTP 400 if the model
+        /// sent to the method is invalid.
+        /// </summary>
+        /// <param name="item">
+        /// The Character to be added.
+        /// </param>
+        /// <returns>
+        /// The MyStore View.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult DetailsClient(int? id)
         {
             if (id == null)
@@ -57,6 +147,19 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // GET: Items/DetailsSeller/5
+        /// <summary>
+        /// Returns the details of the given <see cref="Item" />.
+        /// Return HTTP 400 if the id provided was null.
+        /// Returns HTTP 404 if the id provided didn't correspond
+        /// to a <see cref="Item" /> in the database.
+        /// </summary>
+        /// <param name="id">
+        /// the id of the <see cref="Item" /> to display
+        /// </param>
+        /// <returns>
+        /// The Details Client View.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult DetailsSeller(int? id)
         {
             if (id == null)
@@ -78,39 +181,27 @@ namespace Genshin_Trade_Center.Controllers
             return View(item);
         }
 
-        // GET: Items/Create
-        public ActionResult Create()
-        {
-            ViewBag.TypeId = new SelectList(db.Weapons, "Id", "Name");
-            return View();
-        }
-
-        // POST: Items/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price," +
-            "Level,Refinement,TypeId")]
-            Item item)
-        {
-            if (!ModelState.IsValid)
-            {
-                return new
-                    HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            item.SellerId = User.Identity.GetUserId();
-
-            db.Products.Add(item);
-            db.SaveChanges();
-            return RedirectToAction("MyStore");
-        }
-
         // GET: Items/Edit/5
+        /// <summary>
+        /// Returns a form which allows for 
+        /// <see cref="Character" /> edition.
+        /// Returns HTTP 400 if no id was given.
+        /// Returns HTTP 404 if the given id
+        /// didn't correspond to a <see cref="Character" />
+        /// in the database. 
+        /// </summary>
+        /// <param name="id">
+        /// The id of the <see cref="Character" />.
+        /// </param>
+        /// <returns>
+        /// Form which allows for character edition.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return new 
+                return new
                     HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 

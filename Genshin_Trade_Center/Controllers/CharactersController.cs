@@ -24,7 +24,7 @@ namespace Genshin_Trade_Center.Controllers
         /// Returns a view containing the list of 
         /// all <see cref="Character" /> objects stored in the database
         /// not sold by the current user with the option to buy or
-        /// dispaly details.
+        /// dispal details.
         /// </summary>
         /// <returns>
         /// Index View containing all
@@ -270,6 +270,19 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // GET: Characters/Delete/5
+        /// <summary>
+        /// Returns a form which allows for character deletion.
+        /// Returns HTTP 400 if id was null.
+        /// Returns HTTP 404 if the character couldn't be found.
+        /// Returns HTTP 403 if the Seller doesn't match the current user.
+        /// </summary>
+        /// <param name="id">
+        /// The id of the Character delete.
+        /// </param>
+        /// <returns>
+        /// The delete form.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -292,6 +305,18 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: Characters/Delete/5
+        /// <summary>
+        /// Deletes the given <see cref="CharacterArchetype" />
+        /// from the database.
+        /// Redirects to MyStore View.
+        /// </summary>
+        /// <param name="id">
+        /// 
+        /// </param>
+        /// <returns>
+        /// The Index View.
+        /// </returns>
+        /// <remarks></remarks>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
