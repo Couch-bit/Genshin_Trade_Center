@@ -17,9 +17,9 @@ body {
 
 .header {
     background-image: url("../Images/header_dark.jpg");
-    padding: 15px; 
+    padding: 15px;
     text-align: center;
-    position: relative; 
+    position: relative;
 }
 
 .nice-button {

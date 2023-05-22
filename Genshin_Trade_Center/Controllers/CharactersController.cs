@@ -43,6 +43,7 @@ namespace Genshin_Trade_Center.Controllers
             return View(characters.ToList());
         }
 
+        // GET: Items/MyStore
         /// <summary>
         /// Returns a view containing the List of 
         /// all <see cref="Character" /> objects stored in the database
@@ -306,15 +307,15 @@ namespace Genshin_Trade_Center.Controllers
 
         // POST: Characters/Delete/5
         /// <summary>
-        /// Deletes the given <see cref="CharacterArchetype" />
+        /// Deletes the given <see cref="Character" />
         /// from the database.
         /// Redirects to MyStore View.
         /// </summary>
         /// <param name="id">
-        /// 
+        /// The id of the character.
         /// </param>
         /// <returns>
-        /// The Index View.
+        /// The MyStore View.
         /// </returns>
         /// <remarks></remarks>
         [HttpPost, ActionName("Delete")]
@@ -329,6 +330,18 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // GET: Characters/Buy/5
+        // <summary>
+        /// Returns a form which allows for character purchase.
+        /// Returns HTTP 400 if id was null.
+        /// Returns HTTP 404 if the character couldn't be found.
+        /// </summary>
+        /// <param name="id">
+        /// The id of the Character to delete.
+        /// </param>
+        /// <returns>
+        /// The buy form.
+        /// </returns>
+        /// <remarks></remarks>
         public ActionResult Buy(int? id)
         {
             if (id == null)
@@ -346,6 +359,18 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         // POST: Characters/Buy/5
+        /// <summary>
+        /// Deletes the given <see cref="CharacterArchetype" />
+        /// from the database.
+        /// Redirects to MyStore View.
+        /// </summary>
+        /// <param name="id">
+        /// The id of the character.
+        /// </param>
+        /// <returns>
+        /// The MyStore View.
+        /// </returns>
+        /// <remarks></remarks>
         [HttpPost, ActionName("Buy")]
         [ValidateAntiForgeryToken]
         public ActionResult BuyConfirmed(int id)

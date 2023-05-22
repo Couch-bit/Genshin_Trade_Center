@@ -209,7 +209,6 @@
     <Content Include="Images\Icon.jpg" />
     <Content Include="Images\info.png" />
     <Content Include="Images\item.png" />
-    <Content Include="Images\LandingWallpaper.jpg" />
     <Content Include="Images\LandingWallpaperFinal.png" />
     <Content Include="Images\mute.png" />
     <Content Include="Images\resource.png" />
@@ -221,14 +220,14 @@
     <Content Include="Images\volume.png" />
     <Content Include="Images\weapon.png" />
     <Content Include="index.html" />
-    <Content Include="JS\indexJS.js" />
+    <Content Include="JS\index.js" />
+    <Content Include="JS\buttons.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Images\LandingWallpaper.psd" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -242,7 +241,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Styles\fonts_and_animations.css" />
     <Content Include="Styles\style.css" />
-    <Content Include="Styles\style_menu_gorne.css" />
+    <Content Include="Styles\style_nav.css" />
     <Content Include="Styles\style_side_menu.css" />
     <Content Include="Styles\style_table.css" />
     <Content Include="Web.config" />
