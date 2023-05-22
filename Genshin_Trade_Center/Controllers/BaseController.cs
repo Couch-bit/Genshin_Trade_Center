@@ -6,18 +6,18 @@ using System.Web.Mvc;
 namespace Genshin_Trade_Center.Controllers
 {
     /// <summary>
-    /// The Controller which is inherited by 
+    /// The controller which is inherited by 
     /// all other controllers in the application. 
     /// </summary>
     /// <remarks></remarks>
     public class BaseController : Controller
     {
         /// <summary>
-        /// Ensures The Culture is european every time
-        /// an action is executed.
+        /// Ensures the <see cref="CultureInfo" /> 
+        /// is european every time an action is executed.
         /// </summary>
         /// <param name="filterContext">
-        /// the Action Executing Context
+        /// the action executing context.
         /// </param>
         /// <remarks></remarks>
         protected override void OnActionExecuting
@@ -30,7 +30,7 @@ namespace Genshin_Trade_Center.Controllers
         }
 
         /// <summary>
-        /// Called when an unhandled exception occurs in the action.
+        /// Called when an unhandled exception occurs in an action.
         /// Sets the context result to HTTP 500.
         /// </summary>
         /// <param name="filterContext">

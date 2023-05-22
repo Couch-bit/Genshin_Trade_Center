@@ -3,7 +3,8 @@
 namespace Genshin_Trade_Center.Models
 {
     /// <summary>
-    /// View Model used for the edit View of the character controller.
+    /// View model used for
+    /// <see cref="Controllers.CharactersController.Edit" />.
     /// </summary>
     /// <remarks></remarks>
     public class EditCharacterViewModel
@@ -61,7 +62,7 @@ namespace Genshin_Trade_Center.Models
         public int Friendship { get; set; }
         /// <summary>
         /// Gets or sets the constellation level.
-        /// It must be form 1 to 6.
+        /// It must be from 1 to 6.
         /// </summary>
         /// <value>
         /// The constellation level.
@@ -72,7 +73,8 @@ namespace Genshin_Trade_Center.Models
     }
 
     /// <summary>
-    /// View Model used for the edit View of the item controller.
+    /// View model used for
+    /// <see cref="Controllers.ItemsController.Edit" />.
     /// </summary>
     /// <remarks></remarks>
     public class EditItemViewModel

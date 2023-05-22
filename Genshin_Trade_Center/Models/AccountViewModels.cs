@@ -3,8 +3,9 @@
 namespace Genshin_Trade_Center.Models
 {
     /// <summary>
-    /// View Model responsible for storing 
-    /// information for the Index View of the AccountController.
+    /// View model responsible for storing 
+    /// information for
+    /// <see cref="Controllers.AccountController.Index" />.
     /// </summary>
     /// <remarks></remarks>
     public class ManageViewModel
@@ -28,24 +29,25 @@ namespace Genshin_Trade_Center.Models
     }
 
     /// <summary>
-    /// View Model for the Login View.
+    /// View model for
+    /// <see cref="Controllers.AccountController.Login" />.
     /// </summary>
     /// <remarks></remarks>
     public class AccountViewModel
     {
         /// <summary>
-        /// Gets or sets the Login View Model.
+        /// Gets or sets the login view model.
         /// </summary>
         /// <value>
-        /// The Login View Model.
+        /// The login view model.
         /// </value>
         /// <remarks></remarks>
         public LoginViewModel LoginViewModel { get; set; }
         /// <summary>
-        /// Gets or sets the Register View Model.
+        /// Gets or sets the register view model.
         /// </summary>
         /// <value>
-        /// Register View Model.
+        /// The register view model.
         /// </value>
         /// <remarks></remarks>
         public RegisterViewModel RegisterViewModel { get; set; }
@@ -53,7 +55,8 @@ namespace Genshin_Trade_Center.Models
 
     /// <summary>
     /// View Model for logging into the website.
-    /// Used in Login View.
+    /// Used in
+    /// <see cref="Controllers.AccountController.Login" />.
     /// </summary>
     /// <remarks></remarks>
     public class LoginViewModel
@@ -86,6 +89,12 @@ namespace Genshin_Trade_Center.Models
         public string Password { get; set; }
     }
 
+    /// <summary>
+    /// View model for registering on the website.
+    /// Used in 
+    /// <see cref="Controllers.AccountController.Login" />.
+    /// </summary>
+    /// <remarks></remarks>
     public class RegisterViewModel
     {
         /// <summary>

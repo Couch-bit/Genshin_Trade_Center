@@ -16,7 +16,9 @@ namespace Genshin_Trade_Center.Models
         /// Gets or sets the refinement level of the item.
         /// It must be from 1 to 5.
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// The refinement.
+        /// </value>
         /// <remarks></remarks>
         [Range(1, 5)]
         public int Refinement 
@@ -25,7 +27,7 @@ namespace Genshin_Trade_Center.Models
         /// Gets or sets the id of the weapon.
         /// </summary>
         /// <value>
-        /// the id of the weapom.
+        /// the id of the weapon.
         /// </value>
         [DisplayName("Weapon")]
         public int TypeId { get; set; }

@@ -19,7 +19,7 @@ namespace Genshin_Trade_Center.Models
         /// This is a primary key.
         /// </summary>
         /// <value>
-        /// The key.
+        /// The id.
         /// </value>
         /// <remarks></remarks>
         [Key]
@@ -51,11 +51,11 @@ namespace Genshin_Trade_Center.Models
                     ErrorMessage = "Price must be between 0.1 € and 200 €")]
         public decimal Price { get => price; set => price = value; }
         /// <summary>
-        /// Gets or sets the list containing all the users selling the
-        /// resource on the market.
+        /// Gets or sets the list containing all the <see cref="User" />
+        /// objects selling the resource on the market.
         /// </summary>
         /// <value>
-        /// The list of Sellers.
+        /// The list of sellers.
         /// </value>
         /// <remarks></remarks>
         public virtual List<User> Sellers { get; set; }

@@ -20,7 +20,7 @@ namespace Genshin_Trade_Center.Models
     }
 
     /// <summary>
-    /// Class representing characters playable in Genshin Impact
+    /// Class representing characters playable in Genshin Impact.
     /// </summary>
     /// <remarks></remarks>
     public class CharacterArchetype
@@ -69,6 +69,7 @@ namespace Genshin_Trade_Center.Models
         /// <summary>
         /// Gets or sets the weapon type used by the character.
         /// Displays as "Weapon Type".
+        /// This is a required property.
         /// </summary>
         /// <value>
         /// The weapon type.
@@ -84,6 +85,7 @@ namespace Genshin_Trade_Center.Models
         /// <summary>
         /// Gets or sets the vision type used by the character.
         /// Displays as "Vision Type".
+        /// This is a required property.
         /// </summary>
         /// <value>
         /// The vision type.

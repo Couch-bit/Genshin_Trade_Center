@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Genshin_Trade_Center.Models
 {
     /// <summary>
-    /// Represents a product sold on the market.
+    /// Represents products sold on the market.
     /// </summary>
     /// <remarks></remarks>
     public abstract class Product
@@ -60,7 +60,8 @@ namespace Genshin_Trade_Center.Models
         [Range(1, 90, ErrorMessage = "Level must be between 1 and 90")]
         public int Level { get => level; set => level = value; }
         /// <summary>
-        /// Gets or sets the id of the user selling the product.
+        /// Gets or sets the id of the <see cref="User" /> selling the product.
+        /// Displays as "Seller".
         /// </summary>
         /// <value>
         /// the id of the seller.
@@ -68,7 +69,7 @@ namespace Genshin_Trade_Center.Models
         [DisplayName("Seller")]
         public string SellerId { get; set; }
         /// <summary>
-        /// Gets or sets the user selling the product.
+        /// Gets or sets the <see cref="User" /> selling the product.
         /// </summary>
         /// <value>
         /// The seller.

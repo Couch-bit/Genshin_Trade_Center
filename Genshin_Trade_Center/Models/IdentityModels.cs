@@ -23,8 +23,8 @@ namespace Genshin_Trade_Center.Models
         [DisplayName("Seller")]
         public override string UserName { get; set; }
         /// <summary>
-        /// Gets or sets the list containing the Resources
-        /// sold by the user.
+        /// Gets or sets the list containing the 
+        /// <see cref="Resource" /> objects sold by the user.
         /// </summary>
         /// <value></value>
         /// <remarks></remarks>
@@ -92,10 +92,10 @@ namespace Genshin_Trade_Center.Models
         /// <remarks></remarks>
         public DbSet<Weapon> Weapons { get; set; }
         /// <summary>
-        /// Gets or sets the weapons dataset.
+        /// Gets or sets the character archetypes dataset.
         /// </summary>
         /// <value>
-        /// The weapons.
+        /// The archetypes.
         /// </value>
         /// <remarks></remarks>
         public DbSet<CharacterArchetype> CharacterArchetypes

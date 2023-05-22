@@ -40,15 +40,16 @@ namespace Genshin_Trade_Center.Models
             set => constellation = value;
         }
         /// <summary>
-        /// Gets or sets the archetype id of the characterArchetype
+        /// Gets or sets the id of the <see cref="CharacterArchetype" />
         /// the character belongs to.
         /// </summary>
         /// <value>
-        /// the archetype id of the characterArchetype.
+        /// the archetype id of the <see cref="CharacterArchetype" />.
         /// </value>
         public int ArchetypeId { get; set; }
         /// <summary>
-        /// Gets or sets the characterArchetype the character belongs to.
+        /// Gets or sets the <see cref="CharacterArchetype" />
+        /// the character belongs to.
         /// </summary>
         /// <value></value>
         /// <remarks></remarks>
@@ -56,13 +57,13 @@ namespace Genshin_Trade_Center.Models
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="Genshin_Trade_Center.Models.Character" /> class. 
+        /// <see cref="Character" /> class. 
         /// </summary>
         /// <remarks></remarks>
         public Character() : base() { }
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="Genshin_Trade_Center.Models.Character" /> class. 
+        /// <see cref="Character" /> class. 
         /// </summary>
         /// <param name="name">the name of the character</param>
         /// <param name="price">the price of the character</param>

@@ -309,7 +309,7 @@ namespace Genshin_Trade_Center.Controllers
         /// <summary>
         /// Deletes the given <see cref="Weapon" />.
         /// from the database.
-        /// Redirects to <see cref="Index" /> View.
+        /// Redirects to <see cref="Index" /> view.
         /// </summary>
         /// <param name="id">
         /// the id of the <see cref="Weapon" /> to be deleted.

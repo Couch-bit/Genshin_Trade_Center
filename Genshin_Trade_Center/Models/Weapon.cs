@@ -33,7 +33,7 @@ namespace Genshin_Trade_Center.Models
     }
 
     /// <summary>
-    /// Represent weapons present in Genshin Impact.
+    /// Represents weapons present in Genshin Impact.
     /// </summary>
     /// <remarks></remarks>
     public class Weapon
@@ -59,7 +59,7 @@ namespace Genshin_Trade_Center.Models
         /// <summary>
         /// Gets or sets the name.
         /// It must be from 5 to 64 characters long.
-        /// Displays as Weapon.
+        /// Displays as "Weapon".
         /// This is a required field.
         /// </summary>
         /// <value>
@@ -73,6 +73,7 @@ namespace Genshin_Trade_Center.Models
         public string Name { get => name; set => name = value; }
         /// <summary>
         /// Gets or sets the main stat.
+        /// Displays as "Main Stat".
         /// This is a required property.
         /// </summary>
         /// <value>
@@ -99,7 +100,7 @@ namespace Genshin_Trade_Center.Models
         /// <summary>
         /// Gets or sets the description.
         /// It must be from 5 to 1024 characters long.
-        /// This is a required field.
+        /// This is a required property.
         /// </summary>
         /// <value>
         /// The description.
@@ -125,8 +126,8 @@ namespace Genshin_Trade_Center.Models
         [Range(1, 5)]
         public int Quality { get => quality; set => quality = value; }
         /// <summary>
-        /// Gets or sets the list containing the items being
-        /// sold which are this weapon.
+        /// Gets or sets the list containing the <see cref="Item" />
+        /// objects being sold which are this weapon.
         /// </summary>
         /// <value>
         /// The items which are this weapon.
