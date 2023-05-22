@@ -219,7 +219,7 @@
     <Content Include="Images\user_icon.png" />
     <Content Include="Images\volume.png" />
     <Content Include="Images\weapon.png" />
-    <Content Include="index.html" />
+    <Content Include="Error.html" />
     <Content Include="JS\index.js" />
     <Content Include="JS\buttons.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />

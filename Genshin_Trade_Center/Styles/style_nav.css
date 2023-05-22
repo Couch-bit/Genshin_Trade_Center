@@ -11,7 +11,7 @@
     border-radius: 0;
 }
 
-.item_napis {
+.item-napis {
     text-align: center;
     font-family: GenshinFont;
     font-weight: 400;
@@ -24,7 +24,7 @@
     flex-grow: 1;
 }
 
-.item_button {
+.item-button {
     text-align: right;
     font-family: GenshinFont;
     font-weight: 400;
@@ -39,13 +39,13 @@
     flex-grow: 8;
 }
 
-.menu_link {
+.menu-link {
     color: white;
     padding-left: 2%;
     padding-right: 2%;
 }
 
-.menu_icon {
+.menu-icon {
     border-radius: 3px;
     height: 30px;
     width: auto;
@@ -53,7 +53,7 @@
     padding-right: 2%;
 }
 
-a.menu_link:hover {
+a.menu-link:hover {
     background-color: rgb(250, 172, 2);
     color: white;
     padding-top: 0.5%;
@@ -103,7 +103,7 @@ a.menu_link:hover {
     }
 }
 
-.logo_name:hover {
+.logo-name:hover {
     color: white;
     animation-name: bounce;
     animation-timing-function: ease;
@@ -112,13 +112,13 @@ a.menu_link:hover {
     transform-origin: center;
 }
 
-.logo_name {
+.logo-name {
     animation-name: logo;
     animation-duration: 3s;
     animation-fill-mode: forwards;
 }
 
-.logo_icon {
+.logo-icon {
     border-radius: 3px;
     padding-top: 5%;
     height: 55px;
@@ -130,37 +130,37 @@ a.menu_link:hover {
 
 @media only screen and (min-width:1500px) {
 
-    .logo_icon {
+    .logo-icon {
         display: none;
     }
 
-    .menu_icon {
+    .menu-icon {
         display: none;
     }
 }
 
 @media only screen and (max-width:1499px) {
 
-    .logo_name {
+    .logo-name {
         display: none;
     }
 
-    .menu_icon {
+    .menu-icon {
         display: none;
     }
 }
 
 @media only screen and (max-width:1000px) {
 
-    .logo_name {
+    .logo-name {
         display: none;
     }
 
-    .menu_link {
+    .menu-link {
         display: none;
     }
 
-    .menu_icon {
+    .menu-icon {
         display: inline-flex;
     }
 }

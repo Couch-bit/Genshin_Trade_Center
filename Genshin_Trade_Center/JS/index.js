@@ -18,7 +18,7 @@ $(window).scroll(function() {
 
 $("#song-on").hide();
 $("#song-off").show();
-$(document).ready(function(){
+$(document).ready(function() {
     $("#song-change").click(function(){
         var audio = $(".audio")[0];
         if (audio.paused) {

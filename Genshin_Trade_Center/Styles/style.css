@@ -223,7 +223,7 @@ hr {
     flex-grow: 1;
 }
 
-.ayato_button {
+.ayato-button {
     background-color: var(--pretty_blue);
     color: white;
     font-family: GenshinFont;

@@ -27,9 +27,8 @@
                         </td>
                     </tr>
                 </table>
-
                 <div>
-                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
                         <input type="submit" value="Log Off" class="nice-button" />

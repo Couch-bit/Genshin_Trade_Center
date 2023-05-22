@@ -2,43 +2,41 @@
 @model AccountViewModel
 
 <div class="item">
-    <div>
-        <h2 id="title">Register</h2>
-        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, Submit = "Register" }, FormMethod.Post, new { role = "form" }))
-        {
-            <div class="row">
-                @Html.LabelFor(m => m.RegisterViewModel.Email, new { @class = "col-md-2 col-form-label" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.RegisterViewModel.Email, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.RegisterViewModel.Email, "", new { @class = "text-danger" })
-                </div>
+    <h2 id="title">Register</h2>
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, Submit = "Register" }, FormMethod.Post, new { role = "form" }))
+    {
+        <div>
+            @Html.LabelFor(m => m.RegisterViewModel.Email)
+            <div>
+                @Html.TextBoxFor(m => m.RegisterViewModel.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.RegisterViewModel.Email, "", new { @class = "text-danger" })
             </div>
-            <div class="row">
-                @Html.LabelFor(m => m.RegisterViewModel.UserName, new { @class = "col-md-2 col-form-label" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.RegisterViewModel.UserName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.RegisterViewModel.UserName, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.RegisterViewModel.UserName)
+            <div>
+                @Html.TextBoxFor(m => m.RegisterViewModel.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.RegisterViewModel.UserName, "", new { @class = "text-danger" })
             </div>
-            <div class="row">
-                @Html.LabelFor(m => m.RegisterViewModel.Password, new { @class = "col-md-2 col-form-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.RegisterViewModel.Password, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.RegisterViewModel.Password)
+            <div>
+                @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.RegisterViewModel.Password, "", new { @class = "text-danger" })
             </div>
-            <div class="row">
-                @Html.LabelFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.RegisterViewModel.ConfirmPassword, "", new { @class = "text-danger" })
-                </div>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.RegisterViewModel.ConfirmPassword)
+            <div>
+                @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.RegisterViewModel.ConfirmPassword, "", new { @class = "text-danger" })
             </div>
-            <div class="row">
-                <div class="offset-md-2 col-md-10">
-                    <input type="submit" value="Register" class="btn btn-outline-dark nice-button" />
-                </div>
+        </div>
+        <div>
+            <div>
+                <input type="submit" value="Register" class="nice-button" />
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>
