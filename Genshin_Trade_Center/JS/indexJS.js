@@ -42,3 +42,20 @@ button.addEventListener('click', () => {
     emoji.style.display = 'none';
   }, 2000);
 });
+
+// Get all buttons with the "nice-button" class
+const buttons = document.querySelectorAll('.nice-button');
+
+// Add click event listener to each button
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Disable the clicked button
+        button.disabled = true;
+
+        // Enable the button after one second
+        setTimeout(() => {
+            button.disabled = false;
+        }, 1000);
+    });
+});
+
