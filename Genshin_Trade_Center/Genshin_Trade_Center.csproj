@@ -223,12 +223,16 @@
     <Content Include="Error.html" />
     <Content Include="JS\index.js" />
     <Content Include="JS\buttons.js" />
+    <Content Include="JS\validation_fix.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\GenshinTradeCenter - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\GenshinTradeCenter - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\GenshinTradeCenter20230523233537 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -297,6 +301,7 @@
     <Content Include="Views\Resources\Admin.cshtml" />
     <Content Include="Views\Account\_LoginPartial.cshtml" />
     <Content Include="Views\Account\_RegisterPartial.cshtml" />
+    <Content Include="UserManual.pdf" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

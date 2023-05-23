@@ -212,6 +212,7 @@ hr {
 .flexbox {
     display: flex;
     align-items: stretch;
+    overflow-x: auto;
 }
 
 .item {

@@ -53,7 +53,7 @@ namespace Genshin_Trade_Center.Models
         /// </summary>
         /// <remarks></remarks>
         public ApplicationDbContext()
-                    : base("DefaultConnection", throwIfV1Schema: false)
+                    : base("GenshinConnection", throwIfV1Schema: false)
         {
             Database.SetInitializer
                 (new DBInitializer<ApplicationDbContext>());

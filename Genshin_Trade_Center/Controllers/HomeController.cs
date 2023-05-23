@@ -9,7 +9,7 @@ namespace Genshin_Trade_Center.Controllers
     public class HomeController : BaseController
     {
         /// <summary>
-        /// Returns the kome page.
+        /// Returns the home page.
         /// </summary>
         /// <returns>
         /// The home page.

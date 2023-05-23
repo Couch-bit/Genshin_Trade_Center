@@ -61,12 +61,13 @@
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-
                 <div>
-                    <input type="submit" value="Buy" class="nice-button" /> |
-                    @Html.ActionLink("Back to List", "Index")
+                    <input type="submit" value="Buy" class="nice-button" />
                 </div>
             }
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
         </div>
     </div>
     <hr />
