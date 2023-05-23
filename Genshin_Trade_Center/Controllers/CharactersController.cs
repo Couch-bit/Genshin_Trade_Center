@@ -131,6 +131,7 @@ namespace Genshin_Trade_Center.Controllers
         /// </param>
         /// <returns>
         /// The details view for the client.
+        /// HTTP 400, 404 on failure.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult DetailsClient(int? id)
@@ -155,12 +156,15 @@ namespace Genshin_Trade_Center.Controllers
         /// Returns HTTP 400 if the id provided was null.
         /// Returns HTTP 404 if the id provided didn't correspond
         /// to a <see cref="Character" /> in the database.
+        /// Returns HTTP 403 if the current <see cref="User" />
+        /// doesn't match the <see cref="Product.Seller".
         /// </summary>
         /// <param name="id">
         /// the id of the <see cref="Character" /> to display.
         /// </param>
         /// <returns>
         /// The details view for the seller.
+        /// HTTP 400, 403, 404 on failure.
         /// </returns>
         /// <remarks></remarks>
         public ActionResult DetailsSeller(int? id)
